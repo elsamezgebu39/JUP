@@ -1,7 +1,8 @@
 import Button from "./UI/Button";
+import Image from "next/image";
 export default function Hero() {
   return (
-    <div className="h-1/3 bg-[#f9ebeb] px-[5rem] flex justify-between mb-[1rem]">
+    <div className="h-1/3 bg-gradient-to-r from-[#f9ebeb] via-[#f9eeee] to-transparent px-[6rem] flex justify-between mb-[1rem]">
       <div className="pb-[3rem] mt-[1rem]">
         {/* <p className="text-[30px] font-bold ">
           Discover Culture, <br /> Shop Ethiopian Heritage
@@ -32,8 +33,8 @@ export default function Hero() {
           <Button btn_class="btn-field" label="Shop now"/>
         </div>
       </div>
-      <div className="pl-[20rem] pb-[5rem] mr-[3rem]">
-        <img className="h-[13rem] mt-[1rem] " src="/african.svg" />
+      <div className="flex justify-center items-center">
+        <Image src="/african.svg" width={170} height={170} alt="Africa"/>
       </div>
     </div>
   );

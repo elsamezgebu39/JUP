@@ -1,7 +1,7 @@
-const AboutUs = () => {
+const AboutUS = () => {
   return (
     <div>AboutUs</div>
   )
 }
 
-export default AboutUs
+export default AboutUS

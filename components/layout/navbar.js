@@ -11,7 +11,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const icons = ["/alert.svg", "/cart.svg", "/person.png"];
 
 const navmenu = [
-  { name: "Home", link: "/home" },
+  { name: "Home", link: "/" },
   { name: "Product", link: "/product" },
   { name: "Category", link: "/category" },
   { name: "Contact Us", link: "/contactUs" },
@@ -92,8 +92,8 @@ export default function NavBar() {
 
          {/* Mobile Navigation */}
         <div className="sm:hidden">
-        </div>   
 
+        </div>   
       </div> 
     </>
   );

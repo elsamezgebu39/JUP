@@ -13,7 +13,7 @@ export default function Hero() {
           <br /> Of Cultural Materials.
         </p> */}
          <h1 className='head_text'>
-            Discover Culture
+            Discover Culture,
             <br className='max-md:hidden' />
             <span className='purpel_gradient text-center'>Shop Ethiopian Heritage</span>
         </h1>

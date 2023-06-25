@@ -3,6 +3,7 @@ import cx from "classnames";
 import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";
 import Footer from "@/components/layout/footer";
+import Provider from "@components/Provider";
 import { Suspense } from "react";
 
 export const metadata = {
@@ -25,21 +26,23 @@ export default async function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cx(sfPro.variable, inter.variable)}>
-        {/* <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" /> */}
-        <div className='main'>
-          <div className='gradient' />
-        </div>
-        <Suspense fallback="...">
-          {/* Server Component */}
-          {/* Nav */}
-        </Suspense>
-        <main className="app">
-          <Nav />
-          {children}
-        </main>
-        <Footer />
-      </body>
+      <Provider>
+        <body className={cx(sfPro.variable, inter.variable)}>
+          {/* <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" /> */}
+          <div className='main'>
+            <div className='gradient' />
+          </div>
+          <Suspense fallback="...">
+            {/* Server Component */}
+            {/* Nav */}
+          </Suspense>
+          <main className="app">
+            <Nav />
+            {children}
+          </main>
+          <Footer />
+        </body>
+      </Provider>
     </html>
   );
 }

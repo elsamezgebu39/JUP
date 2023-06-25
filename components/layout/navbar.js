@@ -5,7 +5,8 @@ import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
-import { Session } from "next-auth";
+import { useState, useEffect } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const icons = ["/alert.svg", "/cart.svg", "/person.png"];
 
@@ -17,10 +18,12 @@ const navmenu = [
   { name: "About Us", link: "/aboutUS" },
 ];
 
-export default function NavBar({ session }) {
+// NavBar({ session })
+export default function NavBar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
-
+  
+  const { data: session } = useSession();
   return (
     <>
       <SignInModal />
@@ -36,10 +39,20 @@ export default function NavBar({ session }) {
          <p className="text-[30px] flex items-center">
             <span className="text-[#912c2c] text-[50px] font-bold">A</span>sham
           </p>
-
           <div>
-            {session ? (
-              <UserDropdown session={session} />
+            {session?.user ? (
+              <div className="flex gap-3 md:gap-5">
+                {/* <UserDropdown session={session} /> */}
+                <button
+                    onClick={() => {
+                    signOut();
+                  }}
+                  className="outline_btn">Sign Out</button>
+                <Link href="/profile">
+                  <Image src={session?.user.image} width={37} height={37} alt="profile" className="rounded-full" /> 
+                </Link>
+              </div>
+              
             ) : (
                 <div className="flex">
                   {icons.map((cur) => (
@@ -55,7 +68,9 @@ export default function NavBar({ session }) {
             )}
           </div>
         </div>
-        <>
+
+        {/* Desktop Navigation */}
+        <div className="sm:flex hidden">
           <ul className="flex justify-center h-[40px] bg-[#912c2c] w-full gap-x-2">
               {navmenu.map((curr) => {
                 return (
@@ -73,9 +88,13 @@ export default function NavBar({ session }) {
                 );
               })}
           </ul>
-        </>
-      </div>
-     
+        </div>
+
+         {/* Mobile Navigation */}
+        <div className="sm:hidden">
+        </div>   
+
+      </div> 
     </>
   );
 }

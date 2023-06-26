@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { img, imgs } from "@app/page";
 
-export default function Search() {
+export default function Search({ setTrendingItems, setFeaturedItems }) {
   // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -11,6 +12,22 @@ export default function Search() {
 
   const handleSearchChange = (e) => {
     // serch logic here
+    let searchQuery = e.target.value;
+    setSearchText(e.target.value);
+    let filtered = imgs.filter(
+      (item) =>
+        item.title.includes(searchQuery) ||
+        item.description.includes(searchQuery)
+    );
+    setFeaturedItems(filtered);
+    console.log(filtered);
+
+    let filterdTrending = img.filter(
+      (item) =>
+        item.title.includes(searchQuery) ||
+        item.description.includes(searchQuery)
+    );
+    setTrendingItems(filterdTrending);
   };
 
   return (

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Search() {
   // Search states
@@ -44,17 +45,17 @@ export default function Search() {
     //   </svg>
     // </div>
     <div>
-       <form className='relative w-full flex-center'>
+      <form className='relative w-full flex-center'>
         <input
-          type='text'
-          placeholder='Search for a product or a service'
-          value={searchText}
+          type="text"
           onChange={handleSearchChange}
-          required
-          className='search_input peer'
-        />
-        <button className="btn absolute top-0 right-0 w-1/6 h-10 btn-primary text-white rounded-l-none">
-             Search
+          value={searchText}
+          placeholder='Search for a product or a service'
+          className="input input-bordered input-md w-[100%] shadow-md" />
+        <button className="btn absolute top-0 right-0 w-1/12 h-10 btn-primary text-white rounded-l-none">
+          <div class="icon-mask">
+             <div className="w-10 h-10 bg-white" alt="serch">.</div>
+          </div>     
         </button>
       </form>
     </div>

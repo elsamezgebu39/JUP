@@ -84,3 +84,19 @@
 .search_input {
   @apply block w-full rounded-md border border-gray-200 bg-white py-3.5 font-satoshi pl-5 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
 }
+
+.outline_btn {
+  @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
+}
+
+.icon-mask {
+  -webkit-mask-image: url('/assets/icons/search.png');
+  mask-image: url('/assets/icons/search.png');
+  display: inline-block;
+  width: 1.6em;
+  height: 1.6em;
+  line-height: 0;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}

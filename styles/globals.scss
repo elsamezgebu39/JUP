@@ -14,16 +14,6 @@
   pointer-events: none;
 }
 
-/* .main:before {
-  background: radial-gradient(circle, rgba(2, 0, 36, 0) 0, #fafafa 100%);
-  position: absolute;
-  content: "";
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  top: 0;
-} */
-
 .main:after {
   content: "";
   background-image: url("/assets/images/grid.svg");
@@ -89,9 +79,19 @@
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
-.icon-mask {
-  -webkit-mask-image: url('/assets/icons/search.png');
-  mask-image: url('/assets/icons/search.png');
+// .icon-mask {
+//   -webkit-mask-image: url('/assets/icons/search.png');
+//   mask-image: url('/assets/icons/search.png');
+//   display: inline-block;
+//   width: 1.6em;
+//   height: 1.6em;
+//   line-height: 0;
+//   mask-repeat: no-repeat;
+//   mask-position: center;
+//   mask-size: contain;
+// }
+
+.icon {
   display: inline-block;
   width: 1.6em;
   height: 1.6em;
@@ -99,4 +99,8 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
+
+  &.icon-search {
+  mask-image: url('/assets/icons/search.png');
+  }
 }

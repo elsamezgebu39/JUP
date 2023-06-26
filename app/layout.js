@@ -1,4 +1,4 @@
-import "@styles/globals.css";
+import "@styles/globals.scss";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
 import Nav from "@/components/layout/nav";

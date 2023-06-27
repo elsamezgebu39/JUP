@@ -1,46 +1,93 @@
 "use client";
-
 import { useState } from "react";
-import Features from "@/components/Features";
-import Hero from "@/components/Hero";
-import Search from "@/components/Search";
+import Hero from "@components/Hero";
+import Search from "@components/Search";
 import Card from "@components/home/Card";
+import Features from "@components/Features";
 
-const imgs = [
-     { title: "Tibeb", description: "Cotton hand made new Ethiopian dress...", price: "3000", src: "/tibeb.jpg" },
-     { title:"Tibeb", description:"Cotton hand made new Ethiopian dress...", price:"200", src:"/tibeb.jpg"},
-     { title: "Tibeb", description: "Cotton hand made new Ethiopian dress...", price: "6000", src: "/tibeb.jpg" },
-     { title:"Tibeb", description:"Cotton hand made new Ethiopian dress...", price:"3000", src:"/african.svg"}
+export const imgs = [
+  {
+    title: "fibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "aibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "200",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "zibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "6000",
+    src: "/tibeb.jpg",
+  },
 ];
-  
-const img = ["/tibeb.jpg", "/tibeb.jpg", "/tibeb.jpg", "/tibeb.jpg"];
+export const img = [
+  {
+    title: "fibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "aibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "yibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "ribeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+];
+const imgss = ["/assets/images/cloth3.jpg", "/assets/images/cloth2.jpg"];
 
 export default function Home() {
   const [count, setcount] = useState(null);
   function previous() {
     setcount((prevcount) => prevcount + 1);
   }
+
+  const [featuredItems, setFeaturedItems] = useState(imgs);
+  const [trendingItems, setTrendingItems] = useState(img);
+
   return (
-    <div className="-mt-5">
+    <div className="-mt-5 w-[100vw]">
       {/* hero */}
       <Hero />
+
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
-        <Search />
+        <Search
+          setFeaturedItems={setFeaturedItems}
+          setTrendingItems={setTrendingItems}
+        />
       </div>
 
       {/* feature */}
       <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
         Featured Clothes
       </p>
+
       <div className={`flex justify-center ml-[${count}px]`}>
         <img
           onClick={previous}
           className="w-[2rem] rounded-[50%] h-[2rem] mt-[7rem]  ml-[12rem]"
           src="/lessthan.jpg"
         />
-        <div className="grid grid-cols-3 gap-6">
-          {imgs.map(({ title, description, price, src }) => 
+        <div className="grid grid-cols-3 ">
+          {featuredItems.map(({ title, description, price, src }) => (
             <Card
               key={title}
               title={title}
@@ -48,7 +95,7 @@ export default function Home() {
               price={price}
               curr={src}
             />
-          )}
+          ))}
         </div>
         <img
           src="/greaterthan.jpg"
@@ -56,37 +103,54 @@ export default function Home() {
         />
       </div>
 
+      {/* fetaures */}
+      <div className="ml-[5rem] mt-[2rem]">
+        <p className="font-bold text-[30px]">
+          Ethiopian Traditional Clothing
+          <br />
+          <span className="ml-[7rem]">Collections</span>
+        </p>
+        <div className="flex w-[50%vw] mt-[1rem]">
+          <img className="h-[21rem]" src="assets/images/cloth.jpg" />
+          <div className="">
+            {imgss.map((curr) => {
+              return (
+                <img
+                  className="mb-[1rem] ml-[1rem] h-[10rem] w-[15vw]"
+                  src={curr}
+                />
+              );
+            })}
+          </div>
+          <div>
+            <Features />
+          </div>
+        </div>
+      </div>
+
       {/* trending cloth */}
       <div>
         <p className="font-bold text-[30px] ml-[5rem] mt-[2rem]">
           Trending Clothes
         </p>
-        <div className="flex ml-[17.5rem] mr-[14.3rem] flex-wrap items-center">
-          {img.map((curr) => {
+        <div className=" ml-[17.5rem] mr-[14.3rem] grid grid-cols-3 items-center">
+          {trendingItems.map((curr) => {
             return (
-              <div className="bg-white m-[1rem] shadow-2xl rounded-[5%] w-[15rem]">
-                <img
-                  className="w-[10rem] h-[10rem]  m-[1rem] flex min-w-[2%]"
-                  src={curr}
-                />
-                <p className=" pl-[2rem] text-[#912c2c] font-bold text-[20px]">
-                  Tibeb
-                  <br />
-                </p>
-                <p className="p-[10px]">
-                  Cotton hand made new Ethiopian dress...{" "}
-                </p>
-                <br />
-                <p className="text-[#912c2c] font-strong float-right mr-[5px]">
-                  30000 Birr
-                </p>
+              <div className="grid grid-cols-3 ">
+                {trendingItems.map(({ title, description, price, src }) => (
+                  <Card
+                    key={title}
+                    title={title}
+                    description={description}
+                    price={price}
+                    curr={src}
+                  />
+                ))}
               </div>
             );
           })}
         </div>
       </div>
-      {/* Features */}
-      <Features />
     </div>
   );
 }

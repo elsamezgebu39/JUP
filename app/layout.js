@@ -38,7 +38,7 @@ export default async function RootLayout({
           </Suspense>
           <main className="app">
             <Nav />
-            {/* {children} */}
+            {children}
           </main>
           {/* <Footer /> */}
         </body>

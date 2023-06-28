@@ -64,7 +64,7 @@
 }
 
 .head_text {
-  @apply mt-5 text-2xl font-bold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-5 text-3xl md:text-6xl font-bold leading-[1.15] text-black text-center md:text-left;
 }
 
 .purpel_gradient {
@@ -94,5 +94,21 @@
 
   &.icon-menu {
     mask-image: url('/assets/icons/menu.svg')
+  }
+
+  &.icon-docs {
+    mask-image: url('/assets/icons/mobile-docs.svg')
+  }
+
+  &.icon-forum {
+    mask-image: url('/assets/icons/mobile-forum.svg')
+  }
+
+  &.icon-api {
+    mask-image: url('/assets/icons/mobile-api.svg')
+  }
+
+  &.icon-user {
+    mask-image: url('/assets/icons/mobile-user.svg')
   }
 }

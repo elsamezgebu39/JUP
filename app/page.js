@@ -76,11 +76,11 @@ export default function Home() {
       </div>
 
       {/* feature */}
-      <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
+      {/* <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
         Featured Clothes
-      </p>
+      </p> */}
 
-      <div className={`flex justify-center ml-[${count}px]`}>
+      {/* <div className={`flex justify-center ml-[${count}px]`}>
         <img
           onClick={previous}
           className="w-[2rem] rounded-[50%] h-[2rem] mt-[7rem]  ml-[12rem]"
@@ -101,10 +101,10 @@ export default function Home() {
           src="/greaterthan.jpg"
           className=" w-[2rem] rounded-[50%] h-[2rem] mt-[7rem] mr-[12rem]"
         />
-      </div>
+      </div> */}
 
       {/* fetaures */}
-      <div className="ml-[5rem] mt-[2rem]">
+      {/* <div className="ml-[5rem] mt-[2rem]">
         <p className="font-bold text-[30px]">
           Ethiopian Traditional Clothing
           <br />
@@ -126,10 +126,10 @@ export default function Home() {
             <Features />
           </div>
         </div>
-      </div>
+      </div> */}
 
       {/* trending cloth */}
-      <div>
+      {/* <div>
         <p className="font-bold text-[30px] ml-[5rem] mt-[2rem]">
           Trending Clothes
         </p>
@@ -150,7 +150,7 @@ export default function Home() {
             );
           })}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

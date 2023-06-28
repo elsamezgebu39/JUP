@@ -60,7 +60,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex min-h-screen flex-col items-center py-32 ;
+  @apply relative z-10 flex min-h-screen flex-col py-32 ;
 }
 
 .head_text {
@@ -79,18 +79,6 @@
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
-// .icon-mask {
-//   -webkit-mask-image: url('/assets/icons/search.png');
-//   mask-image: url('/assets/icons/search.png');
-//   display: inline-block;
-//   width: 1.6em;
-//   height: 1.6em;
-//   line-height: 0;
-//   mask-repeat: no-repeat;
-//   mask-position: center;
-//   mask-size: contain;
-// }
-
 .icon {
   display: inline-block;
   width: 1.6em;
@@ -102,5 +90,9 @@
 
   &.icon-search {
   mask-image: url('/assets/icons/search.png');
+  }
+
+  &.icon-menu {
+    mask-image: url('/assets/icons/menu.svg')
   }
 }

@@ -5,45 +5,52 @@ import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
+import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import { useState } from "react";
 
 // const icons = ["/alert.svg", "/cart.svg", "/person.png"];
 const icons = ["/alert.svg", "/cart.svg"];
 const navmenu = [
-  { name: "Home", link: "/" },
-  { name: "Product", link: "/product" },
-  { name: "Category", link: "/category" },
-  { name: "Contact Us", link: "/contactUs" },
-  { name: "About Us", link: "/aboutUS" },
+  { name: "Home", link: "/", isProtectedRoute:"false", icon: "/assets/icons/mobile-home.svg" },
+  { name: "Product", link: "/product", isProtectedRoute:"false", icon: "/assets/icons/mobile-api.svg" },
+  { name: "Category", link: "/category", isProtectedRoute:"false", icon: "/assets/icons/mobile-docs.svg" },
+  { name: "Contact Us", link: "/contactUs", isProtectedRoute:"false", icon: "/assets/icons/mobile-faq.svg" },
+  { name: "About Us", link: "/aboutUS", isProtectedRoute:"false", icon: "/assets/icons/mobile-forum.svg" },
 ];
 
 // NavBar({ session })
 export default function NavBar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
+  const [viewModal, setViewModal] = useState(false);
   const scrolled = useScroll(50);
-  
+
   const { data: session } = useSession();
+  let pathName = usePathname();
+
   return (
     <>
       <SignInModal />
-      <div
+      <nav
         className={`fixed top-0 w-full ${
           scrolled
             ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
-            : "bg-white/0"
+            : "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
         } z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+        <div className="mx-3 md:mx-auto flex h-16 max-w-screen-xl items-center justify-between">
           {/* Logo */}
           <div className="flex-1 py-1 text-[30px] flex items-center">
-              <Link className="btn btn-ghost normal-case text-xl" href="/">
-                <span className="text-[#912c2c] text-[50px] font-bold">A</span>
+              <Link className="btn btn-ghost normal-case text-lg md:text-xl" href="/">
+                <span className="text-[#912c2c] text-2xl md:text-[50px] font-bold md:font-bold">A</span>
                 sham
               </Link>
-           </div>   
+          </div>
+          {/* Nav Section */}
           <div>
             {session?.user ? (
-            <div className="flex flex-none justify-center items-center gap-2">
+              <div className="flex flex-none justify-center items-center gap-2">
+                
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn btn-ghost btn-circle">
                   <div className="indicator">
@@ -141,11 +148,137 @@ export default function NavBar() {
           </ul>
         </div>
 
-         {/* Mobile Navigation */}
-        <div className="sm:hidden">
-
+        {/* Mobile Navigation */}
+        <div className="sm:hidden flex">
+          <div className="flex justify-center items-center h-[40px] bg-[#912c2c] w-full">
+            {/* Drawer Section */}
+          
+            <div className="drawer drawer-end z-50">
+                <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+                <div className="drawer-content">
+                  <label htmlFor="my-drawer-4" className="icon icon-menu bg-white ml-2" onClick={() => setViewModal(true)}></label>
+              </div> 
+                {viewModal &&
+                <div className="drawer-side">
+                  <label htmlFor="my-drawer-4" className="drawer-overlay"></label>
+                    <div className="menu w-80 h-full bg-base-200">
+                      {/* Sidebar content here */}
+                      <div className="bg-[#6c152f] w-full h-1/4 flex flex-col items-center justify-center">
+                        {session?.user ? (
+                          <>
+                            <Image
+                              src={session?.user.image}
+                              width={80}
+                              height={80}
+                              alt="users"
+                              className="rounded-full"
+                            />
+                            <h2 className="flex text-white my-2">
+                              {session?.user.name}
+                            </h2>
+                          </>
+                        ) : (
+                          <Link href="/guest/login">
+                            <Image
+                              // src="/assets/icons/mobile-user-header.svg"
+                              src="/assets/icons/profile.svg"
+                              width={70}
+                              height={70}
+                              alt="users"
+                            />
+                          </Link>
+                        )}
+                      </div>
+                      
+                      <ul className="flex flex-col justify-start items-start text-black text-base font-semibold font-inter mt-2">
+                        {navmenu.map((nav) => (
+                          <li key={nav.name} onClick={() => setViewModal(false)}>
+                            <Link
+                              href={
+                                nav.isProtectedRoute && !session?.user
+                                  ? "/"
+                                  : nav.link
+                              }
+                              className={`gap-x-5 mb-1 hover:text-red-950 ${pathName === nav.link &&
+                                "text-black contrast-125"
+                                }`}
+                              prefetch={true}
+                            >
+                              <Image
+                                src={nav.icon}
+                                width={27}
+                                height={27}
+                                alt="user"
+                                className=""
+                              />
+                              {nav.name}
+                            </Link>
+                          </li>
+                        ))}
+                        {
+                          session?.user &&
+                          <>
+                            <div className="divider" />
+                            <ul>
+                              <li>
+                                <Link
+                                  href="/profile"
+                                  className={`font-semibold flex gap-x-5 mb-2 hover:text-amber-300`}
+                                  onClick=""
+                                >
+                                  <Image
+                                    src="/assets/icons/profile-login.svg"
+                                    width={25}
+                                    height={25}
+                                    alt="user"
+                                    className=""
+                                  />
+                                  Profile
+                                </Link>
+                              </li>
+                            
+                              <li>
+                                <Link
+                                  href="/profile"
+                                  className={`font-semibold flex gap-x-5 mb-3 hover:text-amber-300`}
+                                  onClick=""
+                                >
+                                  <Image
+                                    src="/assets/icons/change-password.svg"
+                                    width={25}
+                                    height={25}
+                                    alt="user"
+                                    className=""
+                                  />
+                                  Change Password
+                                </Link>
+                              </li>
+                            </ul>
+                            <button
+                              type='button'
+                              // onClick={signOut()}
+                              className='mt-5 w-3/4 btn btn-primary mx-auto'
+                            >
+                              <Image
+                                src="/assets/icons/mobile-logout.svg"
+                                width={25}
+                                height={25}
+                                alt="user"
+                                className="mr-2"
+                                onClick=""
+                              />
+                              Sign Out
+                            </button>
+                          </>
+                        }
+                      </ul>
+                    </div>
+                </div>     
+                }
+            </div>
+          </div>        
         </div>   
-      </div> 
+      </nav> 
     </>
   );
 }

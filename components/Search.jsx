@@ -14,25 +14,25 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
     // serch logic here
     let searchQuery = e.target.value;
     setSearchText(e.target.value);
+  };
+  const handleSearchClick = (e) => {
     let filtered = imgs.filter(
       (item) =>
-        item.title.includes(searchQuery) ||
-        item.description.includes(searchQuery)
+        item.title.includes(searchText) || item.description.includes(searchText)
     );
     setFeaturedItems(filtered);
     console.log(filtered);
 
     let filterdTrending = img.filter(
       (item) =>
-        item.title.includes(searchQuery) ||
-        item.description.includes(searchQuery)
+        item.title.includes(searchText) || item.description.includes(searchText)
     );
     setTrendingItems(filterdTrending);
   };
 
   return (
     <div>
-      <form className="relative w-full flex-center">
+      <div className="relative w-full flex-center">
         <input
           type="text"
           onChange={handleSearchChange}
@@ -40,14 +40,18 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
           placeholder="Search for a product or a service"
           className="input input-bordered input-md w-[100%] shadow-md"
         />
-        <button className="btn absolute top-0 right-0 w-1/12 h-10 btn-primary text-white rounded-l-none">
+        <button
+          type="button"
+          onClick={handleSearchClick}
+          className="btn absolute top-0 right-0 w-1/12 h-10 btn-primary text-white rounded-l-none"
+        >
           <div class="icon-mask">
             <div className="w-10 h-10 bg-white" alt="search">
               .
             </div>
           </div>
         </button>
-      </form>
+      </div>
     </div>
   );
 }

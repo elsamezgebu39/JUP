@@ -53,7 +53,7 @@ export default function product() {
       <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
         Featured Clothes
       </p>
-      <div className={`flex justify-center ml-[${count}px]`}>
+      <div className={`flex justify-center p-[${count}px]`}>
         <img
           onClick={previous}
           className="w-[2rem] rounded-[50%] h-[2rem] mt-[7rem]  ml-[12rem]"

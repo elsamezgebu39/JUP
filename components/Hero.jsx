@@ -12,10 +12,12 @@ export default function Hero() {
           Captivating Collection
           <br /> Of Cultural Materials.
         </p> */}
-         <h1 className='head_text'>
-            Discover Culture,
-            <br className='max-md:hidden' />
-            <span className='purpel_gradient text-center'>Shop Ethiopian Heritage</span>
+        <h1 className="head_text">
+          Discover Culture,
+          <br className="max-md:hidden" />
+          <span className="purpel_gradient text-center">
+            Shop Ethiopian Heritage
+          </span>
         </h1>
         <br />
         <p className="text-[#979899]">
@@ -23,18 +25,18 @@ export default function Hero() {
           Captivating Collection
           <br /> Of Cultural Materials.
         </p>
-        
+
         <br />
         <div>
           {/* <button className="w-[8rem] h-[2rem] rounded-[6px] bg-[#912c2c] text-white">
             Shop Now */}
-            {/* <img className="w-[2rem]" src="cart.svg" /> */}
+          {/* <img className="w-[2rem]" src="cart.svg" /> */}
           {/* </button> */}
-          <Button btn_class="btn-field" label="Shop now"/>
+          <Button btn_class="btn-field" label="Shop now" />
         </div>
       </div>
       <div className="flex justify-center items-center">
-        <Image src="/african.svg" width={170} height={170} alt="Africa"/>
+        <Image src="/african.svg" width={170} height={170} alt="Africa" />
       </div>
     </div>
   );

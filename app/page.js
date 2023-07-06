@@ -10,7 +10,7 @@ import Link from "next/link";
 export const imgs = [
   {
     title: "fibeb",
-    description: "Cotton hand made new Ethiopian dress...",
+    description: "Cotton hand made new Ethiopian dress",
     price: "3000",
     src: "/tibeb.jpg",
   },
@@ -42,13 +42,14 @@ export const imgs = [
 export const img = [
   {
     title: "fibeb",
-    description: "Cotton hand made new Ethiopian dress...",
+    description: "Cotton hand made new Ethiopian dress",
     price: "3000",
     src: "/tibeb.jpg",
   },
   {
     title: "aibeb",
-    description: "Cotton hand made new Ethiopian dress...",
+    description: "Cotton hand made new Ethiopian dress",
+
     price: "3000",
     src: "/tibeb.jpg",
   },
@@ -85,6 +86,7 @@ const AbtUs = [
 ];
 
 export default function Home() {
+  // fuctionality of left and right icons
   const [count, setcount] = useState(null);
   function previous() {
     setcount((prevcount) => prevcount - 1);
@@ -98,8 +100,10 @@ export default function Home() {
   const [featuredItems, setFeaturedItems] = useState(imgs);
   const [trendingItems, setTrendingItems] = useState(img);
 
+  // read more and less
+
   return (
-    <div className="-mt-5 w-[100vw]">
+    <div className="mt-5 w-[100vw]">
       {/* hero */}
       <Hero />
 
@@ -111,21 +115,19 @@ export default function Home() {
         />
       </div>
 
-      {/* feature */}
+      {/* feature clothes*/}
       <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
         Featured Clothes
       </p>
 
       <div className="flex justify-center">
         {/* left icon */}
-        <div>
-          <button onClick={previous} className="text-[3rem] mt-[12rem]">
-            <div>
-              <img className="w-[2rem] rounded-[50%]" src="/lessthan.jpg" />
-            </div>
-          </button>
-        </div>
-        <div className="w-[51rem] flex overflow-hidden">
+        <button onClick={previous} className="text-[3rem] mt-[12rem]">
+          <div>
+            <img className="w-[2rem] rounded-[50%]" src="/lessthan.jpg" />
+          </div>
+        </button>
+        <div className="w-[20rem] flex overflow-hidden items-start sm:w-[60rem] border-solid">
           {featuredItems.map(({ title, description, price, src }) => (
             <div
               className="transition-transform duration-500 transform"
@@ -142,13 +144,11 @@ export default function Home() {
           ))}
         </div>
         {/* right icon */}
-        <div>
-          <button onClick={next} className="text-[3rem] mt-[12rem]">
-            <div>
-              <img className="w-[2rem] rounded-[50%]" src="/greaterthan.jpg" />
-            </div>
-          </button>
-        </div>
+        <button onClick={next} className="text-[3rem] mt-[12rem]">
+          <div>
+            <img className="w-[2rem] rounded-[50%]" src="/greaterthan.jpg" />
+          </div>
+        </button>
       </div>
 
       {/* fetaures */}
@@ -158,7 +158,7 @@ export default function Home() {
           <br />
           <span className="ml-[7rem]">Collections</span>
         </p>
-        <div className="flex w-[50%vw] mt-[1rem] ml-[12rem]">
+        <div className="flex w-[50%vw] mt-[1rem] mx-[6rem]">
           <img className="h-[21rem]" src="assets/images/cloth.jpg" />
           <div className="mr-[2rem]">
             {imgss.map((curr) => {
@@ -175,7 +175,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-
       {/* trending cloth */}
       <div>
         <p className="font-bold text-[30px] ml-[5rem] mt-[2rem]">
@@ -187,8 +186,8 @@ export default function Home() {
             see more...
           </Link>
         </p>
-        <div className="ml-[16rem] mr-[16rem]">
-          <div className="grid grid-cols-3">
+        <div className="mx-[8rem]">
+          <div className="flex items-start grid-cols-3">
             {trendingItems.map(({ title, description, price, src }) => (
               <Card
                 key={title}
@@ -202,11 +201,12 @@ export default function Home() {
         </div>
       </div>
       <div>
+        {/* about us */}
         <p className="font-bold text-[30px] ml-[5rem] mt-[2rem]">
           What are people saying about us?
         </p>
-        <div className="ml-[16rem] mr-[16rem]">
-          <div className=" grid grid-cols-3">
+        <div className="mx-[10rem]">
+          <div className="flex items-start grid-cols-3 ">
             {AbtUs.map(({ description, name, type, src }) => (
               <AboutUS
                 description={description}

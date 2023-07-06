@@ -16,12 +16,13 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
     setSearchText(e.target.value);
   };
   const handleSearchClick = (e) => {
+    const formattedSearchText = searchText.toLowerCase();
     let filtered = imgs.filter(
       (item) =>
-        item.title.includes(searchText) || item.description.includes(searchText)
+        item.title.toLowerCase().includes(formattedSearchText) ||
+        item.description.toLowerCase().includes(formattedSearchText)
     );
     setFeaturedItems(filtered);
-    console.log(filtered);
 
     let filterdTrending = img.filter(
       (item) =>

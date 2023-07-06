@@ -33,7 +33,7 @@ export default function NavBar() {
             : "bg-white/0"
         } z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between xl:mx-auto">
+        <div className="mx-5 flex h-16  items-center justify-between  sm:mx-2">
           {/* Logo */}
           <div className="flex-1 py-1 text-[30px] flex items-center">
             <Link className="btn btn-ghost normal-case text-xl" href="/">

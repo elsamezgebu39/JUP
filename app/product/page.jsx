@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import Search from "@/components/Search";
 import Card from "@components/home/Card";
 
-const imgs = [
+export const imgs = [
   {
     title: "Tibeb",
     description: "Cotton hand made new Ethiopian dress...",
@@ -33,23 +33,47 @@ const imgs = [
   },
 ];
 
-const img = ["/tibeb.jpg", "/tibeb.jpg", "/tibeb.jpg", "/tibeb.jpg"];
+export const img = [
+  {
+    title: "fibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "aibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "yibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/african.svg",
+  },
+];
 
 export default function product() {
   const [count, setcount] = useState(null);
   function previous() {
     setcount((prevcount) => prevcount + 1);
   }
+  const [featuredItems, setFeaturedItems] = useState(imgs);
+  const [trendingItems, setTrendingItems] = useState(img);
   return (
     <div className="-mt-5">
       {/* hero */}
       <Hero />
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
-        <Search />
+        <Search
+          setFeaturedItems={setFeaturedItems}
+          setTrendingItems={setTrendingItems}
+        />
       </div>
 
-      {/* feature */}
+      {/* featured items */}
       <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
         Featured Clothes
       </p>
@@ -60,7 +84,7 @@ export default function product() {
           src="/lessthan.jpg"
         />
         <div className="grid grid-cols-3 gap-6">
-          {imgs.map(({ title, description, price, src }) => (
+          {featuredItems.map(({ title, description, price, src }) => (
             <Card
               key={title}
               title={title}
@@ -82,7 +106,7 @@ export default function product() {
           Trending Clothes
         </p>
         <div className=" ml-[17.5rem] mr-[14.3rem] grid grid-cols-3 items-center">
-          {img.map((curr) => {
+          {trendingItems.map((curr) => {
             return (
               <div className="bg-white m-[1rem] shadow-xl hover:shadow-2xl rounded-[5%] w-[15rem]">
                 <img

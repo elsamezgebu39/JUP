@@ -1,6 +1,14 @@
+"use client";
+import { useState } from "react";
+
 export default function AboutUs({ description, name, type, src, curr }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpanded = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
-    <div className="card w-[15rem] bg-base-100 shadow-xl hover:shadow-2xl transition-all ml-[1rem] mr-[1rem] mt-[1rem] flex flex-col items-center justify-center">
+    <div className="card w-[18rem] bg-base-100 shadow-xl hover:shadow-2xl transition-all ml-[1rem] mr-[1rem] mt-[1rem] items-center ">
       <figure className="rounded-full  h-[100px] w-[100px]">
         <img
           className="object-cover h-[100px] w-[100px]"
@@ -9,7 +17,12 @@ export default function AboutUs({ description, name, type, src, curr }) {
         />
       </figure>
       <div className="card-body">
-        <p className="">{description}</p>
+        <p className={`text-center ${isExpanded ? "block" : "line-clamp-3"}`}>
+          {description}
+        </p>
+        <button className="text-end font-semibold" onClick={toggleExpanded}>
+          {isExpanded ? "read less" : "read more"}
+        </button>
         <h1 className="text-[#912c2c] text-center font-bold">{name}</h1>
         <p className="text-center">{type}</p>
       </div>

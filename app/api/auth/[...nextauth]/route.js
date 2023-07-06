@@ -1,15 +1,16 @@
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google";
 
-import User from '@models/user';
-import { connectToDB } from '@utils/database';
+import User from "@models/user";
+import { connectToDB } from "@utils/database";
+import Hero from "@components/Hero";
 
 const handler = NextAuth({
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    })
+    }),
   ],
   callbacks: {
     async session({ session }) {
@@ -35,13 +36,20 @@ const handler = NextAuth({
           });
         }
 
-        return true
+        return true;
       } catch (error) {
         console.log("Error checking if user exists: ", error.message);
-        return false
+        return false;
       }
     },
-  }
-})
+  },
+});
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };
+export default function cart() {
+  return (
+    <div>
+      <Hero />
+    </div>
+  );
+}

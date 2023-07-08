@@ -31,11 +31,10 @@ export default function Hero() {
 
       {/* Mobile Section */}
       <div className="sm:hidden h-1/3 bg-gradient-to-b from-[#f9ebeb] via-[#f9eeee] to-transparent z-10 w-full max-w-xl px-5 xl:px-0 flex flex-col justify-center items-center">
-         <Image src="/african.svg" width={100} height={100} alt="Africa"/>
-
+        <Image src="/african.svg" width={100} height={100} alt="Africa" className="py-4"/>
         <h1
-          className="animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
-          style={{ animationDelay: "0.15s", animationFillMode: "forwards" }}
+          className="animate animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"
+          style={{ animationDelay: "0.15s", animationFillMode: "backwards" }}
         >
           <Balancer>Discover Culture, Shop Ethiopian Heritage</Balancer>
         </h1>
@@ -47,8 +46,7 @@ export default function Hero() {
             Welcome To Our Online Marketplace, <br /> Dedicated To Bring You A Captivating Collection Of Cultural Materials.
           </Balancer>
         </p>  
-        
-        <div className="w-2/3 mx-auto">
+        <div className="w-2/3 mx-auto my-5">
           <button className="btn btn-primary btn-block">Shop now</button>
         </div>
       </div>

@@ -39,12 +39,12 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
           onChange={handleSearchChange}
           value={searchText}
           placeholder="Search for a product or a service"
-          className="input input-bordered input-md w-[100%] shadow-md"
+          className="sm:input input-bordered input-md input-sm w-[100%] shadow-md"
         />
         <button
           type="button"
           onClick={handleSearchClick}
-          className="btn absolute top-0 right-0 w-1/12 h-10 btn-primary text-white rounded-l-none"
+          className="btn absolute top-0 right-0 w-1/12  h-8 sm:h-12 btn-primary btn-xs text-white rounded-l-none"
         >
           <div class="icon-mask">
             <div className="w-10 h-10 bg-white" alt="search">

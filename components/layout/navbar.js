@@ -6,15 +6,14 @@ import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
 import UserDropdown from "./user-dropdown";
 import { signOut, useSession } from "next-auth/react";
-
-// const icons = ["/alert.svg", "/cart.svg", "/person.png"];
-const icons = ["/alert.svg", "/cart.svg"];
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { useState } from "react";
 const navmenu = [
   { name: "Home", link: "/" },
   { name: "Product", link: "/product" },
   { name: "Category", link: "/category" },
   { name: "Contact Us", link: "/contactUs" },
-  { name: "About Us", link: "/aboutUS" },
+  { name: "About Us", link: "/aboutUs" },
 ];
 
 // NavBar({ session })
@@ -23,17 +22,23 @@ export default function NavBar() {
   const scrolled = useScroll(50);
 
   const { data: session } = useSession();
+
+  const [nav, setNav] = useState(false);
+
+  const handleNav = () => {
+    setNav(!nav);
+  };
   return (
     <>
       <SignInModal />
       <div
-        className={`fixed top-0 w-full ${
+        className={`sm:fixed fixed top-0  w-screen sm:w-full ${
           scrolled
             ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
             : "bg-white/0"
         } z-30 transition-all`}
       >
-        <div className="mx-5 flex h-16  items-center justify-between  sm:mx-2">
+        <div className="mr-[2rem] ml-[1rem] flex h-16  items-center justify-between  sm:mx-2">
           {/* Logo */}
           <div className="flex-1 py-1 text-[30px] flex items-center">
             <Link className="btn btn-ghost normal-case text-xl" href="/">
@@ -41,7 +46,7 @@ export default function NavBar() {
               sham
             </Link>
           </div>
-          <div>
+          <div className="float-right">
             {session?.user ? (
               <div className="flex flex-none justify-center items-center gap-2">
                 <div className="dropdown dropdown-end">
@@ -192,9 +197,7 @@ export default function NavBar() {
             {navmenu.map((curr) => {
               return (
                 <div className="flex text-[white] items-center px-[3rem]">
-                  {curr.name == "Category" && (
-                    <img className="w-[2rem]" src="menu.svg" />
-                  )}
+                  {curr.name == "Category" && <AiOutlineMenu size={20} />}
                   <Link
                     className="hover:bg-[#621e1e] h-[2rem] align-center transition-all"
                     href={curr.link}
@@ -208,7 +211,38 @@ export default function NavBar() {
         </div>
 
         {/* Mobile Navigation */}
-        <div className="sm:hidden"></div>
+        <div
+          className="block sm:hidden bg-[#912c2c] right-100 h-[2rem] w-full text-white z-10"
+          onClick={handleNav}
+        >
+          <div className="float-right pt-[6px] mr-[2rem]">
+            <AiOutlineMenu size={20} />
+          </div>
+        </div>
+        <div
+          className={
+            nav
+              ? "sm:hidden items-start absolute top-24 left-0 right-0 bottom-0 grid justify-start w-full h-[8rem] bg-[#912c2c] "
+              : "hidden "
+          }
+        >
+          <ul>
+            {navmenu.map((cur) => {
+              return (
+                <div>
+                  <Link
+                    className="block ml-[2rem] animate-topToBottom transform duration-500 text-[15px] text-white hover:text-black"
+                    href={cur.link}
+                    style={{ transform: `translatex(-${nav * 20}%)` }}
+                  >
+                    {cur.name}
+                  </Link>
+                </div>
+              );
+            })}
+          </ul>
+        </div>
+        {/* </div> */}
       </div>
     </>
   );

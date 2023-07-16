@@ -70,11 +70,11 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex min-h-screen flex-col items-center py-32 ;
+  @apply relative z-10 flex min-h-screen flex-col items-center py-32;
 }
 
 .head_text {
-  @apply mt-5 text-2xl font-bold leading-[1.15] text-black sm:text-6xl;
+  @apply mt-1 sm:mt-5 text-2xl font-bold leading-[1.15] text-black sm:text-6xl;
 }
 
 .purpel_gradient {
@@ -90,13 +90,14 @@
 }
 
 .icon-mask {
-  -webkit-mask-image: url('/assets/icons/search.png');
-  mask-image: url('/assets/icons/search.png');
+  -webkit-mask-image: url("/assets/icons/search.png");
+  mask-image: url("/assets/icons/search.png");
   display: inline-block;
   width: 1.6em;
-  height: 1.6em;
+  height: 1em;
   line-height: 0;
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
+  min-height: 2.6em;
 }

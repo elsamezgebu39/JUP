@@ -3,6 +3,8 @@ import { useState } from "react";
 
 export default function AboutUs({ description, name, type, src, curr }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const line = description.split(" ");
+  const lineLength = line.length;
 
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
@@ -20,7 +22,12 @@ export default function AboutUs({ description, name, type, src, curr }) {
         <p className={`text-center ${isExpanded ? "block" : "line-clamp-3"}`}>
           {description}
         </p>
-        <button className="text-end font-semibold" onClick={toggleExpanded}>
+        <button
+          className={`text-end font-semibold ${
+            lineLength > 10 ? "visible" : "invisible"
+          }`}
+          onClick={toggleExpanded}
+        >
           {isExpanded ? "read less" : "read more"}
         </button>
         <h1 className="text-[#912c2c] text-center font-bold">{name}</h1>

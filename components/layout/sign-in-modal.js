@@ -12,10 +12,7 @@ import {
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Image from "next/image";
 
-const SignInModal = ({
-  showSignInModal,
-  setShowSignInModal,
-}) => {
+const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
   const [signInClicked, setSignInClicked] = useState(false);
   const [providers, setProviders] = useState(null);
 
@@ -34,13 +31,6 @@ const SignInModal = ({
             <span className="h-10 w-10 rounded-full bg-gray-200 py-2 px-3.5 font-bold text-xl text-red-950">
               A
             </span>
-            {/* <Image
-              src="/logo.png"
-              alt="Logo"
-              className="h-10 w-10 rounded-full"
-              width={20}
-              height={20}
-            /> */}
           </a>
           <h3 className="font-display text-2xl font-bold">Sign In</h3>
           <p className="text-sm text-gray-500">
@@ -52,30 +42,30 @@ const SignInModal = ({
           {providers &&
             Object.values(providers).map((provider) => (
               <button
-                  type='button'
-                  key={provider.name}
-                  disabled={signInClicked}
-                  className={`${
-                    signInClicked
-                      ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                      : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-                    } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
-                    onClick={() => {
-                      setSignInClicked(true);
-                      signIn(provider.id);
-                      // signIn("google");
-                    }}
-                  >
-                    {signInClicked ? (
-                      <LoadingDots color="#808080" />
-                    ) : (
-                      <>
-                        <Google className="h-5 w-5" />
-                        <p>Sign In with Google</p>
-                      </>
-                    )}
-              </button>               
-            ))}  
+                type="button"
+                key={provider.name}
+                disabled={signInClicked}
+                className={`${
+                  signInClicked
+                    ? "cursor-not-allowed border-gray-200 bg-gray-100"
+                    : "border border-gray-200 bg-white text-black hover:bg-gray-50"
+                } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
+                onClick={() => {
+                  setSignInClicked(true);
+                  signIn(provider.id);
+                  // signIn("google");
+                }}
+              >
+                {signInClicked ? (
+                  <LoadingDots color="#808080" />
+                ) : (
+                  <>
+                    <Google className="h-5 w-5" />
+                    <p>Sign In with Google</p>
+                  </>
+                )}
+              </button>
+            ))}
         </div>
       </div>
     </Modal>
@@ -96,6 +86,6 @@ export function useSignInModal() {
 
   return useMemo(
     () => ({ setShowSignInModal, SignInModal: SignInModalCallback }),
-    [setShowSignInModal, SignInModalCallback],
+    [setShowSignInModal, SignInModalCallback]
   );
 }

@@ -1,17 +1,11 @@
 import Button from "./UI/Button";
 import Image from "next/image";
+import product from "@app/product/page";
+import Link from "next/link";
 export default function Hero() {
   return (
     <div className="h-1/3 bg-gradient-to-r from-[#f9ebeb] via-[#f9eeee] to-transparent px-[6rem] flex justify-between mb-[1rem]">
       <div className="pb-[3rem] mt-[1rem]">
-        {/* <p className="text-[30px] font-bold ">
-          Discover Culture, <br /> Shop Ethiopian Heritage
-        </p>
-        <p className="text-[#979899]">
-          Welcome To Our Online Marketplace, <br /> Dedicated To Bring You A
-          Captivating Collection
-          <br /> Of Cultural Materials.
-        </p> */}
         <h1 className="head_text">
           Discover Culture,
           <br className="max-md:hidden" />
@@ -28,11 +22,9 @@ export default function Hero() {
 
         <br />
         <div>
-          {/* <button className="w-[8rem] h-[2rem] rounded-[6px] bg-[#912c2c] text-white">
-            Shop Now */}
-          {/* <img className="w-[2rem]" src="cart.svg" /> */}
-          {/* </button> */}
-          <Button btn_class="btn-field" label="Shop now" />
+          <Link href="/product" className="btn btn-primary" label="Shop now">
+            Shop now
+          </Link>
         </div>
       </div>
       <div className="flex justify-center items-center">

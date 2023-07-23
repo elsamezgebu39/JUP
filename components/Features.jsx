@@ -12,10 +12,10 @@ export default function Features({ horizontal }) {
     >
       {imgs.map((curr) => {
         return (
-          <div className="shadow-2xl m-[1rem] flex flex-col  items-center bg-[#f0eded] rounded-[5%] w-[9rem] h-[5rem] ">
-            <img className="w-[2rem] flex  " src={curr.image} />
+          <button className="btn btn-xs shadow-2xl m-[1rem] flex flex-col items-center bg-[#dfdede] rounded-[5%] w-[4rem] sm:w-[9rem] h-[2rem] sm:h-[5rem] ">
+            <img className="w-[2rem] flex " src={curr.image} />
             <p>{curr.title}</p>
-          </div>
+          </button>
         );
       })}
     </div>

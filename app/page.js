@@ -106,7 +106,7 @@ export default function Home() {
   // read more and less
 
   return (
-    <div className="mt-5 w-screen sm:w-[100vw]">
+    <div className="w-screen sm:w-[100vw]">
       {/* hero */}
       <Hero />
 
@@ -190,7 +190,7 @@ export default function Home() {
         </div>
       </div>
       {/* trending cloth */}
-      <div>
+      <div className="w-full">
         <p className="font-bold text-[20px] sm:text-4xl ml-[5rem] mt-[2rem]">
           Trending Clothes
           <Link
@@ -200,8 +200,8 @@ export default function Home() {
             see more...
           </Link>
         </p>
-        <div className="mx-[13rem]">
-          <div className="flex items-start grid-cols-3 mr-[2rem]">
+        <div className="w-full flex justify-center items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {trendingItems.map(({ title, description, price, src }) => (
               <Card
                 key={title}
@@ -212,6 +212,7 @@ export default function Home() {
               />
             ))}
           </div>
+
         </div>
       </div>
       <div>

@@ -30,7 +30,7 @@ export default function Hero() {
       </div>
 
       {/* Mobile Section */}
-      <div className="sm:hidden h-1/3 bg-gradient-to-b from-[#f9ebeb] via-[#f9eeee] to-transparent z-10 w-full max-w-xl px-5 xl:px-0 flex flex-col justify-center items-center">
+      <div className="sm:hidden h-1/3 bg-gradient-to-b from-[#f9ebeb] via-[#f9eeee] to-transparent z-10 w-full max-w-xl px-5 xl:px-0 flex flex-col justify-center items-center pt-3">
         <Image src="/african.svg" width={100} height={100} alt="Africa" className="py-4" />
         <h1
           className="animate animate-fade-up bg-gradient-to-br from-black to-stone-500 bg-clip-text text-center font-display text-4xl font-bold tracking-[-0.02em] text-transparent drop-shadow-sm md:text-7xl md:leading-[5rem]"

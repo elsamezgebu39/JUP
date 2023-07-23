@@ -7,6 +7,7 @@ import { useSignInModal } from "./sign-in-modal";
 import { useSideBarModal } from "./side-bar-modal";
 import UserDropdown from "./user-dropdown";
 import Popover from "@/components/shared/popover";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
@@ -36,8 +37,8 @@ export default function NavBar() {
     <>
       <nav
         className={`fixed top-0 w-full ${scrolled
-            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
-            : "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
+          ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
+          : "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
           } z-30 transition-all`}
       >
         <div className="mx-3 md:mx-auto flex h-16 max-w-screen-xl items-center justify-between">
@@ -225,23 +226,23 @@ export default function NavBar() {
             <h1 className="font-semibold text-center mt-4">Select Category</h1>
             <p className="text-xs text-center mb-5 text-gray-500 opacity-90">Select Favorite Category</p>
             <div className="carousel carousel-center max-w-md space-x-4 w-full rounded-md bg-white p-2 sm:w-40 mb-8">
-              <div className="carousel-item bg-gray-200 px-[1.5rem] py-[1.15rem] rounded-full flex flex-col justify-center items-center">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
                 <span className="icon icon-docs bg-primary text-xl" />
                 <p className="text-sm font-semibold -mt-1">Tibeb</p>
               </div>
-              <div className="carousel-item bg-gray-200 px-[1.5rem] py-[1.15rem] rounded-full flex flex-col justify-center items-center">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
                 <span className="icon icon-forum bg-primary text-xl" />
                 <p className="text-sm font-semibold -mt-1">Tibeb</p>
               </div>
-              <div className="carousel-item bg-gray-200 px-[1.5rem] py-[1.15rem] rounded-full flex flex-col justify-center items-center">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
                 <span className="icon icon-api bg-primary text-xl" />
                 <p className="text-sm font-semibold -mt-1">Tibeb</p>
               </div>
-              <div className="carousel-item bg-gray-200 px-[1.5rem] py-[1.15rem] rounded-full flex flex-col justify-center items-center">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
                 <span className="icon icon-docs bg-primary text-xl" />
                 <p className="text-sm font-semibold -mt-1">Tibeb</p>
               </div>
-              <div className="carousel-item bg-gray-200 px-[1.5rem] py-[1.15rem] rounded-full flex flex-col justify-center items-center">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
                 <span className="icon icon-docs bg-primary text-xl" />
                 <p className="text-sm font-semibold -mt-1">Tibeb</p>
               </div>

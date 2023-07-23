@@ -46,11 +46,7 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
           onClick={handleSearchClick}
           className="btn absolute top-0 right-0 w-1/12  h-8 sm:h-12 btn-primary btn-xs text-white rounded-l-none"
         >
-          <div class="icon-mask">
-            <div className="w-10 h-10 bg-white" alt="search">
-              .
-            </div>
-          </div>
+          <span className="icon icon-search bg-white text-xl"></span>
         </button>
       </div>
     </div>

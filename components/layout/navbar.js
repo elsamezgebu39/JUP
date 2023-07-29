@@ -4,10 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
+import Popover from "@/components/shared/popover";
 import { signOut, useSession } from "next-auth/react";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { useSignUpModal } from "./sign-up-modal";
 const navmenu = [
   { name: "Home", link: "/" },
   { name: "Product", link: "/product" },
@@ -19,6 +21,7 @@ const navmenu = [
 // NavBar({ session })
 export default function NavBar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
+  const { SignUpModal, setShowSignUpModal } = useSignUpModal();
   const scrolled = useScroll(50);
 
   const { data: session } = useSession();
@@ -28,9 +31,11 @@ export default function NavBar() {
   const handleNav = () => {
     setNav(!nav);
   };
+  const [openPopover, setOpenPopover] = useState(false);
   return (
     <>
       <SignInModal />
+      <SignUpModal />
       <div
         className={`sm:fixed fixed top-0  w-screen sm:w-full ${
           scrolled
@@ -186,6 +191,12 @@ export default function NavBar() {
                 >
                   Sign In
                 </button>
+                <button
+                  className="ml-2 flex-none rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                  onClick={() => setShowSignUpModal(true)}
+                >
+                  Sign Up
+                </button>
               </div>
             )}
           </div>
@@ -215,6 +226,17 @@ export default function NavBar() {
           className="block sm:hidden bg-[#912c2c] right-100 h-[2rem] w-full text-white z-10"
           onClick={handleNav}
         >
+          {/* <button
+            onClick={() => setOpenPopover(!openPopover)}
+            className="flex w-40 items-center justify-between px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+          >
+            <p className="text-white">Category</p>
+            <ChevronDown
+              className={`h-4 w-4 text-white transition-all ${
+                openPopover ? "rotate-180" : ""
+              }`}
+            />
+          </button> */}
           <div className="float-right pt-[6px] mr-[2rem]">
             <AiOutlineMenu size={20} />
           </div>
@@ -242,7 +264,6 @@ export default function NavBar() {
             })}
           </ul>
         </div>
-        {/* </div> */}
       </div>
     </>
   );

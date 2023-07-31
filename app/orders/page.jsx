@@ -54,7 +54,7 @@ export default function page() {
   return (
     <>
       <div className="w-full min-h-[70vh] mt-3">
-        <div className="max-w-[1100px] mx-auto mt-5">
+        <div className="max-w-[1150px] mx-auto mt-5">
           <div className="font-bold text-white bg-[#912c2c] p-2 pl-4 mb-3 m-2 capitalize ">
             Order History
           </div>

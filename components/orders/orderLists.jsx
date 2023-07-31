@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 export default function OrderList({ product }) {
   return (
     <div className="">
@@ -6,7 +8,7 @@ export default function OrderList({ product }) {
         <div className="flex gap-2">
           {/* image */}
           <div className="">
-            <img src="/tibeb.jpg" className="w-[70px] h-[70px]" alt="" />
+            <Image src={'/tibeb.jpg'} width={80} height={70} alt="product image" className=' object-cover' />
           </div>
           {/* product details */}
           <div className="">

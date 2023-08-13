@@ -8,6 +8,7 @@ export default function Leaflet({
   const leafletRef = useRef(null);
   const controls = useAnimation();
   const transitionProps = { type: "spring", stiffness: 500, damping: 30 };
+
   useEffect(() => {
     controls.start({
       y: 20,

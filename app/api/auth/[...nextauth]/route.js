@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
-import Hero from "@components/Hero";
+// import Hero from "@components/Hero";
 
 const handler = NextAuth({
   providers: [
@@ -46,10 +46,10 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
-export default function cart() {
-  return (
-    <div>
-      <Hero />
-    </div>
-  );
-}
+// export default function cart() {
+//   return (
+//     <div>
+//       <Hero />
+//     </div>
+//   );
+// }

@@ -33,13 +33,13 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
 
   return (
     <div>
-      <div className="relative w-full flex-center">
+      <div className="relative w-[16rem] sm:w-full flex-center">
         <input
           type="text"
           onChange={handleSearchChange}
           value={searchText}
           placeholder="Search for a product or a service"
-          className="sm:input input-bordered input-md input-sm w-[100%] shadow-md"
+          className="sm:input input-bordered input-md input-sm w-[16rem] sm:w-[100%] shadow-md"
         />
         <button
           type="button"

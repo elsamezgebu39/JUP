@@ -63,8 +63,30 @@ export default function product() {
   const [trendingItems, setTrendingItems] = useState(img);
   return (
     <div className="-mt-5">
-      {/* hero */}
-      <Hero />
+      <div>
+        <div className={`flex justify-center p-[${count}px]`}>
+          <img
+            onClick={previous}
+            className="w-[2rem] rounded-[50%] h-[2rem] mt-[7rem]  ml-[12rem]"
+            src="/lessthan.jpg"
+          />
+          <div className="grid grid-cols-3 gap-6">
+            {featuredItems.map(({ title, description, price, src }) => (
+              <Card
+                key={title}
+                title={title}
+                description={description}
+                price={price}
+                curr={src}
+              />
+            ))}
+          </div>
+          <img
+            src="/greaterthan.jpg"
+            className=" w-[2rem] rounded-[50%] h-[2rem] mt-[7rem] mr-[12rem]"
+          />
+        </div>
+      </div>
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
         <Search
@@ -74,31 +96,6 @@ export default function product() {
       </div>
 
       {/* featured items */}
-      <p className="font-bold mt-[2rem]  ml-[5rem] text-[30px] ">
-        Featured Clothes
-      </p>
-      <div className={`flex justify-center p-[${count}px]`}>
-        <img
-          onClick={previous}
-          className="w-[2rem] rounded-[50%] h-[2rem] mt-[7rem]  ml-[12rem]"
-          src="/lessthan.jpg"
-        />
-        <div className="grid grid-cols-3 gap-6">
-          {featuredItems.map(({ title, description, price, src }) => (
-            <Card
-              key={title}
-              title={title}
-              description={description}
-              price={price}
-              curr={src}
-            />
-          ))}
-        </div>
-        <img
-          src="/greaterthan.jpg"
-          className=" w-[2rem] rounded-[50%] h-[2rem] mt-[7rem] mr-[12rem]"
-        />
-      </div>
 
       {/* trending cloth */}
       <div>

@@ -9,11 +9,12 @@ const imgs = [
 export default function Footer() {
   var d = new Date();
   return (
-    <footer className="bg-black h-[36vh] text-white ">
-      <div className="flex mx-[5rem] justify-between pt-[1rem]">
-        <p className="text-[30px] flex items-center text-white">
+    <footer className="bg-black h-[50vh] text-white ">
+      <div className="grid sm:flex mx-[1rem] sm:mx-[5rem] justify-between pt-[1rem]">
+        <p className="text-xl flex items-center text-white">
           <span className="text-[#912c2c] text-[50px] font-bold">A</span>sham
         </p>
+        <br />
         <p>
           <ins className="font-bold">Menu</ins>
           <br />
@@ -30,6 +31,7 @@ export default function Footer() {
           </Link>
           <br />
         </p>
+        <br />
         <div>
           <ins className="font-bold">Follow Us</ins>
           <br />
@@ -42,14 +44,15 @@ export default function Footer() {
               );
             })}
           </div>
-          <div className="flex items-center mt-[1rem]">
+          <br />
+          <div className="flex items-center sm:mt-[1rem]">
             <img className="w-[2rem]" src="/pho.png" />
             <p className="text-[15px]">Call Us +251901234567</p>
           </div>
         </div>
       </div>
       <p></p>
-      <div className="m-auto w-[100%] flex items-center justify-center mt-[1rem]">
+      <div className="w-[100%] flex sm:items-center sm:justify-center mt-[1rem]">
         <img className="w-[2rem]" src="/copyright.svg" />
         <p>{d.getFullYear()} asham.com All Rights Reserved</p>
       </div>

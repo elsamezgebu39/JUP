@@ -8,6 +8,9 @@ import UserDropdown from "./user-dropdown";
 import { signOut, useSession } from "next-auth/react";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
+import { ChevronDown } from "lucide-react";
+import { useSideBarModal } from "./side-bar-modal";
+import Popover from "@components/shared/popover";
 const navmenu = [
   { name: "Home", link: "/" },
   { name: "Product", link: "/product" },
@@ -19,6 +22,8 @@ const navmenu = [
 // NavBar({ session })
 export default function NavBar() {
   const { SignInModal, setShowSignInModal } = useSignInModal();
+  const { SideModal, setShowSideModal } = useSideBarModal();
+  const [openPopover, setOpenPopover] = useState(false);
   const scrolled = useScroll(50);
 
   const { data: session } = useSession();
@@ -211,39 +216,77 @@ export default function NavBar() {
         </div>
 
         {/* Mobile Navigation */}
-        <div
-          className="block sm:hidden bg-[#912c2c] right-100 h-[2rem] w-full text-white z-10"
-          onClick={handleNav}
-        >
-          <div className="float-right pt-[6px] mr-[2rem]">
-            <AiOutlineMenu size={20} />
+        <div className="sm:hidden flex">
+          <div className="flex justify-center items-center h-[40px] bg-[#912c2c] w-full">
+            {/* Drawer Section */}
+            <div className="drawer drawer-end z-50">
+              <input
+                id="my-drawer-4"
+                type="checkbox"
+                className="drawer-toggle"
+              />
+              <div className="drawer-content">
+                <label
+                  htmlFor="my-drawer-4"
+                  className="icon icon-menu bg-white ml-2"
+                  onClick={() => setShowSideModal(true)}
+                ></label>
+              </div>
+            </div>
+
+            {/* Category Section */}
+            <button
+              onClick={() => setOpenPopover(!openPopover)}
+              className="flex w-40 items-center justify-between px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+            >
+              <p className="text-white">Category</p>
+              <ChevronDown
+                className={`h-4 w-4 text-white transition-all ${
+                  openPopover ? "rotate-180" : ""
+                }`}
+              />
+            </button>
           </div>
         </div>
-        <div
-          className={
-            nav
-              ? "sm:hidden items-start absolute top-24 left-0 right-0 bottom-0 grid justify-start w-full h-[8rem] bg-[#912c2c] "
-              : "hidden "
-          }
-        >
-          <ul>
-            {navmenu.map((cur) => {
-              return (
-                <div>
-                  <Link
-                    className="block ml-[2rem] animate-topToBottom transform duration-500 text-[15px] text-white hover:text-black"
-                    href={cur.link}
-                    style={{ transform: `translatex(-${nav * 20}%)` }}
-                  >
-                    {cur.name}
-                  </Link>
-                </div>
-              );
-            })}
-          </ul>
-        </div>
-        {/* </div> */}
       </div>
+      <SignInModal />
+
+      <SideModal />
+
+      <Popover
+        content={
+          <>
+            <h1 className="font-semibold text-center mt-4">Select Category</h1>
+            <p className="text-xs text-center mb-5 text-gray-500 opacity-90">
+              Select Favorite Category
+            </p>
+            <div className="carousel carousel-center max-w-md space-x-4 w-full rounded-md bg-white p-2 sm:w-40 mb-8">
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
+                <span className="icon icon-docs bg-primary text-xl" />
+                <p className="text-sm font-semibold -mt-1">Tibeb</p>
+              </div>
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
+                <span className="icon icon-forum bg-primary text-xl" />
+                <p className="text-sm font-semibold -mt-1">Tibeb</p>
+              </div>
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
+                <span className="icon icon-api bg-primary text-xl" />
+                <p className="text-sm font-semibold -mt-1">Tibeb</p>
+              </div>
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
+                <span className="icon icon-docs bg-primary text-xl" />
+                <p className="text-sm font-semibold -mt-1">Tibeb</p>
+              </div>
+              <div className="carousel-item bg-gray-200 w-[5.5rem] h-[5.5rem] rounded-full flex flex-col justify-center items-center">
+                <span className="icon icon-docs bg-primary text-xl" />
+                <p className="text-sm font-semibold -mt-1">Tibeb</p>
+              </div>
+            </div>
+          </>
+        }
+        openPopover={openPopover}
+        setOpenPopover={setOpenPopover}
+      />
     </>
   );
 }

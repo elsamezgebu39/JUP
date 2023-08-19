@@ -11,11 +11,11 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Link from "next/link";
-import { useSignUpModal } from "./sign-up-modal";
 
-const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
-  const [signInClicked, setSignInClicked] = useState(false);
+const SignUpModal = ({ showSignUpModal, setShowSignUpModal }) => {
+  const [signUpClicked, setSignUpClicked] = useState(false);
   const [providers, setProviders] = useState(null);
+  console.log(showSignUpModal);
 
   useEffect(() => {
     (async () => {
@@ -24,9 +24,8 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
     })();
   }, []);
 
-  const { SignUpModal, setShowSignUpModal } = useSignUpModal();
   return (
-    <Modal showModal={showSignInModal} setShowModal={setShowSignInModal}>
+    <Modal showModal={showSignUpModal} setShowModal={setShowSignUpModal}>
       <div className="w-full overflow-hidden shadow-xl md:max-w-md md:rounded-2xl md:border md:border-gray-200">
         <div className="flex flex-col items-center justify-center space-y-3 border-b border-gray-200 bg-white px-4 py-6 pt-8 text-center md:px-16">
           <a href="/">
@@ -45,24 +44,24 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
               <button
                 type="button"
                 key={provider.name}
-                disabled={signInClicked}
+                disabled={signUpClicked}
                 className={`${
-                  signInClicked
+                  signUpClicked
                     ? "cursor-not-allowed border-gray-200 bg-gray-100"
                     : "border border-gray-200 bg-white text-black hover:bg-gray-50"
                 } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
                 onClick={() => {
-                  setSignInClicked(true);
+                  setSignUpClicked(true);
                   signIn(provider.id);
                   // signIn("google");
                 }}
               >
-                {signInClicked ? (
+                {signUpClicked ? (
                   <LoadingDots color="#808080" />
                 ) : (
                   <>
                     <Google className="h-5 w-5" />
-                    <p>Sign In with Google</p>
+                    <p>Sign Up with Google</p>
                   </>
                 )}
               </button>
@@ -71,6 +70,14 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
             <span>OR</span>
           </div>
           <form>
+            <label htmlFor="FullName">Full Name</label>
+            <br />
+            <input
+              type="text"
+              id="FullName"
+              className="shadow-2xl w-[20rem] my-[10px] pl-[20px] py-[5px]"
+              placeholder="Full Name"
+            />
             <label htmlFor="email">Email or username</label>
             <br />
             <input
@@ -98,15 +105,12 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
           </form>
           <p className="ml-[3rem] mb-15 font-semibold">
             Don't have an account? &nbsp;
-            <button
+            <Link
               className="font-bold text-[#912c2c]"
-              onClick={() => {
-                setShowSignUpModal(true);
-                setShowSignInModal(false);
-              }}
+              href="/components/SignUpModal"
             >
-              Sign Up
-            </button>
+              Sign Upmkl
+            </Link>
           </p>
         </div>
       </div>
@@ -114,20 +118,20 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
   );
 };
 
-export function useSignInModal() {
-  const [showSignInModal, setShowSignInModal] = useState(false);
+export function useSignUpModal() {
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
 
-  const SignInModalCallback = useCallback(() => {
+  const SignUpModalCallback = useCallback(() => {
     return (
-      <SignInModal
-        showSignInModal={showSignInModal}
-        setShowSignInModal={setShowSignInModal}
+      <SignUpModal
+        showSignUpModal={showSignUpModal}
+        setShowSignUpModal={setShowSignUpModal}
       />
     );
-  }, [showSignInModal, setShowSignInModal]);
+  }, [showSignUpModal, setShowSignUpModal]);
 
   return useMemo(
-    () => ({ setShowSignInModal, SignInModal: SignInModalCallback }),
-    [setShowSignInModal, SignInModalCallback]
+    () => ({ setShowSignUpModal, SignUpModal: SignUpModalCallback }),
+    [setShowSignUpModal, SignUpModalCallback]
   );
 }

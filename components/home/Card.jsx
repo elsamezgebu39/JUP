@@ -10,14 +10,16 @@ export default function Card({ title, description, price, curr }) {
     setIsExpanded(!isExpanded);
   };
   return (
-    <div className="card w-[18rem] h-[25rem] bg-base-100 shadow-xl hover:shadow-2xl transition-all ml-[1rem] mr-[1rem] border-s-4 mt-[1rem] ">
+    <div className="card w-[18rem] h-[25rem] bg-base-100 shadow-xl hover:shadow-2xl transition-all mx-[1rem] border-s-4 mt-[1rem] ">
       <figure className="h-[70rem]">
         <img src={curr} className="h-full" alt={title} />
       </figure>
       <div className="card-body">
-        <h2 className="sm:card-title text-[#912c2c]">{title}!</h2>
+        <h2 className="sm:card-title font-bold uppercase text-[#912c2c]">
+          {title}!
+        </h2>
         <p
-          className={`text-center sm:text-[16px] text-[12px] ${
+          className={`text-left sm:text-[16px] text-[12px] ${
             isExpanded ? "block" : "line-clamp-3"
           }`}
         >
@@ -29,7 +31,7 @@ export default function Card({ title, description, price, curr }) {
             lineLength > 10 ? "visible" : "invisible"
           }`}
         >
-          {isExpanded ? "read less" : "read more"}
+          {isExpanded ? "Read Less" : "Read More"}
         </button>
         <div className="card-actions justify-end">
           <button className="btn btn-xs sm:btn-sm">Buy Now</button>

@@ -9,12 +9,13 @@ const imgs = [
 export default function Footer() {
   var d = new Date();
   return (
-    <footer className="bg-black text-white w-full">
-      <div className="flex flex-col gap-5 sm:flex-row flex-wrap mx-[1rem] md:mx-[5rem] items-center justify-between pt-[1rem]">
-        <p className="text-[30px] flex items-center text-white">
+    <footer className="bg-black h-[50vh] text-white ">
+      <div className="grid sm:flex mx-[1rem] sm:mx-[5rem] justify-between pt-[1rem]">
+        <p className="text-xl flex items-center text-white">
           <span className="text-[#912c2c] text-[50px] font-bold">A</span>sham
         </p>
-        <div className="flex flex-col items-center">
+        <br />
+        <p>
           <ins className="font-bold">Menu</ins>
 
           <Link className="" href={"AboutUs"}>
@@ -28,28 +29,30 @@ export default function Footer() {
           <Link className="" href={"Terms"}>
             Terms & Conditions
           </Link>
-        </div>
-        <div className="">
-          <div className="flex flex-col items-center">
-            <ins className="font-bold">Follow Us</ins>
-            <div className="border-2 border-[#912c2c] bg-[#0e0606] border-opacity-5 rounded-[5px] flex ">
-              {imgs.map((curr) => {
-                return (
-                  <div className="flex m-[5px]">
-                    <img className="w-[2rem]" src={curr} />
-                  </div>
-                );
-              })}
-            </div>
+          <br />
+        </p>
+        <br />
+        <div>
+          <ins className="font-bold">Follow Us</ins>
+          <br />
+          <div className="border-2 border-[#912c2c] bg-[#0e0606] border-opacity-5 rounded-[5px] flex">
+            {imgs.map((curr) => {
+              return (
+                <div className="flex m-[5px]">
+                  <img className="w-[2rem]" src={curr} />
+                </div>
+              );
+            })}
           </div>
-          <div className="flex items-center mt-[1rem]">
+          <br />
+          <div className="flex items-center sm:mt-[1rem]">
             <img className="w-[2rem]" src="/pho.png" />
             <p className="text-[15px]">Call Us +251901234567</p>
           </div>
         </div>
       </div>
       <p></p>
-      <div className="m-auto w-[100%] flex items-center justify-center mb-5 mt-[1rem]">
+      <div className="w-[100%] flex sm:items-center sm:justify-center mt-[1rem]">
         <img className="w-[2rem]" src="/copyright.svg" />
         <p>{d.getFullYear()} asham.com All Rights Reserved</p>
       </div>

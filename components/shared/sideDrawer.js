@@ -21,7 +21,7 @@ export default function SideDrawer({
         setShowModal(false);
       }
     },
-    [setShowModal],
+    [setShowModal]
   );
 
   const leafletRef = useRef(null);
@@ -53,7 +53,6 @@ export default function SideDrawer({
       controls.start({ x: 0, transition: transitionProps });
     }
   }
-  {/* <Leaflet setShow={setShowModal}>{children}</Leaflet> */ }
   return (
     <AnimatePresence>
       {showModal && (
@@ -96,3 +95,4 @@ export default function SideDrawer({
     </AnimatePresence>
   );
 }
+

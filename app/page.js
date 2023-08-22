@@ -91,6 +91,9 @@ const AbtUs = [
 export default function Home() {
   // fuctionality of left and right icons
   const [count, setcount] = useState(null);
+  const [Fcount, setFcount] = useState(null);
+  const [Tcount, setTcount] = useState(null);
+  const [Acount, setAcount] = useState(null);
   function previous() {
     setcount((prevcount) => prevcount - 1);
   }
@@ -100,10 +103,33 @@ export default function Home() {
       setcount(0);
     } else setcount((prevcount) => prevcount + 1);
   }
+  // mobile version for featured items
+  function FNext() {
+    if (Fcount == featuredItems.length - 1) {
+      setFcount(0);
+    } else setFcount((prevcount) => prevcount + 1);
+  }
+
+  function TPrevious() {
+    setTcount((prevcount) => prevcount - 1);
+  }
+  function TNext() {
+    if (Tcount == trendingItems.length - 1) {
+      setTcount(0);
+    } else setTcount((prevcount) => prevcount + 1);
+  }
+
+  function APrevious() {
+    setAcount((prevcount) => prevcount - 1);
+  }
+  function ANext() {
+    if (Acount == aboutUs.length - 1) {
+      setAcount(0);
+    } else setAcount((prevcount) => prevcount + 1);
+  }
   const [featuredItems, setFeaturedItems] = useState(imgs);
   const [trendingItems, setTrendingItems] = useState(img);
-
-  // read more and less
+  const [aboutUs, setAboutUs] = useState(AbtUs);
 
   return (
     <div className="w-screen sm:w-[100vw]">
@@ -128,12 +154,12 @@ export default function Home() {
         <button onClick={previous} className="text-[3rem] mt-[2rem]">
           <div>
             <img
-              className="w-[3rem] sm:w-[2rem] rounded-[50%]"
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
               src="/lessthan.jpg"
             />
           </div>
         </button>
-        <div className="flex overflow-hidden items-start w-[25rem] sm:w-[60rem] border-solid">
+        <div className="hidden sm:flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
           {featuredItems.map(({ title, description, price, src }) => (
             <div
               className="transition-transform duration-500 transform"
@@ -149,18 +175,47 @@ export default function Home() {
             </div>
           ))}
         </div>
+        {/* mobile version */}
+        <div className="sm:hidden flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
+          {featuredItems.map(({ title, description, price, src }) => (
+            <div
+              className="transition-transform duration-500 transform"
+              style={{ transform: `translateX(-${Fcount * 100}%)` }}
+            >
+              <Card
+                key={title}
+                title={title}
+                description={description}
+                price={price}
+                curr={src}
+              />
+            </div>
+          ))}
+        </div>
         {/* right icon */}
-        <button onClick={next} className="text-[3rem] mt-[2rem]">
+        <button onClick={FNext} className="sm:hidden text-[3rem] mt-[2rem]">
           <div>
             <img
-              className="w-[3rem] sm:w-[2rem] rounded-[50%]"
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
+              src="/greaterthan.jpg"
+            />
+          </div>
+        </button>
+        {/* desktop version */}
+        {/* right icon */}
+        <button
+          onClick={next}
+          className="hidden sm:flex text-[3rem] mt-[13rem]"
+        >
+          <div>
+            <img
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
               src="/greaterthan.jpg"
             />
           </div>
         </button>
       </div>
 
-      {/* fetaures */}
       <div className="ml-[5rem] sm:ml-[8rem] mt-[2rem]">
         <p className="font-bold sm:text-4xl text-xl text-[#912c2c]">
           Ethiopian Traditional Clothing
@@ -183,25 +238,30 @@ export default function Home() {
                 );
               })}
             </div>
-            <div className="mt-[5rem] sm:mt-0">
+            <div className="mt-[5rem] sm:mt-0 sm:flex hidden">
+              {/* fetaures */}
               <Features />
             </div>
           </div>
         </div>
       </div>
+      <div className="sm:hidden mt-[1rem]">
+        <Features horizontal={true} />
+      </div>
+      {/* desktop version */}
       {/* trending cloth */}
       <div className="w-full">
         <p className="font-bold text-[20px] sm:text-4xl ml-[5rem] mt-[2rem]">
           Trending Clothes
           <Link
             href="/product"
-            className="btn-ghost text-[20px] sm:text-4xl ml-[5rem] sm:ml-[50rem] text-[#912c2c] "
+            className="btn-ghost text-[20px] sm:text-4xl ml-[3rem] sm:ml-[45rem] text-[#912c2c] "
           >
             see more...
           </Link>
         </p>
-        <div className="w-full flex justify-center items-center">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div className="mx-[2rem] sm:mx-[13rem]">
+          <div className="hidden sm:flex items-start sm:grid-cols-3 mr-[2rem]">
             {trendingItems.map(({ title, description, price, src }) => (
               <Card
                 key={title}
@@ -215,13 +275,51 @@ export default function Home() {
 
         </div>
       </div>
+      {/* mobile version */}
+      <div className="sm:hidden flex ml-[1rem]">
+        {/* left icon */}
+        <button onClick={TPrevious} className="text-[3rem] mt-[2rem]">
+          <div>
+            <img
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
+              src="/lessthan.jpg"
+            />
+          </div>
+        </button>
+        <div className="flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
+          {trendingItems.map(({ title, description, price, src }) => (
+            <div
+              className="transition-transform duration-500 transform"
+              style={{ transform: `translateX(-${Tcount * 100}%)` }}
+            >
+              <Card
+                key={title}
+                title={title}
+                description={description}
+                price={price}
+                curr={src}
+              />
+            </div>
+          ))}
+        </div>
+        {/* right icon */}
+        <button onClick={TNext} className="text-[3rem] mt-[2rem]">
+          <div>
+            <img
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
+              src="/greaterthan.jpg"
+            />
+          </div>
+        </button>
+      </div>
       <div>
+        {/* desktop version */}
         {/* about us */}
         <p className="font-bold text-[30px] ml-[5rem] mt-[2rem]">
           What are people saying about us?
         </p>
-        <div className="mx-[13rem]">
-          <div className="flex items-start overflow-hidden sm:grid-cols-3 ">
+        <div className="mx-[2rem] sm:mx-[13rem]">
+          <div className="hidden sm:flex items-start overflow-hidden sm:grid-cols-3 ">
             {AbtUs.map(({ description, name, type, src }) => (
               <AboutUS
                 description={description}
@@ -232,6 +330,42 @@ export default function Home() {
             ))}
           </div>
         </div>
+      </div>
+      {/* mobile version */}
+      <div className="sm:hidden flex ml-[1rem]">
+        {/* left icon */}
+        <button onClick={APrevious} className="text-[3rem] mt-[2rem]">
+          <div>
+            <img
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
+              src="/lessthan.jpg"
+            />
+          </div>
+        </button>
+        <div className="items-start overflow-hidden flex w-[20rem] sm:w-[60rem] border-solid">
+          {aboutUs.map(({ description, name, type, src }) => (
+            <div
+              className="transition-transform duration-500 transform"
+              style={{ transform: `translateX(-${Acount * 100}%)` }}
+            >
+              <AboutUS
+                description={description}
+                name={name}
+                type={type}
+                curr={src}
+              />
+            </div>
+          ))}
+        </div>
+        {/* right icon */}
+        <button onClick={ANext} className="text-[3rem] mt-[2rem]">
+          <div>
+            <img
+              className="w-[2rem] sm:w-[2rem] rounded-[50%]"
+              src="/greaterthan.jpg"
+            />
+          </div>
+        </button>
       </div>
     </div>
   );

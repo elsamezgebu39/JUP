@@ -56,7 +56,6 @@
     padding: 0;
   }
 }
-
 /* Tailwind Styles */
 
 .app {
@@ -125,4 +124,31 @@
   animation-delay: 0.25s;
   // animationDelay: 0.15s;
   animation-fill-mode: forwards;
+}
+.ce34512d1 {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  text-transform: uppercase;
+  border: none;
+  font-size: 12px;
+  font-weight: 500;
+  margin: 0;
+  padding: 24px 0 0;
+  padding: var(--spacing-3) 0 0 0;
+}
+.ce34512d1:after,
+.ce34512d1:before {
+  content: "";
+  border-bottom: 1px solid rgb(187, 186, 186);
+  flex: 1 0 auto;
+  height: 0.5em;
+  margin-top: 2.5px;
+}
+*,
+:after,
+:before {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

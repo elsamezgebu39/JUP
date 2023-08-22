@@ -11,6 +11,7 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Link from "next/link";
+import Facebook from "next-auth/providers/facebook";
 
 const SignUpModal = ({ showSignUpModal, setShowSignUpModal }) => {
   const [signUpClicked, setSignUpClicked] = useState(false);
@@ -45,11 +46,10 @@ const SignUpModal = ({ showSignUpModal, setShowSignUpModal }) => {
                 type="button"
                 key={provider.name}
                 disabled={signUpClicked}
-                className={`${
-                  signUpClicked
-                    ? "cursor-not-allowed border-gray-200 bg-gray-100"
-                    : "border border-gray-200 bg-white text-black hover:bg-gray-50"
-                } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
+                className={`${signUpClicked
+                  ? "cursor-not-allowed border-gray-200 bg-gray-100"
+                  : "border border-gray-200 bg-white text-black hover:bg-gray-50"
+                  } flex h-10 w-full items-center justify-center space-x-3 rounded-md border text-sm shadow-sm transition-all duration-75 focus:outline-none`}
                 onClick={() => {
                   setSignUpClicked(true);
                   signIn(provider.id);
@@ -70,14 +70,6 @@ const SignUpModal = ({ showSignUpModal, setShowSignUpModal }) => {
             <span>OR</span>
           </div>
           <form>
-            <label htmlFor="FullName">Full Name</label>
-            <br />
-            <input
-              type="text"
-              id="FullName"
-              className="shadow-2xl w-[20rem] my-[10px] pl-[20px] py-[5px]"
-              placeholder="Full Name"
-            />
             <label htmlFor="email">Email or username</label>
             <br />
             <input

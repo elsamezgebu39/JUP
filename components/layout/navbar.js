@@ -15,6 +15,7 @@ const icons = ["/alert.svg", "/cart.svg"];
 import { ChevronDown } from "lucide-react";
 import { useSideBarModal } from "./side-bar-modal";
 import Popover from "@components/shared/popover";
+import { useSignUpModal } from "./sign-up-modal";
 const navmenu = [
   { name: "Home", link: "/", isProtectedRoute: "false", icon: "/assets/icons/mobile-home.svg" },
   { name: "Product", link: "/product", isProtectedRoute: "false", icon: "/assets/icons/mobile-api.svg" },
@@ -29,6 +30,7 @@ export default function NavBar() {
   // const { SideModal, setShowSideModal } = useSideBarModal()
   const { SideModal, setShowSideModal } = useSideBarModal();
   const [openPopover, setOpenPopover] = useState(false);
+  const { SignUpModal, setShowSignUpModal } = useSignUpModal();
   const scrolled = useScroll(50);
 
   const { data: session } = useSession();
@@ -166,6 +168,12 @@ export default function NavBar() {
                   onClick={() => setShowSignInModal(true)}
                 >
                   Sign In
+                </button>
+                <button
+                  className="ml-2 flex-none rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
+                  onClick={() => setShowSignUpModal(true)}
+                >
+                  Sign Up
                 </button>
               </div>
             )}

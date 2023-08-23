@@ -30,6 +30,6 @@ jobs:
         server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
         username: ${{ secrets.GIT_CPANEL_NODE_USER }}
         password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
-        local-dir: .next/
+        local-dir: ./next/
         server-dir: ./client-mvp.omishtujoy.com/
         # remote-dir: public_html

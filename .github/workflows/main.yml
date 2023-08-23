@@ -24,12 +24,13 @@ jobs:
     - name: Build Next.js application
       run: npm run build
     
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: 📂 Deploy to cPanel FTP
+      # uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
       with:
         server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
         username: ${{ secrets.GIT_CPANEL_NODE_USER }}
         password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
-        local-dir: ./next/
+        local-dir: .next/
         server-dir: ./client-mvp.omishtujoy.com/
         # remote-dir: public_html

@@ -34,7 +34,7 @@ jobs:
         server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
         username: ${{ secrets.GIT_CPANEL_NODE_USER }}
         password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
-        local-dir: ${{ github.workspace }}
+        local-dir: ${{ github.workspace }}/
         server-dir: /
         # remote-dir: public_html
   

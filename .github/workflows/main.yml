@@ -26,6 +26,6 @@ jobs:
     
     - name: 📂 Deploy to cPanel FTP
       run: |
-        chmod +x ./deploy.sh
-        ./deploye.sh
+        chmod +x .deploy.sh
+        .deploye.sh
     

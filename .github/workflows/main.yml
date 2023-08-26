@@ -21,14 +21,24 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Set up LFTP
-      run:  sudo apt-get install lftp
+    # - name: Set up LFTP
+    #   run:  sudo apt-get install lftp
       
     - name: Build Next.js application
       run: npm run build
-    
-    - name: 📂 Deploy to cPanel FTP
-      run: |
-        chmod +x ./deploy.sh
-        ./deploy.sh
+
+    - name: Deploy to FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      # uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
+        username: ${{ secrets.GIT_CPANEL_NODE_USER }}
+        password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
+        local-dir: ./
+        server-dir: /client-mvp.omishtujoy.com/
+        # remote-dir: public_html
+  
+      # run: |
+      #   chmod +x ./deploy.sh
+      #   ./deploy.sh
     

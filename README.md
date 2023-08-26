@@ -32,3 +32,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+  <!-- # uses: SamKirkland/FTP-Deploy-Action@v4.3.4 -->
+      # uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      # with:
+      #   server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
+      #   username: ${{ secrets.GIT_CPANEL_NODE_USER }}
+      #   password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
+      #   local-dir: .next/
+      #   server-dir: /client-mvp.omishtujoy.com/
+        # remote-dir: public_html

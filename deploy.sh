@@ -1,10 +1,10 @@
 #!/bin/bash
 
-HOST="ftp.edu-cti.com" # Replace with your cPanel FTP server hostname
-USERNAME="cti@portal.edu-cti.com" # Replace with your cPanel FTP_username
-PASSWORD="CTI@2023" # Replace with your cPanel FTP password
+HOST="ftp.omishtujoy.com" # Replace with your cPanel FTP server hostname
+USERNAME="omishtujoyco@client-mvp.omishtujoy.com" # Replace with your cPanel FTP_username
+PASSWORD="1uj@21f6fwB" # Replace with your cPanel FTP password
 
-TARGETDIR="/client-mvp.omishtujoy.com" # Replace with the target directory on your cPanel account
+TARGETDIR="/client-mvp.omishtujoy.com/" # Replace with the target directory on your cPanel account
 
 echo "Deploying code to cPanel..."
 

@@ -35,6 +35,39 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 
   <!-- # uses: SamKirkland/FTP-Deploy-Action@v4.3.4 -->
+  name: 🚀 Deploy to cPanel FTP
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v3
+
+    - name: Use Node.js 16
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm install
+      
+    - name: Build Next.js application
+      run: npm run build
+    
+    - name: 📂 Deploy to cPanel FTP
+      run: |
+        chmod +x ./deploy.sh
+        ./deploy.sh
+    
+
+
       # uses: SamKirkland/FTP-Deploy-Action@4.0.0
       # with:
       #   server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}

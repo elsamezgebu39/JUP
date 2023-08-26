@@ -34,8 +34,8 @@ jobs:
         server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}
         username: ${{ secrets.GIT_CPANEL_NODE_USER }}
         password: ${{ secrets.GIT_CPANEL_NODE_PWD }}
-        local-dir: ./app/
-        server-dir: /client-mvp.omishtujoy.com/
+        local-dir: /
+        server-dir: /
         # remote-dir: public_html
   
       # run: |

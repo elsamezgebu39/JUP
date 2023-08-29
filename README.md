@@ -66,8 +66,6 @@ jobs:
         chmod +x ./deploy.sh
         ./deploy.sh
     
-
-
       # uses: SamKirkland/FTP-Deploy-Action@4.0.0
       # with:
       #   server: ${{ secrets.GIT_CPANEL_NODE_SERVER }}

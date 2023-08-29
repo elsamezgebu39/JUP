@@ -27,6 +27,12 @@ const navmenu = [
     icon: "/assets/icons/mobile-faq.svg",
   },
   {
+    name: "Orders",
+    link: "/orders",
+    isProtectedRoute: "false",
+    icon: "/assets/icons/mobile-faq.svg",
+  },
+  {
     name: "About Us",
     link: "/aboutUS",
     isProtectedRoute: "false",
@@ -63,8 +69,9 @@ const SideModal = ({ showSideModal, setShowSideModal }) => {
         </div>
 
         <ul className="flex flex-col justify-start items-start text-black text-base font-semibold font-inter mt-6 ml-5">
-          <li onClick={() => setViewModal(false)}>
+          <li>
             <Link
+              onClick={() => setViewModal(false)}
               href="/"
               className="flex gap-x-4 text-black font-bold mb-4 hover:text-red-950 items-center justify-center"
             >
@@ -74,9 +81,11 @@ const SideModal = ({ showSideModal, setShowSideModal }) => {
           </li>
           <div className="divider -mt-1" />
           {navmenu.map((nav) => (
-            <li key={nav.name} onClick={() => setViewModal(false)}>
+            <li key={nav.name}>
               <Link
-                href={nav.isProtectedRoute && !session?.user ? "/" : nav.link}
+                onClick={() => setViewModal(false)}
+                href={nav.link}
+                // href={nav.isProtectedRoute || session?.user ? nav.link : "/"}
                 className={`flex gap-x-5 text-gray-900 mb-5 hover:text-red-950 ${pathName === nav.link && "text-black contrast-125"
                   }`}
                 prefetch={true}

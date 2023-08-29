@@ -206,7 +206,7 @@ export default function NavBar() {
             <div className="drawer drawer-end z-50">
               <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
               <div className="drawer-content">
-                <label htmlFor="my-drawer-4" className="icon icon-menu bg-white ml-2" onClick={() => setShowSideModal(true)}></label>
+                {/* <label htmlFor="my-drawer-4" className="icon icon-menu bg-white ml-2" onClick={() => setShowSideModal(true)}></label> */}
                 <input
                   id="my-drawer-4"
                   type="checkbox"
@@ -215,27 +215,24 @@ export default function NavBar() {
                 <div className="drawer-content">
                   <label
                     htmlFor="my-drawer-4"
-                    className="icon icon-menu bg-white ml-2"
+                    className="icon icon-menu bg-white ml-2 text-2xl"
                     onClick={() => setShowSideModal(true)}
                   ></label>
                 </div>
               </div>
 
-              {/* Category Section */}
-              <button
-                onClick={() => setOpenPopover(!openPopover)}
-                className="flex w-40 items-center justify-between px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
-              >
-                <p className="text-white">Category</p>
-                <ChevronDown
-                  className={`h-4 w-4 text-white transition-all ${openPopover ? "rotate-180" : ""
-                    }`}
-                // className={`h-4 w-4 text-white transition-all ${
-                //   openPopover ? "rotate-180" : ""
-                // }`}
-                />
-              </button>
             </div>
+            {/* Category Section */}
+            <button
+              onClick={() => setOpenPopover(!openPopover)}
+              className="flex w-40 items-center justify-between px-4 py-2 transition-all duration-75 hover:border-gray-800 focus:outline-none active:bg-gray-100"
+            >
+              <p className="text-white">Category</p>
+              <ChevronDown
+                className={`h-4 w-4 text-white transition-all ${openPopover ? "rotate-180" : ""
+                  }`}
+              />
+            </button>
           </div>
         </div>
 

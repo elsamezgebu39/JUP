@@ -145,11 +145,11 @@ export default function Home() {
       </div>
 
       {/* feature clothes*/}
-      <p className="font-bold mt-[2rem]  ml-[5rem] sm:text-4xl text-[20px] ">
+      <p className="font-bold mt-[2rem] sm:text-4xl text-[20px] ">
         Featured Clothes
       </p>
 
-      <div className="flex justify-center ml-[1rem] sm:ml-0">
+      <div className="flex justify-center">
         {/* left icon */}
         <button onClick={previous} className="text-[3rem] mt-[2rem]">
           <div>
@@ -245,6 +245,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       <div className="sm:hidden mt-[1rem]">
         <Features horizontal={true} />
       </div>

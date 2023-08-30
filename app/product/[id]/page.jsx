@@ -4,6 +4,7 @@ import RelatedCard from "@components/productDetail/RelatedCard";
 import { FaStar } from "react-icons/fa";
 import Comments from "@components/productDetail/Comments";
 import ProductInfo from "@components/productDetail/ProductInfo";
+import RatingStar from "@components/shared/RatingStar";
 
 export default function ProductDetail() {
   return (
@@ -45,11 +46,7 @@ export default function ProductDetail() {
           <div className="flex justify-between items-center gap-5">
             <span className="font-bold text-2xl">4.8</span>
             <div className="flex">
-              <FaStar className="text-[#f5da42]" />
-              <FaStar className="text-[#f5da42]" />
-              <FaStar className="text-[#f5da42]" />
-              <FaStar className="text-[#f5da42]" />
-              <FaStar className="text-white-300" />
+            <RatingStar rating={4.5} />
             </div>
           </div>
           {/* add review button */}

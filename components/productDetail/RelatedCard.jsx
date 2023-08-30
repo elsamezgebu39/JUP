@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
+import RatingStar from "@components/shared/RatingStar";
 
 export default function RelatedCard() {
   return (
@@ -15,11 +16,7 @@ export default function RelatedCard() {
         <div className="flex items-center">
           <span className="pr-2 font-semibold">4.8</span>
           <div className="flex">
-            <FaStar className="text-[#f5da42]" />
-            <FaStar className="text-[#f5da42]" />
-            <FaStar className="text-[#f5da42]" />
-            <FaStar className="text-[#f5da42]" />
-            <FaStar className="" />
+          <RatingStar rating={4.8} />
           </div>
         </div>
         <div className="text-end">12000 Birr</div>

@@ -1,6 +1,7 @@
 "use client";
 import { FaStar } from "react-icons/fa";
 import { useEffect, useRef, useState } from "react";
+import RatingStar from "../shared/RatingStar";
 export default function Comments() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [displayButton, setDisplayButton] = useState(false);
@@ -16,13 +17,14 @@ export default function Comments() {
   return (
     <div className="border p-2 bg-white">
       <div className="flex items-center justify-between">
-        <div className="flex">
+        <RatingStar rating={4.5} />
+        {/* <div className="flex">
           <FaStar className="text-[#f5da42]" />
           <FaStar className="text-[#f5da42]" />
           <FaStar className="text-[#f5da42]" />
           <FaStar className="text-[#f5da42]" />
           <FaStar className=" text-gray-500" />
-        </div>
+        </div> */}
         <h2 className="font-semibold">yosep</h2>
       </div>
       <p

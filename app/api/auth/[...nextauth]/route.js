@@ -5,7 +5,10 @@ import FacebookProvider from "next-auth/providers/facebook";
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
 // import Hero from "@components/Hero";
-
+console.log({
+  clientId: process.env.GOOGLE_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+})
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -36,7 +39,6 @@ const handler = NextAuth({
             image: profile.picture,
           });
         }
-
         return true;
       } catch (error) {
         console.log("Error checking if user exists: ", error.message);

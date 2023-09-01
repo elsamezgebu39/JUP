@@ -10,7 +10,7 @@ export default function CheckoutForm() {
   const [postalCode, setPostalCode] = useState('')
   const [address, setAddress] = useState('')
   return (
-    <div className="bg-white border shadow">
+    <div className="bg-white border shadow ">
       <form >
         <div className="bg-white p-4 w-full">
           <div className="">
@@ -28,7 +28,7 @@ export default function CheckoutForm() {
                   id="firstname"
                   name="firstname"
                   placeholder="FirstName..."
-                  class="bg-opacity-20 rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+                  class="bg-opacity-20 w-full md:w-auto rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
                 />
                 <input
                 onChange={(e)=>setLastname(e.target.value)}
@@ -37,7 +37,7 @@ export default function CheckoutForm() {
                   id="lastname"
                   name="lastname"
                   placeholder="lastname..."
-                  class="bg-opacity-20 rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+                  class="bg-opacity-20 w-full md:w-auto rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
                 />
               </div>
             </div>
@@ -57,10 +57,10 @@ export default function CheckoutForm() {
               class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
             />
           </div>
-          <div className="flex flex-wrap gap-3 justify-between">
+          <div className="flex flex-wrap gap-3 justify-between  ">
             {/* Region */}
-            <div class="mb-3">
-              <label for="title" class="text-md leading-7 block text-gray-700">
+            <div class="mb-3 w-full md:w-auto ">
+              <label for="title" class="text-md  leading-7 block text-gray-700">
                 Region
               </label>
               <input
@@ -70,11 +70,11 @@ export default function CheckoutForm() {
                 id="region"
                 name="region"
                 placeholder="Region..."
-                class="bg-opacity-20 rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+                class="bg-opacity-20 w-full md:w-auto rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
               />
             </div>
             {/* city */}
-            <div class="mb-3">
+            <div class="mb-3 w-full md:w-auto">
               <label for="title" class="text-md leading-7 block text-gray-700">
                 City
               </label>
@@ -85,7 +85,7 @@ export default function CheckoutForm() {
                 id="city"
                 name="city"
                 placeholder="City..."
-                class="bg-opacity-20 rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+                class="bg-opacity-20 w-full md:w-auto rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
               />
             </div>
           </div>
@@ -101,11 +101,11 @@ export default function CheckoutForm() {
               id="address"
               name="address"
               placeholder="Address..."
-              class="bg-opacity-20 w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+              class="bg-opacity-20  w-full rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
             />
           </div>
           {/* postal code */}
-          <div class="mb-3">
+          <div class="mb-3 w-full md:w-auto">
             
             <label for="title" class="text-md leading-7 block text-gray-700">
               Postal code
@@ -117,7 +117,7 @@ export default function CheckoutForm() {
               id="postalcode"
               name="postalcode"
               placeholder="Postal Code..."
-              class="bg-opacity-20 rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
+              class="bg-opacity-20 w-full md:w-auto rounded border border-gray-600 bg-transparent py-1 px-3 text-black leading-8 outline-none transition-colors duration-200 ease-in-out placeholder:text-gray-500 focus:border-blue-500 focus:bg-transparent"
             />
           </div>
         </div>

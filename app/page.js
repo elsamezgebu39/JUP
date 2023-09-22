@@ -141,6 +141,7 @@ export default function Home() {
         <Search
           setFeaturedItems={setFeaturedItems}
           setTrendingItems={setTrendingItems}
+          // setItems={setItems}
         />
       </div>
 
@@ -273,7 +274,6 @@ export default function Home() {
               />
             ))}
           </div>
-
         </div>
       </div>
       {/* mobile version */}

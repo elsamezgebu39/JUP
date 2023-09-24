@@ -78,7 +78,9 @@
   @apply rounded-full border border-black bg-transparent py-1.5 px-5 text-black transition-all hover:bg-black hover:text-white text-center text-sm font-inter flex items-center justify-center;
 }
 
-.icon {
+.icon-mask {
+  -webkit-mask-image: url("/assets/icons/search.png");
+  mask-image: url("/assets/icons/search.png");
   display: inline-block;
   width: 1.6em;
   height: 1em;
@@ -86,37 +88,37 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
-
+  min-height: 2.6em;
   &.icon-search {
-  mask-image: url('/assets/icons/search.png');
+    mask-image: url("/assets/icons/search.png");
   }
 
-   &.icon-home {
-    mask-image: url('/assets/icons/mobile-home.svg')
+  &.icon-home {
+    mask-image: url("/assets/icons/mobile-home.svg");
   }
 
   &.icon-menu {
-    mask-image: url('/assets/icons/menu.svg')
+    mask-image: url("/assets/icons/menu.svg");
   }
 
   &.icon-docs {
-    mask-image: url('/assets/icons/mobile-docs.svg')
+    mask-image: url("/assets/icons/mobile-docs.svg");
   }
 
   &.icon-forum {
-    mask-image: url('/assets/icons/mobile-forum.svg')
+    mask-image: url("/assets/icons/mobile-forum.svg");
   }
 
   &.icon-api {
-    mask-image: url('/assets/icons/mobile-api.svg')
+    mask-image: url("/assets/icons/mobile-api.svg");
   }
 
   &.icon-user {
-    mask-image: url('/assets/icons/mobile-user.svg')
+    mask-image: url("/assets/icons/mobile-user.svg");
   }
 
   &.icon-guest-profile {
-    mask-image: url('/assets/icons/profile-login.svg')
+    mask-image: url("/assets/icons/profile-login.svg");
   }
 }
 

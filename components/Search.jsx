@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { img, imgs } from "@app/page";
+import { image } from "@app/product/page";
 
 export default function Search({ setTrendingItems, setFeaturedItems }) {
   // Search states
@@ -26,9 +27,15 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
 
     let filterdTrending = img.filter(
       (item) =>
-        item.title.includes(searchText) || item.description.includes(searchText)
+        item.title.toLowerCase().includes(formattedSearchText) ||
+        item.description.toLowerCase().includes(formattedSearchText)
     );
     setTrendingItems(filterdTrending);
+
+    // let filterdItems = image.filter((item) =>
+    //   item.title.toLowerCase().includes(formattedSearchText)
+    // );
+    // setItems(filterdItems);
   };
 
   return (
@@ -46,7 +53,11 @@ export default function Search({ setTrendingItems, setFeaturedItems }) {
           onClick={handleSearchClick}
           className="btn absolute top-0 right-0 w-1/12  h-8 sm:h-12 btn-primary btn-xs text-white rounded-l-none"
         >
-          <span className="icon icon-search bg-white text-xl" />
+          <div class="icon-mask">
+            <div className="w-10 h-10 bg-white" alt="search">
+              .
+            </div>
+          </div>
         </button>
       </div>
     </div>

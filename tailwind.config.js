@@ -11,6 +11,10 @@ module.exports = {
         satoshi: ["Satoshi", "sans-serif"],
         inter: ["Inter", "sans-serif"],
       },
+      backgroundImage:{
+        'hero_bg': "url('/herobg.jpg')",
+        'cc_bg':"url('/cc.jpg')"
+      },
       colors: {
         "primary-orange": "#FF5722",
       },

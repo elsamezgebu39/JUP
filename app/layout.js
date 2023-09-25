@@ -29,16 +29,20 @@ export default async function RootLayout({
       <Provider>
         <body className={cx(sfPro.variable, inter.variable)}>
           {/* <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" /> */}
-          <div className='main'>
-            <div className='gradient' />
+          <div className="main">
+            <div className="gradient" />
           </div>
           <Suspense fallback="...">
             {/* Server Component */}
             {/* Nav */}
           </Suspense>
           <main className="app">
-            <Nav />
-            {children}
+            <div>
+              <Nav />
+            </div>
+            <div className="flex-grow">
+              {children}
+            </div>
             <Footer />
           </main>
         </body>

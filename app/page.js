@@ -132,7 +132,7 @@ export default function Home() {
   const [aboutUs, setAboutUs] = useState(AbtUs);
 
   return (
-    <div className="w-screen sm:w-[100vw]">
+    <div className="w-screen ">
       {/* hero */}
       <Hero />
 
@@ -160,7 +160,7 @@ export default function Home() {
             />
           </div>
         </button>
-        <div className="hidden sm:flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
+        <div className="hidden sm:flex overflow-hidden items-start w-[20rem] sm:w-[79rem] border-solid">
           {featuredItems.map(({ title, description, price, src }) => (
             <div
               className="transition-transform duration-500 transform"

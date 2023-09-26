@@ -4,8 +4,14 @@ import Head from "@components/product/Head";
 import PCard from "@components/product/card";
 import { useState } from "react";
 import Link from "next/link";
-import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import { useEffect } from "react";
+import {
+  BsChevronCompactLeft,
+  BsChevronCompactRight,
+  BsWallet,
+} from "react-icons/bs";
+import { GiClothes } from "react-icons/gi";
+import { useEffect, useMemo } from "react";
+
 export const images = [
   {
     description: "Habesha Dresses Up To 30% Off",
@@ -35,19 +41,76 @@ export const image = [
     title: "fibeb",
     price: "3000",
     src: "/tibeb.jpg",
+    category: "Traditional and Handwoven textile",
   },
   {
     id: 2,
     title: "aibeb",
     price: "5000",
     src: "/tibeb.jpg",
+    category: "Traditional and Handwoven textile",
   },
-  { id: 3, title: "yibeb", price: "500", src: "/african.svg" },
-  { id: 4, title: "aibeb", price: "8000", src: "/tibeb.jpg" },
-  { id: 5, title: "aibeb", price: "1000", src: "/tibeb.jpg" },
+  {
+    id: 3,
+    title: "yibeb",
+    price: "500",
+    src: "/african.svg",
+    category: "Pottery",
+  },
+  {
+    id: 4,
+    title: "aibeb",
+    price: "8000",
+    src: "/tibeb.jpg",
+    category: "Traditional and Handwoven textile",
+  },
+  {
+    id: 5,
+    title: "aibeb",
+    price: "1000",
+    src: "/tibeb.jpg",
+    category: "Traditional and Handwoven textile",
+  },
 ];
 
+const categories = [
+  "All", // Special "All" category to show all products
+  "Traditional and Handwoven textile",
+  "Pottery",
+  "Wood work and Furniture",
+  "Jewelry",
+  "Metal work",
+  "Leather Goods",
+  "Traditional Crafts",
+  "Traditional Arts",
+  // Add more categories as needed
+];
 export default function product() {
+  const [currentItem, setCurrentItem] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentItem((prevItem) => (prevItem + 1) % images.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [images]);
+
+  const [filteredData, setFilteredData] = useState(image);
+  const handleCategoryClick = (category) => {
+    // Filter the data based on the clicked category
+    const filteredResults = image.filter((item) => {
+      console.log("Product category:", item.category);
+      if (category === "All") {
+        // If "all" is selected, show all items
+        return true;
+      } else {
+        return item.category === category;
+      }
+    });
+    setFilteredData(filteredResults);
+  };
+
   const [count, setcount] = useState(null);
   function previous() {
     setcount((prevcount) => prevcount + 1);
@@ -91,22 +154,17 @@ export default function product() {
 
   // sort by price
 
-  useEffect(() => {
-    const sortAndSetImg = () => {
-      if (sortOption === "default") {
-        setSortedImg(image);
-      } else if (sortOption === "priceLowToHigh") {
-        const sortedArray = [...image].sort((a, b) => a.price - b.price);
-        setSortedImg(sortedArray);
-      } else if (sortOption === "priceHighToLow") {
-        const sortedArray = [...image].sort((a, b) => b.price - a.price);
-        setSortedImg(sortedArray);
-      }
-    };
-
-    sortAndSetImg();
-    setCurrentPage(1);
-  }, [sortOption, image]);
+  const sortedFilteredData = useMemo(() => {
+    if (sortOption === "default") {
+      return filteredData;
+    } else if (sortOption === "priceLowToHigh") {
+      const sortedArray = [...filteredData].sort((a, b) => a.price - b.price);
+      setSortedImg(sortedArray);
+    } else if (sortOption === "priceHighToLow") {
+      const sortedArray = [...filteredData].sort((a, b) => b.price - a.price);
+      setSortedImg(sortedArray);
+    }
+  }, [sortOption, filteredData]);
 
   const handleSortChange = (event) => {
     setSortOption(event.target.value);
@@ -114,9 +172,10 @@ export default function product() {
 
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
-  const displayedImg = sortedImg.slice(firstIndex, lastIndex);
-  const nPage = Math.ceil(sortedImg.length / recordsPerPage);
+  const nPage = Math.ceil(filteredData.length / recordsPerPage);
   const numbers = [...Array(nPage + 1).keys()].slice(1);
+  const displayedImg =
+    filteredData && filteredData.slice(firstIndex, lastIndex);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -128,29 +187,45 @@ export default function product() {
   const [trendindItems, setTrendingItems] = useState(0);
   return (
     <div className="flex mr-[5rem] my-[2rem]">
-      <div className="border-2 border-black h-[15rem] p-[2rem] mx-[7rem]">
-        <p className="text-[#912c2c]">Categories</p>
-        <details>
-          <summary> </summary>
-          <p>Category1</p>
-          <p>Category2</p>
-          <p>Category3</p>
-        </details>
-        <hr className="border-[#464545]" />
-        <p className="text-[#912c2c]">Gender</p>
-        <input type="checkbox" />
-        Male
-        <br />
-        <input type="checkbox" />
-        Female
+      <div>
+        <p className="text-[#912c2c] font-bold text-[20px] ml-[7rem]">
+          Categories
+        </p>
+        <div className="ml-[5rem] my-1">
+          {categories.map((category) => (
+            <div className="border rounded-lg border-gray-300 p-4">
+              <table
+                key={category}
+                className={`flex items-center cursor-pointer${
+                  category === category ? "bg-[#f9e1e1] text-black" : ""
+                }`}
+                onClick={() => handleCategoryClick(category)}
+              >
+                <tr className="flex items-center w-full justify-between">
+                  <div className="flex">
+                    {category == "All" && <BsWallet size={30} />}
+                    {category == "Traditional and Handwoven textile" && (
+                      <GiClothes size={20} />
+                    )}
+                    {category == "Pottery" && <GiClothes size={30} />}
+                    <p className="text-[15px] px-1">{category}</p>
+                  </div>
+                  <BsChevronCompactRight className="float-right font-semibold" />
+                  <br />
+                </tr>
+              </table>
+            </div>
+          ))}
+        </div>
       </div>
       <div className="-mt-5">
         <div className="max-w-[1400px] px-4 flex overflow-hidden w-[61rem] group">
           {headItems.map(({ description, src, price }) => (
             <div
               style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              className="h-full w-full rounded-2xl bg-center bg-cover duration-500 transition-transform transform"
+              className="h-full w-full rounded-2xl bg-center bg-cover duration-500 transition-transform transform "
             >
+              <img></img>
               <Head description={description} curr={src} price={price} />
             </div>
           ))}
@@ -160,9 +235,11 @@ export default function product() {
             <BsChevronCompactLeft size={30} onClick={prevSlide} />
           </div>
           {/* right arrow */}
-          <div className="hover: shadow-md absolute top-[17%] mr-[10rem] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
-            <BsChevronCompactRight size={30} onClick={nextSlide} />
-          </div>
+          {
+            <div className="hover: shadow-md absolute top-[17%] mr-[10rem] -translate-x-0 translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer">
+              <BsChevronCompactRight size={30} onClick={nextSlide} />
+            </div>
+          }
         </div>
         <div className="top-20 justify-center bg-[#f9ebeb] h-[1rem] w-[60rem] ml-[1rem]">
           <div className="flex items-center justify-center gap-2">
@@ -208,8 +285,8 @@ export default function product() {
           </div>
         </div>
         <div className="grid grid-cols-4 items-start w-[20rem] sm:w-[60rem] border-solid">
-          {displayedImg.map(({ Items, title, price, src, id }) => (
-            <Link href={`/product/${id}`}>
+          {displayedImg.map(({ title, price, src, id }) => (
+            <Link href={`/product/${id}`} key={id}>
               <div className="transition-transform duration-500 transform">
                 <PCard key={title} title={title} price={price} curr={src} />
               </div>

@@ -46,7 +46,7 @@ export default function ProductDetail() {
           <div className="flex justify-between items-center gap-5">
             <span className="font-bold text-2xl">4.8</span>
             <div className="flex">
-            <RatingStar rating={4.5} />
+              <RatingStar rating={4.5} />
             </div>
           </div>
           {/* add review button */}

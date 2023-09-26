@@ -1,30 +1,43 @@
+'use client'
 import CartCard from "@components/cart/CartCard";
 import CheckoutCard from "@components/cart/CheckoutCard";
+import { useEffect, useState } from "react";
 import { FaTrash } from "react-icons/fa";
+
+const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
 const Cart = () => {
-  const dummyProducts = [
-    {
-      title: "Product 1",
-      price: 1940.99,
-      qty: 10,
-      color: "Blue",
-      size: "M",
-    },
-    {
-      title: "Product 2",
-      price: 2900.99,
-      qty: 5,
-      color: "Red",
-      size: "L",
-    },
-    {
-      title: "Product 3",
-      price: 9000.99,
-      qty: 20,
-      color: "Green",
-      size: "S",
-    },
-  ];
+
+ 
+
+  const [cartItems, setCartItems] = useState(savedCart);
+ 
+  
+
+  // const dummyProducts = [
+  //   {
+  //     title: "Product 1",
+  //     price: 1940.99,
+  //     qty: 10,
+  //     color: "Blue",
+  //     size: "M",
+  //   },
+  //   {
+  //     title: "Product 2",
+  //     price: 2900.99,
+  //     qty: 5,
+  //     color: "Red",
+  //     size: "L",
+  //   },
+  //   {
+  //     title: "Product 3",
+  //     price: 9000.99,
+  //     qty: 20,
+  //     color: "Green",
+  //     size: "S",
+  //   },
+  // ];
   return (
     <div className="w-full min-h-[75vh]">
     <div className="max-w-[1150px] mx-auto p-2 md:p-4 bg-white mt-4 space-y-4 grid md:grid-cols-3 gap-4">
@@ -39,13 +52,13 @@ const Cart = () => {
             </button>
           </div>
         </div>
-        {dummyProducts.map((product) => (
+        {cartItems.map((product) => (
           <CartCard product={product} />
         ))}
       </div>
       {/* checkout */}
       <div className="">
-        <CheckoutCard />
+        <CheckoutCard product={cartItems} />
       </div>
     </div>
     </div>

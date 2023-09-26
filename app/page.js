@@ -9,6 +9,9 @@ import Link from "next/link";
 import FeaturesCardByLeul from "@components/FeaturesCardByLeul";
 
 
+// Leul tending product list
+import { tendingProductList } from "./utils/trendingProduct";
+
 
 export const imgs = [
   {
@@ -46,6 +49,7 @@ export const imgs = [
 ];
 export const img = [
   {
+    id: 1,
     title: "fibeb",
     description:
       "Made from handwoven cotton. The use of cotton in the dress adds a touch of natural beauty and ensures breathability, making it ideal for the warm Ethiopian climate. ",
@@ -53,6 +57,8 @@ export const img = [
     src: "/tibeb.jpg",
   },
   {
+    id: 2,
+
     title: "aibeb",
     description: "Cotton hand made new Ethiopian dress",
 
@@ -61,6 +67,8 @@ export const img = [
   },
  
   {
+    id: 3,
+    
     title: "yibeb",
     description: "Cotton hand made new Ethiopian dress...",
     price: "3000",
@@ -122,6 +130,13 @@ const featuresList = [
 ]
 
 export default function Home() {
+
+  const { trending } = tendingProductList
+
+
+
+
+
   // fuctionality of left and right icons
   const [count, setcount] = useState(null);
   const [Fcount, setFcount] = useState(null);
@@ -334,14 +349,16 @@ export default function Home() {
           <p className="sub_title">Trending Clothes</p>
         </div>
         <div className="grid grid-cols-3 ">
-          {trendingItems.map(({ title, description, price, src }) => (
-            <Card
+          {trending.map(({ id,title, description, price, src }) => (
+              <Link href={`product/${id}`}>
+                <Card
               key={title}
               title={title}
               description={description}
               price={price}
               curr={src}
             />
+              </Link>
           ))}
         </div>
         <div className="w-full text-end">

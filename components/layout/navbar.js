@@ -20,7 +20,7 @@ import { useSignUpModal } from "./sign-up-modal";
 const navmenu = [
   { name: "Home", link: "/", isProtectedRoute: "false", icon: "/assets/icons/mobile-home.svg" },
   { name: "Product", link: "/product", isProtectedRoute: "false", icon: "/assets/icons/mobile-api.svg" },
-  { name: "Category", link: "/category", isProtectedRoute: "false", icon: "/assets/icons/mobile-docs.svg" },
+  // { name: "Category", link: "/category", isProtectedRoute: "false", icon: "/assets/icons/mobile-docs.svg" },
 
 ];
 
@@ -46,7 +46,7 @@ export default function NavBar() {
       <nav
         className={`fixed top-0 w-full ${
           scrolled
-            ? "border-b text-[#912c2c]  border-gray-200 bg-white/50 backdrop-blur-xl"
+            ? "border-b text-[#912c2c]  border-gray-200  bg-white/50 backdrop-blur-xl"
             : "border-b text-white border-gray-200 bg-[#912c2c]/50"
         } z-30 transition-all`}
       >
@@ -72,9 +72,9 @@ export default function NavBar() {
               {navmenu.map((curr) => {
                 return (
                   <div className="flex items-center ">
-                    {curr.name == "Category" && <AiOutlineMenu size={20} />}
+                    {/* {curr.name == "Category" && <AiOutlineMenu size={20} />} */}
                     <Link
-                      className="hover:bg-[#621e1e] py-1 px-3   rounded-2xl align-center transition-all"
+                      className="hover:bg-[#621e1e] py-1 px-3 hover:text-white  rounded-2xl align-center transition-all"
                       href={curr.link}
                     >
                       {curr.name}

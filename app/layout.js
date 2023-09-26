@@ -37,7 +37,7 @@ export default async function RootLayout({
             {/* Nav */}
           </Suspense>
           <main className="app">
-            <div>
+            <div className="bg-red-500">
               <Nav />
             </div>
             <div className="flex-grow">

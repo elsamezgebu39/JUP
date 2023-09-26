@@ -47,6 +47,11 @@ export default function CheckoutCard() {
             alt="Africa"
             className="py-4 w-[50px] h-[60px] object-cover"
           />
+          <img
+            src="/assets/images/pesa.svg"
+            alt="Africa"
+            className="py-4 w-[50px] h-[60px] object-cover"
+          />
         </div>
       </div>
     </div>

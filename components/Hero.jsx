@@ -9,21 +9,21 @@ export default function Hero() {
 
   const images = useState([]);
 
-  useEffect(() => {
-    const timeline = gsap.timeline();
-    timeline.set('#mask', {
-      backgroundColor: 'white',
-      width: "100%"
-    }).to('#mask', {
-      width: "50%",
-      duration: 2,
-      translate:1
-    }).to('#mask', {
-      width: "0%",
-      duration: 2,
-      translate:1
-    })
-  }, []);
+  // useEffect(() => {
+  //   const timeline = gsap.timeline();
+  //   timeline.set('#mask', {
+  //     backgroundColor: 'white',
+  //     width: "100%"
+  //   }).to('#mask', {
+  //     width: "50%",
+  //     duration: 2,
+  //     translate:1
+  //   }).to('#mask', {
+  //     width: "0%",
+  //     duration: 2,
+  //     translate:1
+  //   })
+  // }, []);
 
   return (
     <section>
@@ -56,8 +56,8 @@ export default function Hero() {
 
       {/* Leul trial */}
 
-      <div className=" absolute inset-0  bg-cc_bg bg-bottom bg-cover no-repeat w-screen h-[60vh] bg-fixed">
-        <div id="mask" className=" h-full w-full flex-center bg-black/55">
+      <div className="   bg-cc_bg bg-bottom bg-cover no-repeat w-screen h-[60vh] bg-fixed">
+        <div id="mask" className=" h-full w-full flex-center bg-black/80">
            {/* search bar */}
      
         </div>

@@ -20,6 +20,9 @@ import { useSignUpModal } from "./sign-up-modal";
 const navmenu = [
   { name: "Home", link: "/", isProtectedRoute: "false", icon: "/assets/icons/mobile-home.svg" },
   { name: "Product", link: "/product", isProtectedRoute: "false", icon: "/assets/icons/mobile-api.svg" },
+  { name: "Language", link: "/product", isProtectedRoute: "false", icon: "language.svg" },
+  {name: 'Cart' , link:'/cart', icon: 'cart.svg' }
+
   // { name: "Category", link: "/category", isProtectedRoute: "false", icon: "/assets/icons/mobile-docs.svg" },
 
 ];
@@ -72,7 +75,9 @@ export default function NavBar() {
               {navmenu.map((curr) => {
                 return (
                   <div className="flex items-center ">
-                    {/* {curr.name == "Category" && <AiOutlineMenu size={20} />} */}
+                    {curr.name == "Language" && <img src={curr.icon} size={20} />}
+                    {curr.link == "Cart" && <img src={curr.icon} size={20} />}
+
                     <Link
                       className="hover:bg-[#621e1e] py-1 px-3 hover:text-white  rounded-2xl align-center transition-all"
                       href={curr.link}
@@ -188,7 +193,7 @@ export default function NavBar() {
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost btn-circle">
                     <div className="indicator">
-                      <svg
+                      {/* <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-6 w-6"
                         fill="none"
@@ -201,7 +206,8 @@ export default function NavBar() {
                           strokeWidth="2"
                           d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                         />
-                      </svg>
+                      </svg> */}
+
                     </div>
                   </label>
                   <div
@@ -233,6 +239,12 @@ export default function NavBar() {
             )}
           </div>
         </div>
+
+
+
+
+
+        
 
         {/* Desktop Navigation */}
         {/* <div className="sm:flex hidden">

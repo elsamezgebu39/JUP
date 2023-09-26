@@ -1,28 +1,48 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { FaPlus, FaMinus, FaCartPlus } from "react-icons/fa";
 
 
 const colors = ["blue", "red", "white"];
 const sizes = ["xl", "m", "xxl"];
+const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
 
-export default function CartForm() {
+export default function CartForm({product}) {
   const [selectedSize, setSelectedSize] = useState("");
   const [qty, setQty] = useState(1);
+  const [cart, setCart] = useState(savedCart);
   const color = useRef(null);
 
-  const handleSubmit = (e) => {
-    const cartItem = {
-      selectedSize,
-      qty,
-      color,
+  
+
+
+  const addToCart = (product, size, qty) => {
+    const item = {
+      product: product.title,
+      price : product.price,
+      product_id: product.id,
+      qty:qty,
+      size: size,
+      src: product.src
     };
+
+    const updatedCart = [...cart, item];
+    setCart(updatedCart);
+
+    // Save the updated cart to local storage
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   };
+
+
+ useEffect(() => {
+   // Update the local storage cart when cart changes
+   localStorage.setItem("cart", JSON.stringify(cart));
+ }, [cart]);
   return (
     <div className="mt-2 md:mt-4 mx-2">
       {/* cart form */}
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form  className="flex flex-col gap-3">
         {/* size input */}
         <div className="flex gap-6 items-center">
           <h2 className="font-bold capitalize">size:</h2>
@@ -68,6 +88,7 @@ export default function CartForm() {
         </div>
         {/* button */}
         <button
+          onClick={()=>{addToCart(product, selectedSize, qty);}}
           className="flex rounded-xl items-center justify-center p-2 bg-[#912c2c] w-full text-white "
           type="submit"
         >

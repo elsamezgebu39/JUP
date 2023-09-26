@@ -1,3 +1,4 @@
+'use client'
 import ImagesDisplay from "@components/productDetail/ImagesDisplay";
 import CartForm from "@components/productDetail/CartForm";
 import RelatedCard from "@components/productDetail/RelatedCard";
@@ -5,28 +6,50 @@ import { FaStar } from "react-icons/fa";
 import Comments from "@components/productDetail/Comments";
 import ProductInfo from "@components/productDetail/ProductInfo";
 import RatingStar from "@components/shared/RatingStar";
+// import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { tendingProductList } from "@app/utils/trendingProduct";
+
+// import { tendingProductList } from "@app/utils/trendingProduct";
 
 export default function ProductDetail() {
+
+
+  const { trending } = tendingProductList;
+
+  const router = useRouter();
+  const pathName = usePathname();
+  const id = pathName.split('/')[2]
+  const product = trending.find((item) => item.id == id);
+  // const [cartItem, setCartItem] = useState([]);
+  
+
+  // useEffect(() => { 
+
+  // }
+  //   , [cartItem]);
+
+
   return (
     <section className="mt-5 p-3 max-w-[1200px] mx-auto ">
+      {/* <h1>hello there</h1> */}
       {/* product name and price that display on the mobile version */}
-      <div className="md:hidden">
-        <h1 className=" text-2xl font-bold text-[#912c2c] capitalize">
-          Habesha Dressing
-        </h1>
+      {/* <div className="md:hidden">
+        <h1>{ product.title}</h1>
         <p className="font-semibold mb-4">
           <span className="font-bold text-[#912c2c] mr-3 capitalize">
             price:
           </span>
-          12000 ETB
+          {product.price} ETB
         </p>
-      </div>
+      </div> */}
       {/* detail */}
       <div className="grid md:grid-cols-2">
-        <ImagesDisplay />
+        <ImagesDisplay primaryImage={product.src} />
         <div className="">
-          <ProductInfo />
-          <CartForm />
+          <ProductInfo product={product} />
+          <CartForm product={product} />
         </div>
       </div>
       {/* related products */}
@@ -46,7 +69,7 @@ export default function ProductDetail() {
           <div className="flex justify-between items-center gap-5">
             <span className="font-bold text-2xl">4.8</span>
             <div className="flex">
-            <RatingStar rating={4.5} />
+              <RatingStar rating={4.5} />
             </div>
           </div>
           {/* add review button */}

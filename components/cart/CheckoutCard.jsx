@@ -42,7 +42,7 @@ export default function CheckoutCard({ product }) {
               - 0 <span>ETB</span>
             </p>
             <p>
-              360 <span>ETB</span>
+              0 <span>ETB</span>
             </p>
           </div>
         </div>

@@ -86,6 +86,23 @@ const categories = [
   // Add more categories as needed
 ];
 export default function product() {
+
+  const [productList, setProductList] = useState([]);
+  const apiUri = 'http://aadaa.omishtujoy.com/api/product';
+
+  // fetching api from wak
+
+  useEffect(() => {
+    fetch(apiUri) // Fetch data from the API route
+      .then((response) => response.json())
+      .then((data) => setProductList(data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+
+  
+  // console.log(productList);
+
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
@@ -262,7 +279,7 @@ export default function product() {
         </div>
         {/* number of items */}
         <p className="text-[#912c2c] text-2xl font-bold ml-[1rem]">
-          # {Items.length} Items{" "}
+          {/* # {productList.length} {" "} */}
         </p>
         <div className="ml-[3rem] mt-[1rem] flex">
           <button className="bg-[#f9ebeb] mr-[2rem] text-[#912c2c]/80 w-[8rem] h-[3rem] rounded-md font-bold">
@@ -285,10 +302,15 @@ export default function product() {
           </div>
         </div>
         <div className="grid grid-cols-4 items-start w-[20rem] sm:w-[60rem] border-solid">
-          {displayedImg.map(({ title, price, src, id }) => (
+          {productList.map(({ product_name, price, product_image, id }) => (
             <Link href={`/product/${id}`} key={id}>
               <div className="transition-transform duration-500 transform">
-                <PCard key={title} title={title} price={price} curr={src} />
+                <PCard
+                  key={id}
+                  title={product_name}
+                  price={price}
+                  curr={product_image}
+                />
               </div>
             </Link>
           ))}

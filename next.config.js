@@ -1,19 +1,30 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
-    serverComponentsExternalPackages: ["mongoose"],
-  },
-  images: {
-    domains: ['lh3.googleusercontent.com'],
-  },
-  webpack(config) {
-    config.experiments = {
-      ...config.experiments,
-      topLevelAwait: true,
-    }
-    return config
-  }
-}
 
-module.exports = nextConfig
+const API_URL = process.env.BACKEND_PROD_URL || "http://aadaa.omishtujoy.com";
+
+var nextConfig = {
+  images: {
+    domains: [
+      "localhost",
+      "tailwindui.com",
+      "images.unsplash.com",
+      "picsum.photos",
+    ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${API_URL}/api/:path*`,
+      },
+    ];
+  },
+};
+
+// const withNextIntl = require("next-intl/plugin")(
+//   // This is the default (also the `src` folder is supported out of the box)
+//   "./i18n.ts"
+// );
+
+module.exports = nextConfig;
+// module.exports = withNextIntl(nextConfig);

@@ -10,6 +10,7 @@ import FeaturesCardByLeul from "@components/FeaturesCardByLeul";
 // Leul tending product list
 import { tendingProductList } from "./utils/trendingProduct";
 
+
 export const imgs = [
   {
     title: "fibeb",

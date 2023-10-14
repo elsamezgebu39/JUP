@@ -3,10 +3,11 @@ import http from "./httpService";
 import { AxiosResponse } from "axios";
 
 export interface User {
+  id?: string;
   first_name: string;
   last_name: string;
   user_name: string;
-  verified: boolean;
+  verified: string;
   email: string;
   phone: string;
   gender: string;

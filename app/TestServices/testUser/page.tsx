@@ -1,94 +1,148 @@
+"use client";
 import React, { use } from "react";
 import UserService, { User } from "@lib/service/userService";
+import {
+  useAllUsers,
+  useCreateUser,
+  useUpdateUser,
+  useDeleteUser,
+} from "@lib/hooks/useUserHooks";
 
-const TestUserPage = async () => {
-  // Here is an illustration of how the User class can be utilized.
-  const userService = new UserService();
+//* Here is an illustration of how the User class can be utilized.
 
-  // Get user by ID
-  async function getByUserId() {
-    let userIns: User = await userService.getByUserId("1");
-    console.log({ userIns });
-    return userIns;
+//* Get user by ID
+function UserList() {
+  const { data: users, isLoading, isError, error } = useAllUsers();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  //await getByUserId();
-
-  // Create a new user Example
-  async function createUser() {
-    const newUser: User = {
-      first_name: "Abenezer",
-      last_name: "Kebede",
-      user_name: "abenikeb",
-      verified: 1 as any,
-      email: "abike9@gmail.com",
-      phone: "0913228892",
-      gender: "male",
-      address: "123 Main St",
-      role: "user",
-      rating: 0,
-      password: "password123",
-    };
-
-    userService
-      .createUser(newUser)
-      .then((createdUser: User) => {
-        console.log("Created user:", createdUser);
-      })
-      .catch((error: Error) => {
-        console.error("Error:", error.message);
-      });
+  if (isError) {
+    return <div>Error: {error as any}</div>;
   }
-
-  //   await createUser();
-
-  async function updatedUser() {
-    // Update (password) user by ID
-    const updatedUser: User = {
-      first_name: "Abenezer",
-      last_name: "Kebede",
-      user_name: "abenikeb",
-      verified: false,
-      email: "abenikeb79@gmail.com",
-      phone: "0913228892",
-      gender: "male",
-      address: "123 Main St",
-      role: "user",
-      rating: 0,
-      password: "password567",
-    };
-
-    userService
-      .updateUser("1", updatedUser)
-      .then((updatedUser: User) => {
-        console.log("Updated user:", updatedUser);
-      })
-      .catch((error: Error) => {
-        console.error("Error:", error.message);
-      });
-  }
-
-  // await updatedUser();
-
-  // Delete user by ID
-  async function removeUser() {
-    userService
-      .deleteUser("1")
-      .then(() => {
-        console.log("User deleted successfully");
-      })
-      .catch((error: Error) => {
-        console.error("Error:", error.message);
-      });
-  }
-
-  // await removeUser();
 
   return (
     <div>
-      <h1>Here is an illustration of how the User class can be utilized.</h1>
+      <h2>User List Table</h2>
+      {users.map((user) => (
+        <div key={user.id}>
+          <p>Name: {user.user_name}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
-export default TestUserPage;
+//* Create/post user Data
+function CreateUserForm() {
+  const createUserMutation = useCreateUser();
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+
+    const { elements } = event.target;
+    const newUser = {
+      first_name: elements.first_name.value,
+      last_name: elements.last_name.value,
+      user_name: elements.user_name.value,
+      verified: "0",
+      email: elements.email.value,
+      phone: elements.phone.value,
+      gender: elements.gender.value,
+      address: elements.address.value,
+      role: elements.role.value,
+      rating: 0,
+      password: elements.password.value,
+    };
+
+    createUserMutation.mutate(newUser);
+  };
+
+  return (
+    <div>
+      <h2>Create User</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="first_name"
+          placeholder="First Name"
+          required
+        />
+        <br />
+        <input type="text" name="last_name" placeholder="Last Name" required />
+        <br />
+        <input type="text" name="user_name" placeholder="Username" required />
+        <br />
+        <input type="email" name="email" placeholder="Email" required />
+        <br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <br />
+        {/* Other input fields for phone, gender, address, role, etc. */}
+        <button type="submit" className="b-2 ">
+          Create
+        </button>
+      </form>
+      {createUserMutation.isLoading && <div>Creating user...</div>}
+      {createUserMutation.isError && (
+        <div>Error: {createUserMutation.error.message}</div>
+      )}
+      {createUserMutation.isSuccess && <div>User created successfully!</div>}
+    </div>
+  );
+}
+
+//* Update/delete user Data
+function App() {
+  const userId = "1";
+
+  const { data: user, isLoading, isError, error } = useUpdateUser();
+  const updateUserMutation = useUpdateUser();
+  const deleteUserMutation = useDeleteUser();
+
+  const handleUpdateUser = () => {
+    const updatedUser = {
+      id: userId,
+      //TODO: Add the desired fields
+    };
+
+    updateUserMutation.mutate(updatedUser);
+  };
+
+  const handleDeleteUser = () => {
+    deleteUserMutation.mutate(userId);
+  };
+
+  if (isLoading) {
+    return <div>Loading user...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  return (
+    <div>
+      <h2>User Details</h2>
+      {/* Display user details */}
+      {user && (
+        <div>
+          <p>Name: {user.user_name}</p>
+          <p>Email: {user.email}</p>
+          {/*TODO:-------------------- */}
+          <button onClick={handleUpdateUser}>Update User</button>
+          <button onClick={handleDeleteUser}>Delete User</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// export default CreateUserForm;
+export default UserList;

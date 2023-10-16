@@ -40,7 +40,7 @@ export function useUpdateSubCategory(): UseMutationResult<SubCategory, Error, an
   const categoryService = new SubCategoryService();
 
   return useMutation(
-    (updatedCategory: SubCategory) => categoryService.updateSubCategory("1", updatedCategory),
+    (updatedCategory: SubCategory) => categoryService.updateSubCategory(`${updatedCategory.id}`, updatedCategory),
     {
       onSuccess: (data, updatedCategory) => {
         queryClient.setQueryData(["subCategory", updatedCategory.id], data);

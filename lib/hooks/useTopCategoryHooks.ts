@@ -40,7 +40,7 @@ export function useUpdateTopCategory(): UseMutationResult<TopCategory, Error, an
   const categoryService = new TopCategoryService();
 
   return useMutation(
-    (updatedCategory: TopCategory) => categoryService.updateTopCategory("1", updatedCategory),
+    (updatedCategory: TopCategory) => categoryService.updateTopCategory(`${updatedCategory.id}`, updatedCategory),
     {
       onSuccess: (data, updatedCategory) => {
         queryClient.setQueryData(["topCategory", updatedCategory.id], data);

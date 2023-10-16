@@ -46,20 +46,22 @@ export default class ProductService {
     try {
       const queryParams = new URLSearchParams(product as any).toString();
       const response: AxiosResponse<Product | any> = await http.post(
-        `/Product?${queryParams}`
+        `/product?${queryParams}`
       );
+      console.log(queryParams)
       return response.data;
     } catch (error) {
       return error as any;
+      // throw new Error("Failed to create products");
     }
   }
 
   // Update Product by ID
   async updateProduct(productId: string, updatedProduct: Product): Promise<Product> {
     try {
+      const queryParams = new URLSearchParams(updatedProduct as any).toString();
       const response: AxiosResponse<Product | any | null> = await http.put(
-        `/product/${productId}`,
-        updatedProduct
+        `/product/${productId}?${queryParams}`,
       );
       return response.data;
     } catch (error) {

@@ -42,7 +42,7 @@ export function useUserProducts(id: string): UseQueryResult<Product[]> {
 }
 
 // update product
-export function useUpdateProduct(id: string): UseMutationResult<Product, Error, any> {
+export function useUpdateProduct(): UseMutationResult<Product, Error, any> {
   const queryClient = useQueryClient();
   const productService = new ProductService();
 

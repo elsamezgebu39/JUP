@@ -60,7 +60,7 @@ export default class ProductService {
   async updateProduct(productId: string, updatedProduct: Product): Promise<Product> {
     try {
       const queryParams = new URLSearchParams(updatedProduct as any).toString();
-      const response: AxiosResponse<Product | any | null> = await http.put(
+      const response: AxiosResponse<Product | any | null> = await http.patch(
         `/product/${productId}?${queryParams}`,
       );
       return response.data;

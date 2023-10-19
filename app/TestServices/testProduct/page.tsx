@@ -104,12 +104,16 @@ function CreateProductForm() {
 //* Update/delete product Data
 function App() {
   const { data: product, isLoading, isError, error } = useProduct("4");
-  const updateProductMutation = useUpdateProduct();
   const deleteProductMutation = useDeleteProduct();
+  const updateProductMutation = useUpdateProduct(`${product?.id}`);
 
   const handleUpdateProduct = () => {
     const updatedProduct = {
-      id: product?.id,
+      // id: product?.id,
+      user_id: product?.user_id,
+      sub_category_id: product?.sub_category_id,
+      product_description: product?.product_description,
+      price:product?.price,
       product_name: `${product?.product_name} updated`,
       //TODO: Add the desired fields
     };
@@ -162,4 +166,4 @@ function App() {
 }
 
 // export default CreateUserForm;
-export default ProductList;
+export default App;

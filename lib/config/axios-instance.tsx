@@ -9,6 +9,8 @@ import axios, {
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: "http://aadaa.omishtujoy.com/api",
   timeout: 5000,
+  withCredentials: true,
+  headers: {},
 });
 
 // Request interceptor

@@ -39,7 +39,7 @@ export default class UserService {
     }
   }
 
-  // Create a new user
+  // *Create a new user
   async createUser(user: User): Promise<User> {
     try {
       const queryParams = new URLSearchParams(user as any).toString();

@@ -10,6 +10,7 @@
 
 # next.js
 /.next/
+/.next_26_11_2023/
 /out/
 
 # production

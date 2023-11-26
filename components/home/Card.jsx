@@ -6,8 +6,6 @@ export default function Card({ title, description, price, curr }) {
   const line = description.split(" ");
   const lineLength = line.length;
 
- 
-
   const toggleExpanded = () => {
     setIsExpanded(!isExpanded);
   };

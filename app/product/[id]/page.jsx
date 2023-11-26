@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import ImagesDisplay from "@components/productDetail/ImagesDisplay";
 import CartForm from "@components/productDetail/CartForm";
 import RelatedCard from "@components/productDetail/RelatedCard";
@@ -14,22 +14,20 @@ import { tendingProductList } from "@app/utils/trendingProduct";
 // import { tendingProductList } from "@app/utils/trendingProduct";
 
 export default function ProductDetail() {
-
-
   const { trending } = tendingProductList;
+
+  console.log({ trending });
 
   const router = useRouter();
   const pathName = usePathname();
-  const id = pathName.split('/')[2]
+  const id = pathName.split("/")[2];
   const product = trending.find((item) => item.id == id);
   // const [cartItem, setCartItem] = useState([]);
-  
 
-  // useEffect(() => { 
+  // useEffect(() => {
 
   // }
   //   , [cartItem]);
-
 
   return (
     <section className="mt-5 p-3 max-w-[1200px] mx-auto ">
@@ -46,7 +44,7 @@ export default function ProductDetail() {
       </div> */}
       {/* detail */}
       <div className="grid md:grid-cols-2">
-        <ImagesDisplay primaryImage={product.src} />
+        <ImagesDisplay primaryImage={product?.src} />
         <div className="">
           <ProductInfo product={product} />
           <CartForm product={product} />

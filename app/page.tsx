@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Hero from "@components/Hero";
 import Search from "@components/Search";
 import Card from "@components/home/Card";
@@ -10,8 +10,16 @@ import FeaturesCardByLeul from "@components/FeaturesCardByLeul";
 // Leul tending product list
 import { tendingProductList } from "./utils/trendingProduct";
 
+interface TrendingItem {
+  [key: string]: any;
+  id?: number;
+  title: string;
+  description: string;
+  price: string;
+  src: string;
+}
 
-export const imgs = [
+const imgs: Array<TrendingItem> = [
   {
     title: "fibeb",
     description:
@@ -46,7 +54,7 @@ export const imgs = [
   },
 ];
 
-export const img = [
+const img: Array<TrendingItem | any> = [
   {
     id: 1,
     title: "fibeb",
@@ -74,6 +82,7 @@ export const img = [
     src: "/tibeb.jpg",
   },
 ];
+
 const imgss = ["/assets/images/cloth3.jpg", "/assets/images/cloth2.jpg"];
 
 const AbtUs = [
@@ -131,47 +140,57 @@ const featuresList = [
 export default function Home() {
   const { trending } = tendingProductList;
   // fuctionality of left and right icons
-  const [count, setcount] = useState(null);
-  const [Fcount, setFcount] = useState(null);
-  const [Tcount, setTcount] = useState(null);
-  const [Acount, setAcount] = useState(null);
+  const [count, setcount] = useState<any>(null);
+  const [Fcount, setFcount] = useState<any>(null);
+  const [Tcount, setTcount] = useState<any>(null);
+  const [Acount, setAcount] = useState<any>(null);
 
   function previous() {
-    setcount((prevcount) => prevcount - 1);
+    setcount((prevcount: any) => prevcount - 1);
   }
 
   function next() {
     if (count == featuredItems.length - 3) {
       setcount(0);
-    } else setcount((prevcount) => prevcount + 1);
+    } else setcount((prevcount: any) => prevcount + 1);
   }
   // mobile version for featured items
   function FNext() {
     if (Fcount == featuredItems.length - 1) {
       setFcount(0);
-    } else setFcount((prevcount) => prevcount + 1);
+    } else setFcount((prevcount: any) => prevcount + 1);
   }
 
   function TPrevious() {
-    setTcount((prevcount) => prevcount - 1);
+    setTcount((prevcount: any) => prevcount - 1);
   }
+
   function TNext() {
     if (Tcount == trendingItems.length - 1) {
       setTcount(0);
-    } else setTcount((prevcount) => prevcount + 1);
+    } else setTcount((prevcount: any) => prevcount + 1);
   }
 
   function APrevious() {
-    setAcount((prevcount) => prevcount - 1);
+    setAcount((prevcount: any) => prevcount - 1);
   }
+
   function ANext() {
     if (Acount == aboutUs.length - 1) {
       setAcount(0);
-    } else setAcount((prevcount) => prevcount + 1);
+    } else setAcount((prevcount: any) => prevcount + 1);
   }
-  const [featuredItems, setFeaturedItems] = useState(imgs);
-  const [trendingItems, setTrendingItems] = useState(img);
+  // const [featuredItems, setFeaturedItems] = useState(imgs);
+  const [featuredItems, setFeaturedItems] = useState<Array<TrendingItem>>([]);
+  // const [trendingItems, setTrendingItems] = useState<Array<TrendingItem>>(img);
+  // I have modified this as an empity Array
+  const [trendingItems, setTrendingItems] = useState<Array<TrendingItem>>([]);
   const [aboutUs, setAboutUs] = useState(AbtUs);
+
+  useEffect(() => {
+    setFeaturedItems(imgs);
+    setTrendingItems(img);
+  }, []);
 
   return (
     <div className="w-screen  ">
@@ -387,20 +406,24 @@ export default function Home() {
           </div>
         </button>
         <div className="grid grid-cols-4 gap-x-5 container">
-          {trendingItems.map(({ title, description, price, src }) => (
-            <div
-              className="transition-transform duration-500 transform"
-              style={{ transform: `translateX(-${Tcount * 100}%)` }}
-            >
-              <Card
-                key={title}
-                title={title}
-                description={description}
-                price={price}
-                curr={src}
-              />
-            </div>
-          ))}
+          {
+            trendingItems.map(
+              ({ title, description, price, src }: TrendingItem) => (
+                <div
+                  className="transition-transform duration-500 transform"
+                  style={{ transform: `translateX(-${Tcount * 100}%)` }}
+                >
+                  <Card
+                    key={title}
+                    title={title}
+                    description={description}
+                    price={price}
+                    curr={src}
+                  />
+                </div>
+              )
+            ) as any
+          }
         </div>
         {/* right icon */}
         <button onClick={TNext} className="text-[3rem] mt-[2rem]">
@@ -447,7 +470,7 @@ export default function Home() {
             <AboutUS
               description={description}
               name={name}
-              type={type}
+              // type={type}
               curr={src}
             />
           ))}
@@ -473,7 +496,7 @@ export default function Home() {
               <AboutUS
                 description={description}
                 name={name}
-                type={type}
+                // type={type}
                 curr={src}
               />
             </div>

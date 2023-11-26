@@ -42,15 +42,15 @@ export function useUserProducts(id: string): UseQueryResult<Product[]> {
 }
 
 // update product
-export function useUpdateProduct(): UseMutationResult<Product, Error, any> {
+export function useUpdateProduct(productId:string): UseMutationResult<Product, Error, any> {
   const queryClient = useQueryClient();
   const productService = new ProductService();
 
   return useMutation(
-    (updatedProduct: Product) => productService.updateProduct("1", updatedProduct),
+    (updatedProduct: Product) => productService.updateProduct(productId, updatedProduct),
     {
       onSuccess: (data, updatedProduct) => {
-        queryClient.setQueryData(["product", updatedProduct.id], data);
+        queryClient.setQueryData(["product", productId], data);
       },
     }
   );

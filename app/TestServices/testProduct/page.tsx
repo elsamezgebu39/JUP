@@ -113,7 +113,7 @@ function App() {
       user_id: product?.user_id,
       sub_category_id: product?.sub_category_id,
       product_description: product?.product_description,
-      price:product?.price,
+      price: product?.price,
       product_name: `${product?.product_name} updated`,
       //TODO: Add the desired fields
     };
@@ -157,8 +157,18 @@ function App() {
           </div>
 
           {/*TODO:-------------------- */}
-          <button onClick={handleUpdateProduct} className="p-2 bg-red-400 font-bold text-white mx-2 rounded">Update Product</button>
-          <button onClick={handleDeleteProduct} className="p-2 bg-red-400 font-bold text-white rounded">Delete Product</button>
+          <button
+            onClick={handleUpdateProduct}
+            className="p-2 bg-red-400 font-bold text-white mx-2 rounded"
+          >
+            Update Product
+          </button>
+          <button
+            onClick={handleDeleteProduct}
+            className="p-2 bg-red-400 font-bold text-white rounded"
+          >
+            Delete Product
+          </button>
         </div>
       )}
     </div>
@@ -167,3 +177,5 @@ function App() {
 
 // export default CreateUserForm;
 export default App;
+// export default ProductList;
+// export default CreateProductForm;

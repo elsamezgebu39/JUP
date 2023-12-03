@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
 
-export default function AboutUs({ description, name, type, src, curr }) {
+// export default function AboutUs({ description, name, type, src, curr }) {
+export default function AboutUs({ description, name, curr }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const line = description.split(" ");
   const lineLength = line.length;

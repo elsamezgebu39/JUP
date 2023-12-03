@@ -1,9 +1,73 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { img, imgs } from "@app/page";
-import { image } from "@app/product/page";
+// import Image from "next/image";
+// import { img, imgs } from "@app/page";
+// import { image } from "@app/product/page";
+
+const imgs = [
+  {
+    title: "fibeb",
+    description:
+      "Made from handwoven cotton. The use of cotton in the dress adds a touch of natural beauty and ensures breathability, making it ideal for the warm Ethiopian climate. ",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "Photo",
+    description:
+      "Made from handwoven cotton. The use of cotton in the dress adds a touch of natural beauty and ensures breathability, making it ideal for the warm Ethiopian climate. ",
+    price: "3000",
+    src: "/african.svg",
+  },
+  {
+    title: "fibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/assets/images/cloth3.jpg",
+  },
+  {
+    title: "aibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "200",
+    src: "/tibeb.jpg",
+  },
+  {
+    title: "zibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "6000",
+    src: "/tibeb.jpg",
+  },
+];
+
+const img = [
+  {
+    id: 1,
+    title: "fibeb",
+    description:
+      "Made from handwoven cotton. The use of cotton in the dress adds a touch of natural beauty and ensures breathability, making it ideal for the warm Ethiopian climate. ",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+  {
+    id: 2,
+
+    title: "aibeb",
+    description: "Cotton hand made new Ethiopian dress",
+
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+
+  {
+    id: 3,
+
+    title: "yibeb",
+    description: "Cotton hand made new Ethiopian dress...",
+    price: "3000",
+    src: "/tibeb.jpg",
+  },
+];
 
 export default function Search({ setTrendingItems, setFeaturedItems }) {
   // Search states

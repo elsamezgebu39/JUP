@@ -12,7 +12,7 @@ import {
 import { GiClothes } from "react-icons/gi";
 import { useEffect, useMemo } from "react";
 
-export const images = [
+const images = [
   {
     description: "Habesha Dresses Up To 30% Off",
     src: "/tibeb.jpg",
@@ -35,7 +35,7 @@ export const images = [
   },
 ];
 
-export const image = [
+const image = [
   {
     id: 1,
     title: "fibeb",
@@ -86,9 +86,8 @@ const categories = [
   // Add more categories as needed
 ];
 export default function product() {
-
   const [productList, setProductList] = useState([]);
-  const apiUri = 'http://aadaa.omishtujoy.com/api/product';
+  const apiUri = "http://aadaa.omishtujoy.com/api/product";
 
   // fetching api from wak
 
@@ -99,8 +98,6 @@ export default function product() {
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
-
-  
   // console.log(productList);
 
   const [currentItem, setCurrentItem] = useState(0);

@@ -2,22 +2,23 @@
 import React, { useState } from "react";
 import { FaCaretDown, FaCaretRight } from "react-icons/fa";
 
-export default function ProductInfo({product}) {
+export default function ProductInfo({ product }) {
   const [open, setopen] = useState(false);
 
   return (
     <div className="mt-4 mx-2">
       <div className="hidden md:block">
         <h1 className="text-2xl font-bold mb-3 text-[#912c2c] capitalize">
-          {product.title}
+          {product?.title}
         </h1>
         <p className="font-semibold mb-3 ">
           <span className="font-bold mr-3 capitalize">price:</span>
-          {product.price} ETB
+          {product?.price} ETB
         </p>
       </div>
       <p className="font-semibold mb-3 ">
-        <span className="font-bold mr-3 capitalize">quantity in Stock:</span>{ product.qty}
+        <span className="font-bold mr-3 capitalize">quantity in Stock:</span>
+        {product?.qty}
       </p>
       {/* description */}
       <div className="relative">

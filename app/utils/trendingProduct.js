@@ -5,9 +5,9 @@ export const tendingProductList = {
       title: "fibeb",
       description:
         "Made from handwoven cotton. The use of cotton in the dress adds a touch of natural beauty and ensures breathability, making it ideal for the warm Ethiopian climate. ",
-          price: "3000",
+      price: "3000",
       qty: 2,
-      
+
       src: "/tibeb.jpg",
     },
     {

@@ -9,6 +9,10 @@ import Link from "next/link";
 import FeaturesCardByLeul from "@components/FeaturesCardByLeul";
 // Leul tending product list
 import { tendingProductList } from "./utils/trendingProduct";
+import { useAllProducts } from "@lib/hooks/useProductHooks";
+import { Card as AntCard, Skeleton, Carousel } from "antd";
+
+import { useQuery } from "@tanstack/react-query";
 
 interface TrendingItem {
   [key: string]: any;
@@ -18,6 +22,10 @@ interface TrendingItem {
   price: string;
   src: string;
 }
+
+
+const { Meta } = AntCard;
+
 
 const imgs: Array<TrendingItem> = [
   {
@@ -138,6 +146,22 @@ const featuresList = [
 ];
 
 export default function Home() {
+
+  // const { data: featuredProductList, isLoading, error, isError } = useAllProducts()
+
+  let { data: productList, isLoading, error, isError } = useQuery({
+    queryKey: ['products'],
+    queryFn: async () => {
+      let response = await fetch('http://aadaa.omishtujoy.com/api/product')
+      return await response.json()
+    }
+  })
+
+
+
+
+
+
   const { trending } = tendingProductList;
   // fuctionality of left and right icons
   const [count, setcount] = useState<any>(null);
@@ -192,27 +216,30 @@ export default function Home() {
     setTrendingItems(img);
   }, []);
 
+
+
+
+
   return (
     <div className="w-screen  ">
-      {/* hero */}
-      <div className="absolute top-0">
-        <Hero />
-      </div>
 
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
         <Search
           setFeaturedItems={setFeaturedItems}
           setTrendingItems={setTrendingItems}
-          // setItems={setItems}
+        // setItems={setItems}
         />
       </div>
 
+
       {/* feature clothes*/}
       <section className="w-[90vw] mx-auto">
-        <p className="font-bold mt-[2rem] sm:text-4xl text-[20px] ">
-          Featured Clothes
-        </p>
+        <div className=" text-center">
+          <p className="sub_title">Featured Clothes </p>
+          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
+        </div>
+
 
         <div className="flex justify-center">
           {/* left icon */}
@@ -224,19 +251,31 @@ export default function Home() {
               />
             </div>
           </button>
-          <div className="hidden sm:flex overflow-hidden items-start w-[20rem] sm:w-[79rem] border-solid">
-            {featuredItems.map(({ title, description, price, src }) => (
+          <div className="hidden  sm:flex sp overflow-hidden items-start w-[20rem] sm:w-[79rem] border-solid">
+
+            {
+              isLoading && <div className="grid grid-cols-3">
+                <Skeleton active />
+              </div>
+            }
+
+
+
+            {productList && productList.map(({ id, product_name, product_description, price, }) => (
               <div
+                key={id}
                 className="transition-transform duration-500 transform"
                 style={{ transform: `translateX(-${count * 100}%)` }}
               >
-                <Card
-                  key={title}
-                  title={title}
-                  description={description}
-                  price={price}
-                  curr={src}
-                />
+                < AntCard
+                  className=" m-1"
+                  hoverable
+                  style={{ width: 300 }
+                  }
+                  cover={< img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                >
+                  <Meta title={product_name} description={product_description} />
+                </ AntCard >
               </div>
             ))}
           </div>
@@ -282,41 +321,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lewana Featrues code */}
-      {/* <div className="ml-[5rem] sm:ml-[8rem] mt-[2rem]">
-        <p className="font-bold sm:text-4xl text-xl text-[#912c2c]">
-          Ethiopian Traditional Clothing
-          <br />
-          <span className="ml-[7rem]">Collections</span>
-        </p>
-        <div className="flex w-[30%vw] sm:w-[50%vw] mt-[1rem] mx-[1rem] sm:mx-[6rem]">
-          <img
-            className="h-[11rem] sm:h-[21rem]"
-            src="assets/images/cloth.jpg"
-          />
-          <div className="grid sm:flex">
-            <div className="mr-[2rem] h-[5rem] sm:h-[10rem] w-[5rem] sm:w-[10rem]">
-              {imgss.map((curr) => {
-                return (
-                  <img
-                    className="mb-[1rem] ml-[1rem] h-full w-full "
-                    src={curr}
-                  />
-                );
-              })}
-            </div>
-            <div className="mt-[5rem] sm:mt-0 sm:flex hidden">
-              {/* fetaures */}
-      {/* <Features />
-            </div>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Leul Features code */}
 
       <div className="w-screen primaryBg h-[30vh] text-white bg-[#912c2c] flex items-center my-5">
-        <div className="container grid grid-cols-4 gap-3 ">
+        <div className="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
           {featuresList.map((item) => {
             return (
               <FeaturesCardByLeul
@@ -335,42 +342,47 @@ export default function Home() {
       {/* desktop version */}
       {/* trending cloth */}
       <div className="container">
-        <div className="flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 512 512"
-          >
-            <path
-              fill="none"
-              stroke="#192c2c"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-              d="M352 144h112v112"
-            />
-            <path
-              fill="none"
-              stroke="#192c2c"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="32"
-              d="m48 368l121.37-121.37a32 32 0 0 1 45.26 0l50.74 50.74a32 32 0 0 0 45.26 0L448 160"
-            />
-          </svg>
-          <p className="sub_title">Trending Clothes</p>
+        <div className="flex items-center flex-col">
+          <div className="flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="none"
+                stroke="#192c2c"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                d="M352 144h112v112"
+              />
+              <path
+                fill="none"
+                stroke="#192c2c"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="32"
+                d="m48 368l121.37-121.37a32 32 0 0 1 45.26 0l50.74 50.74a32 32 0 0 0 45.26 0L448 160"
+              />
+            </svg>
+            <p className="sub_title">Trending Clothes</p>
+          </div>
+          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
         </div>
         <div className="grid grid-cols-3 ">
-          {trending.map(({ id, title, description, price, src }) => (
-            <Link href={`product/${id}`}>
-              <Card
-                key={title}
-                title={title}
-                description={description}
-                price={price}
-                curr={src}
-              />
+          {productList && productList.map(({ id, product_name, product_description }) => (
+            <Link key={id} href={`product/${id}`}>
+              < AntCard
+                className=" m-1"
+                hoverable
+                style={{ width: 300 }
+                }
+                cover={< img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+              >
+                <Meta title={product_name} description={product_description} />
+              </ AntCard >
             </Link>
           ))}
         </div>
@@ -438,32 +450,28 @@ export default function Home() {
       <div className="container">
         {/* desktop version */}
         {/* about us */}
-        <div className="sub_title flex">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-          >
-            <path
-              fill="#192c2c"
-              d="M3.516 7a3.5 3.5 0 1 1-3.5 3.5L0 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464a5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.548-.043zm9 0a3.5 3.5 0 1 1-3.5 3.5L9 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464a5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.549-.043z"
-            />
-          </svg>
-          <p>What are people saying about us?</p>
-        </div>
-        {/* <div className="mx-[2rem] sm:mx-[13rem]">
-          <div className="hidden sm:flex items-start overflow-hidden sm:grid-cols-3 ">
-            {AbtUs.map(({ description, name, type, src }) => (
-              <AboutUS
-                description={description}
-                name={name}
-                type={type}
-                curr={src}
+
+
+
+        <div className="flex items-center flex-col">
+          <div className="flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill="#192c2c"
+                d="M3.516 7a3.5 3.5 0 1 1-3.5 3.5L0 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464a5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.548-.043zm9 0a3.5 3.5 0 1 1-3.5 3.5L9 10a7 7 0 0 1 7-7v2a4.97 4.97 0 0 0-3.536 1.464a5.01 5.01 0 0 0-.497.578c.179-.028.362-.043.549-.043z"
               />
-            ))}
+            </svg>
+            <p className="sub_title">What people are saying ?</p>
           </div>
-        </div> */}
+          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
+        </div>
+
+
 
         <div className="hidden sm:flex items-start overflow-hidden sm:grid-cols-3 ">
           {AbtUs.map(({ description, name, type, src }) => (

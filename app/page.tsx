@@ -10,9 +10,13 @@ import FeaturesCardByLeul from "@components/FeaturesCardByLeul";
 // Leul tending product list
 import { tendingProductList } from "./utils/trendingProduct";
 import { useAllProducts } from "@lib/hooks/useProductHooks";
-import { Card as AntCard, Skeleton, Carousel } from "antd";
+import { Card as AntCard, Skeleton, Carousel, Avatar } from "antd";
 
 import { useQuery } from "@tanstack/react-query";
+import SkeletonImage from "antd/es/skeleton/Image";
+import LoadingProductCard from "@components/UI/LoadingProductCard"
+import HeroSection from "@components/UI/HeroSection"
+
 
 interface TrendingItem {
   [key: string]: any;
@@ -223,6 +227,16 @@ export default function Home() {
   return (
     <div className="w-screen  ">
 
+      {/* Hero section */}
+
+
+
+      <HeroSection />
+
+
+
+
+
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
         <Search
@@ -241,6 +255,15 @@ export default function Home() {
         </div>
 
 
+
+
+
+        {/* Showing Loading UI */}
+
+
+
+
+
         <div className="flex justify-center">
           {/* left icon */}
           <button onClick={previous} className="text-[3rem] mt-[2rem]">
@@ -254,30 +277,40 @@ export default function Home() {
           <div className="hidden  sm:flex sp overflow-hidden items-start w-[20rem] sm:w-[79rem] border-solid">
 
             {
-              isLoading && <div className="grid grid-cols-3">
-                <Skeleton active />
-              </div>
+              isLoading ? (
+                <section className="grid grid-cols-3">
+                  <LoadingProductCard />
+                  <LoadingProductCard />
+                  <LoadingProductCard />
+                </section>
+              ) : (
+                productList &&
+                productList.map(({ id, product_name, product_description, price }) => (
+                  <div
+                    key={id}
+                    className="transition-transform duration-500 transform"
+                    style={{ transform: `translateX(-${count * 100}%)` }}
+                  >
+                    <AntCard
+                      className="m-1"
+                      hoverable
+                      style={{ width: 300 }}
+                      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                    >
+                      <Meta title={product_name} description={product_description} />
+                    </AntCard>
+                  </div>
+                ))
+              )
             }
 
 
 
-            {productList && productList.map(({ id, product_name, product_description, price, }) => (
-              <div
-                key={id}
-                className="transition-transform duration-500 transform"
-                style={{ transform: `translateX(-${count * 100}%)` }}
-              >
-                < AntCard
-                  className=" m-1"
-                  hoverable
-                  style={{ width: 300 }
-                  }
-                  cover={< img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-                >
-                  <Meta title={product_name} description={product_description} />
-                </ AntCard >
-              </div>
-            ))}
+
+
+
+
+
           </div>
           {/* mobile version */}
           <div className="sm:hidden flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
@@ -322,7 +355,7 @@ export default function Home() {
       </section>
 
 
-      <div className="w-screen primaryBg h-[30vh] text-white bg-[#912c2c] flex items-center my-5">
+      <div className="w-screen primaryBg py-5 text-white bg-[#912c2c] flex items-center my-5">
         <div className="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
           {featuresList.map((item) => {
             return (
@@ -336,9 +369,6 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="sm:hidden mt-[1rem]">
-        <Features horizontal={true} />
-      </div>
       {/* desktop version */}
       {/* trending cloth */}
       <div className="container">
@@ -371,7 +401,7 @@ export default function Home() {
           </div>
           <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
         </div>
-        <div className="grid grid-cols-3 ">
+        <div className="grid  sm:grid-cols-2  md:grid-cols-3  lg:grid-cols-4">
           {productList && productList.map(({ id, product_name, product_description }) => (
             <Link key={id} href={`product/${id}`}>
               < AntCard
@@ -386,7 +416,7 @@ export default function Home() {
             </Link>
           ))}
         </div>
-        <div className="w-full text-end">
+        <div className=" text-end">
           <Link
             href="/product"
             className="btn-ghost text-end flex justify-end items-center  text-[#912c2c] "

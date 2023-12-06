@@ -32,6 +32,7 @@ export default async function RootLayout({ children }) {
         </div>
         <ReactQueryProvider>
           <SessionProvider>
+
             <main className="app">
               <div className="bg-red-500">
                 <Nav />

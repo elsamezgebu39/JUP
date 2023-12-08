@@ -15,7 +15,8 @@ import { Card as AntCard, Skeleton, Carousel, Avatar } from "antd";
 import { useQuery } from "@tanstack/react-query";
 import SkeletonImage from "antd/es/skeleton/Image";
 import LoadingProductCard from "@components/UI/LoadingProductCard"
-import HeroSection from "@components/UI/HeroSection"
+import HeroCarousel from "@components/UI/HeroSection"
+import ProductCategorySection from "@components/UI/ProductCategoryCard"
 
 
 interface TrendingItem {
@@ -231,7 +232,7 @@ export default function Home() {
 
 
 
-      <HeroSection />
+      <HeroCarousel />
 
 
 
@@ -353,6 +354,13 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+
+
+      {/* product category card  */}
+      <ProductCategorySection />
+
+
 
 
       <div className="w-screen primaryBg py-5 text-white bg-[#912c2c] flex items-center my-5">

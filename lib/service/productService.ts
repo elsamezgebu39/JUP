@@ -14,7 +14,7 @@ export default class ProductService {
   // Get All Products
   async getAllProducts(): Promise<Product> {
     try {
-      const { data }: any = await http.get(`/product`);
+      const { data }: any = await http.get(`/product`, { withCredentials: true });
       return data;
     } catch (error) {
       throw new Error("Failed to get products");

@@ -21,7 +21,7 @@ const navmenu = [
   { name: "Home", link: "/", isProtectedRoute: "false", icon: "/assets/icons/mobile-home.svg" },
   { name: "Product", link: "/product", isProtectedRoute: "false", icon: "/assets/icons/mobile-api.svg" },
   { name: "Language", link: "/product", isProtectedRoute: "false", icon: "language.svg" },
-  {name: 'Cart' , link:'/cart', icon: 'cart.svg' }
+  { name: 'Cart', link: '/cart', icon: 'mdi:cart-outline' }
 
   // { name: "Category", link: "/category", isProtectedRoute: "false", icon: "/assets/icons/mobile-docs.svg" },
 
@@ -31,8 +31,8 @@ const navmenu = [
 export default function NavBar() {
 
   useEffect(() => {
-    
-  },[])
+
+  }, [])
 
   const { SignInModal, setShowSignInModal } = useSignInModal();
   // const { SideModal, setShowSideModal } = useSideBarModal()
@@ -47,11 +47,10 @@ export default function NavBar() {
   return (
     <>
       <nav
-        className={`fixed top-0 w-full ${
-          scrolled
-            ? "border-b text-[#912c2c]  border-gray-200  bg-white/50 backdrop-blur-xl"
-            : "border-b text-white border-gray-200 bg-[#912c2c]/50"
-        } z-30 transition-all`}
+        className={`fixed top-0 w-full ${scrolled
+          ? "border-b text-[#912c2c]  border-gray-200  bg-white/50 backdrop-blur-xl"
+          : "border-b text-white border-gray-200 bg-[#912c2c]/50"
+          } z-30 transition-all`}
       >
         <div className="mx-3 md:mx-auto flex h-16 max-w-screen-xl items-center justify-between">
           {/* Logo */}
@@ -75,8 +74,8 @@ export default function NavBar() {
               {navmenu.map((curr) => {
                 return (
                   <div className="flex items-center ">
-                    {curr.name == "Language" && <img src={curr.icon} size={20} />}
-                    {curr.link == "Cart" && <img src={curr.icon} size={20} />}
+                    {/* {curr.name == "Language" && <img src={curr.icon} size={20} />} */}
+                    {curr.link == "Cart" && <iconify-icon icon="mdi:cart-outline"></iconify-icon>}
 
                     <Link
                       className="hover:bg-[#621e1e] py-1 px-3 hover:text-white  rounded-2xl align-center transition-all"
@@ -244,7 +243,7 @@ export default function NavBar() {
 
 
 
-        
+
 
         {/* Desktop Navigation */}
         {/* <div className="sm:flex hidden">
@@ -268,11 +267,10 @@ export default function NavBar() {
         {/* Mobile Navigation */}
         <div className="sm:hidden flex">
           <div
-            className={`fixed top-0 w-full ${
-              scrolled
-                ? "flex justify-center items-center bg-transparent"
-                : "border-b border-gray-200 bg-transparent w-full flex justify-center items-center"
-            } z-30 transition-all`}
+            className={`fixed top-0 w-full ${scrolled
+              ? "flex justify-center items-center bg-transparent"
+              : "border-b border-gray-200 bg-transparent w-full flex justify-center items-center"
+              } z-30 transition-all`}
           >
             {/* Drawer Section */}
             <div className="drawer drawer-end z-50">
@@ -304,9 +302,8 @@ export default function NavBar() {
             >
               <p className="text-white">Category</p>
               <ChevronDown
-                className={`h-4 w-4 text-white transition-all ${
-                  openPopover ? "rotate-180" : ""
-                }`}
+                className={`h-4 w-4 text-white transition-all ${openPopover ? "rotate-180" : ""
+                  }`}
               />
             </button>
           </div>

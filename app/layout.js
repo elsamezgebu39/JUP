@@ -25,6 +25,11 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
+
+      <head>
+        <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+      </head>
+
       <body className={cx(sfPro.variable, inter.variable)}>
         {/* <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" /> */}
         <div className="main">
@@ -32,7 +37,8 @@ export default async function RootLayout({ children }) {
         </div>
         <ReactQueryProvider>
           <SessionProvider>
-            <main className="app">
+
+            <main className="">
               <div className="bg-red-500">
                 <Nav />
               </div>

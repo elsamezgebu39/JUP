@@ -14,10 +14,9 @@ import { Card as AntCard, Skeleton, Carousel, Avatar } from "antd";
 
 import { useQuery } from "@tanstack/react-query";
 import SkeletonImage from "antd/es/skeleton/Image";
-import LoadingProductCard from "@components/UI/LoadingProductCard"
-import HeroCarousel from "@components/UI/HeroSection"
-import ProductCategorySection from "@components/UI/ProductCategoryCard"
-
+import LoadingProductCard from "@components/UI/LoadingProductCard";
+import HeroCarousel from "@components/UI/HeroSection";
+import ProductCategorySection from "@components/UI/ProductCategoryCard";
 
 interface TrendingItem {
   [key: string]: any;
@@ -28,9 +27,7 @@ interface TrendingItem {
   src: string;
 }
 
-
 const { Meta } = AntCard;
-
 
 const imgs: Array<TrendingItem> = [
   {
@@ -151,21 +148,20 @@ const featuresList = [
 ];
 
 export default function Home() {
-
   // const { data: featuredProductList, isLoading, error, isError } = useAllProducts()
 
-  let { data: productList, isLoading, error, isError } = useQuery({
-    queryKey: ['products'],
+  let {
+    data: productList,
+    isLoading,
+    error,
+    isError,
+  } = useQuery({
+    queryKey: ["products"],
     queryFn: async () => {
-      let response = await fetch('http://aadaa.omishtujoy.com/api/product')
-      return await response.json()
-    }
-  })
-
-
-
-
-
+      let response = await fetch("http://aadaa.omishtujoy.com/api/product");
+      return await response.json();
+    },
+  });
 
   const { trending } = tendingProductList;
   // fuctionality of left and right icons
@@ -221,49 +217,31 @@ export default function Home() {
     setTrendingItems(img);
   }, []);
 
-
-
-
-
   return (
     <div className="w-screen  ">
-
       {/* Hero section */}
 
-
-
       <HeroCarousel />
-
-
-
-
 
       {/* search bar */}
       <div className="w-2/4 mx-auto mt-10">
         <Search
           setFeaturedItems={setFeaturedItems}
           setTrendingItems={setTrendingItems}
-        // setItems={setItems}
+          // setItems={setItems}
         />
       </div>
-
 
       {/* feature clothes*/}
       <section className="w-[90vw] mx-auto">
         <div className=" text-center">
           <p className="sub_title">Featured Clothes </p>
-          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
+          <p className="text-sm pb-2 font-semibold text-gray-500">
+            Explore our featured products
+          </p>
         </div>
 
-
-
-
-
         {/* Showing Loading UI */}
-
-
-
-
 
         <div className="flex justify-center">
           {/* left icon */}
@@ -276,17 +254,16 @@ export default function Home() {
             </div>
           </button>
           <div className="hidden  sm:flex sp overflow-hidden items-start w-[20rem] sm:w-[79rem] border-solid">
-
-            {
-              isLoading ? (
-                <section className="grid grid-cols-3">
-                  <LoadingProductCard />
-                  <LoadingProductCard />
-                  <LoadingProductCard />
-                </section>
-              ) : (
-                productList &&
-                productList.map(({ id, product_name, product_description, price }) => (
+            {isLoading ? (
+              <section className="grid grid-cols-3">
+                <LoadingProductCard />
+                <LoadingProductCard />
+                <LoadingProductCard />
+              </section>
+            ) : (
+              productList &&
+              productList.map(
+                ({ id, product_name, product_description, price }: any) => (
                   <div
                     key={id}
                     className="transition-transform duration-500 transform"
@@ -296,22 +273,22 @@ export default function Home() {
                       className="m-1"
                       hoverable
                       style={{ width: 300 }}
-                      cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
+                      cover={
+                        <img
+                          alt="example"
+                          src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                        />
+                      }
                     >
-                      <Meta title={product_name} description={product_description} />
+                      <Meta
+                        title={product_name}
+                        description={product_description}
+                      />
                     </AntCard>
                   </div>
-                ))
+                )
               )
-            }
-
-
-
-
-
-
-
-
+            )}
           </div>
           {/* mobile version */}
           <div className="sm:hidden flex overflow-hidden items-start w-[20rem] sm:w-[60rem] border-solid">
@@ -355,13 +332,8 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* product category card  */}
       <ProductCategorySection />
-
-
-
 
       <div className="w-screen primaryBg py-5 text-white bg-[#912c2c] flex items-center my-5">
         <div className="container grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 ">
@@ -407,22 +379,34 @@ export default function Home() {
             </svg>
             <p className="sub_title">Trending Clothes</p>
           </div>
-          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
+          <p className="text-sm pb-2 font-semibold text-gray-500">
+            Explore our featured products
+          </p>
         </div>
         <div className="grid  sm:grid-cols-2  md:grid-cols-3  lg:grid-cols-4">
-          {productList && productList.map(({ id, product_name, product_description }) => (
-            <Link key={id} href={`product/${id}`}>
-              < AntCard
-                className=" m-1"
-                hoverable
-                style={{ width: 300 }
-                }
-                cover={< img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-              >
-                <Meta title={product_name} description={product_description} />
-              </ AntCard >
-            </Link>
-          ))}
+          {productList &&
+            productList.map(
+              ({ id, product_name, product_description }: any) => (
+                <Link key={id} href={`product/${id}`}>
+                  <AntCard
+                    className=" m-1"
+                    hoverable
+                    style={{ width: 300 }}
+                    cover={
+                      <img
+                        alt="example"
+                        src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                      />
+                    }
+                  >
+                    <Meta
+                      title={product_name}
+                      description={product_description}
+                    />
+                  </AntCard>
+                </Link>
+              )
+            )}
         </div>
         <div className=" text-end">
           <Link
@@ -489,8 +473,6 @@ export default function Home() {
         {/* desktop version */}
         {/* about us */}
 
-
-
         <div className="flex items-center flex-col">
           <div className="flex">
             <svg
@@ -506,10 +488,10 @@ export default function Home() {
             </svg>
             <p className="sub_title">What people are saying ?</p>
           </div>
-          <p className="text-sm pb-2 font-semibold text-gray-500">Explore our featured products</p>
+          <p className="text-sm pb-2 font-semibold text-gray-500">
+            Explore our featured products
+          </p>
         </div>
-
-
 
         <div className="hidden sm:flex items-start overflow-hidden sm:grid-cols-3 ">
           {AbtUs.map(({ description, name, type, src }) => (

@@ -1,0 +1,653 @@
+{
+	"info": {
+		"_postman_id": "9c62c34b-0777-4320-ba99-896f7d7d8491",
+		"name": "Aadaa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29253776"
+	},
+	"item": [
+		{
+			"name": "User Collection",
+			"item": [
+				{
+					"name": "Get_all_User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post_User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user?first_name=Solomon&last_name=Bekele&user_name=abdiwak_bekele&verified=1&email=abdiwakbek32326@gmail.com&phone=09332265791&gender=male&address=Addis Ababa, Ethiopia&role=buyer&rating=5&password=00000000",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "Solomon"
+								},
+								{
+									"key": "last_name",
+									"value": "Bekele"
+								},
+								{
+									"key": "user_name",
+									"value": "abdiwak_bekele"
+								},
+								{
+									"key": "verified",
+									"value": "1"
+								},
+								{
+									"key": "email",
+									"value": "abdiwakbek32326@gmail.com"
+								},
+								{
+									"key": "phone",
+									"value": "09332265791"
+								},
+								{
+									"key": "gender",
+									"value": "male"
+								},
+								{
+									"key": "address",
+									"value": "Addis Ababa, Ethiopia"
+								},
+								{
+									"key": "role",
+									"value": "buyer"
+								},
+								{
+									"key": "rating",
+									"value": "5"
+								},
+								{
+									"key": "password",
+									"value": "00000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read_Single_User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_user",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user/3?first_name=Elsa&last_name=tigabu&user_name=elsa_tig&verified=1&email=elsa@gmail.com&phone=0926594879&gender=male&address=Lideta&role=vendor&rating=4&password=00000000",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"3"
+							],
+							"query": [
+								{
+									"key": "first_name",
+									"value": "Elsa"
+								},
+								{
+									"key": "last_name",
+									"value": "tigabu"
+								},
+								{
+									"key": "user_name",
+									"value": "elsa_tig"
+								},
+								{
+									"key": "verified",
+									"value": "1"
+								},
+								{
+									"key": "email",
+									"value": "elsa@gmail.com"
+								},
+								{
+									"key": "phone",
+									"value": "0926594879"
+								},
+								{
+									"key": "gender",
+									"value": "male"
+								},
+								{
+									"key": "address",
+									"value": "Lideta"
+								},
+								{
+									"key": "role",
+									"value": "vendor"
+								},
+								{
+									"key": "rating",
+									"value": "4"
+								},
+								{
+									"key": "password",
+									"value": "00000000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user/3",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_Product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/user_product/1",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"user_product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product Collection",
+			"item": [
+				{
+					"name": "Get_all_products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/product",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/product?user_id=4&sub_category_id=2&product_name=Shoe&product_description=This is Shoe&price=2000",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "4"
+								},
+								{
+									"key": "sub_category_id",
+									"value": "2"
+								},
+								{
+									"key": "product_name",
+									"value": "Shoe"
+								},
+								{
+									"key": "product_description",
+									"value": "This is Shoe"
+								},
+								{
+									"key": "price",
+									"value": "2000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_single_product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/product/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update_Product",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/product/2?user_id=5&sub_category_id=2&product_name=Chama&product_description=This is Chama&price=2000",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2"
+							],
+							"query": [
+								{
+									"key": "user_id",
+									"value": "5"
+								},
+								{
+									"key": "sub_category_id",
+									"value": "2"
+								},
+								{
+									"key": "product_name",
+									"value": "Chama"
+								},
+								{
+									"key": "product_description",
+									"value": "This is Chama"
+								},
+								{
+									"key": "price",
+									"value": "2000"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete_Product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/product/2",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Top Category",
+			"item": [
+				{
+					"name": "Get_all_top_categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/top_category",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"top_category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_top_category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/top_category?top_category_name=Artifacts",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"top_category"
+							],
+							"query": [
+								{
+									"key": "top_category_name",
+									"value": "Artifacts"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_top_category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/top_category/1?top_category_name=Foods",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"top_category",
+								"1"
+							],
+							"query": [
+								{
+									"key": "top_category_name",
+									"value": "Foods"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_single_top_category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/top_category/1",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"top_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_top_category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/top_category/1",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"top_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sub Category Collection",
+			"item": [
+				{
+					"name": "get_all_sub_category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/sub_category",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"sub_category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get_single_sub_category",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/sub_category/1",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"sub_category",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create_sub_category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/sub_category?top_category_id=2&sub_category_name=Shirt",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"sub_category"
+							],
+							"query": [
+								{
+									"key": "top_category_id",
+									"value": "2"
+								},
+								{
+									"key": "sub_category_name",
+									"value": "Shirt"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update_sub_category",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/sub_category/1?top_category_id=2&sub_category_name=Shoe",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"sub_category",
+								"1"
+							],
+							"query": [
+								{
+									"key": "top_category_id",
+									"value": "2"
+								},
+								{
+									"key": "sub_category_name",
+									"value": "Shoe"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_sub_category",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "aadaa.omishtujoy.com/api/sub_category/2",
+							"host": [
+								"aadaa",
+								"omishtujoy",
+								"com"
+							],
+							"path": [
+								"api",
+								"sub_category",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

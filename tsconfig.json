@@ -36,7 +36,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "components/Provider/SessionProvider.tsx"
+    "components/Provider/SessionProvider.tsx",
+    "app/product/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

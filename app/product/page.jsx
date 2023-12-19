@@ -9,8 +9,31 @@ import {
   BsChevronCompactRight,
   BsWallet,
 } from "react-icons/bs";
-import { GiClothes } from "react-icons/gi";
+import {
+  GiClothes,
+  GiWoodBeam,
+  GiJewelCrown,
+  GiMetalBar,
+  GiLeatherVest,
+  GiStoneCrafting,
+  GiPalette,
+  GiColumnVase,
+} from "react-icons/gi";
 import { useEffect, useMemo } from "react";
+import {
+  useAllProducts,
+  useCreateProduct,
+  useUpdateProduct,
+  useDeleteProduct,
+  useProduct,
+} from "@lib/hooks/useProductHooks";
+import {
+  useAllSubCategories,
+  useCreateSubCategory,
+  useSubCategory,
+  useUpdateSubCategory,
+  useDeleteSubCategory,
+} from "@lib/hooks/useSubCategoryHooks";
 
 const images = [
   {
@@ -35,70 +58,62 @@ const images = [
   },
 ];
 
-const image = [
-  {
-    id: 1,
-    title: "fibeb",
-    price: "3000",
-    src: "/tibeb.jpg",
-    category: "Traditional and Handwoven textile",
-  },
-  {
-    id: 2,
-    title: "aibeb",
-    price: "5000",
-    src: "/tibeb.jpg",
-    category: "Traditional and Handwoven textile",
-  },
-  {
-    id: 3,
-    title: "yibeb",
-    price: "500",
-    src: "/african.svg",
-    category: "Pottery",
-  },
-  {
-    id: 4,
-    title: "aibeb",
-    price: "8000",
-    src: "/tibeb.jpg",
-    category: "Traditional and Handwoven textile",
-  },
-  {
-    id: 5,
-    title: "aibeb",
-    price: "1000",
-    src: "/tibeb.jpg",
-    category: "Traditional and Handwoven textile",
-  },
-];
+// const categories = [
+//   "All", //category to show all products
+//   "Traditional Clothes",
+//   "Traditional Shoes",
+//   "Pottery",
+//   "Wood work and Furniture",
+//   "Jewelry",
+//   "Metal work",
+//   "Leather Goods",
+//   "Traditional Crafts",
+//   "Traditional Arts",
+// ];
 
-const categories = [
-  "All", // Special "All" category to show all products
-  "Traditional and Handwoven textile",
-  "Pottery",
-  "Wood work and Furniture",
-  "Jewelry",
-  "Metal work",
-  "Leather Goods",
-  "Traditional Crafts",
-  "Traditional Arts",
-  // Add more categories as needed
-];
 export default function product() {
-  const [productList, setProductList] = useState([]);
-  const apiUri = "http://aadaa.omishtujoy.com/api/product";
+  // const apiUri = "http://aadaa.omishtujoy.com/api/product";
 
-  // fetching api from wak
+  // // fetching api from wak
 
-  useEffect(() => {
-    fetch(apiUri) // Fetch data from the API route
-      .then((response) => response.json())
-      .then((data) => setProductList(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  // useEffect(() => {
+  //   fetch(apiUri) // Fetch data from the API route
+  //     .then((response) => response.json())
+  //     .then((data) => setProductList(data))
+  //     .catch((error) => console.error("Error fetching data:", error));
+  // }, []);
 
   // console.log(productList);
+
+  const { data: products, isLoading, isError, error } = useAllProducts();
+  const { data: categories } = useAllSubCategories();
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error: {error.message || "An error occurred"}</div>;
+  }
+
+  const [headItems, setHeadItems] = useState(images);
+  const [featuredItems, setFeaturedItems] = useState(images);
+  const [Items, setItems] = useState(products);
+  const [trendindItems, setTrendingItems] = useState(0);
+
+  const [sortOption, setSortOption] = useState("default");
+  const [sortedImg, setSortedImg] = useState(products);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 4; //number of cards that will be displayed in a page
+  const [FilteredData, setFilteredData] = useState(products);
+  const filteredData = products;
+  const lastIndex = currentPage * recordsPerPage;
+  const firstIndex = lastIndex - recordsPerPage;
+  const nPage = Math.ceil(filteredData.length / recordsPerPage);
+  const numbers = [...Array(nPage + 1).keys()].slice(1);
+  // the product lists fetched from the api named as displayedImg
+  const displayedImg =
+    filteredData && filteredData.slice(firstIndex, lastIndex);
 
   const [currentItem, setCurrentItem] = useState(0);
 
@@ -110,16 +125,15 @@ export default function product() {
     return () => clearInterval(interval);
   }, [images]);
 
-  const [filteredData, setFilteredData] = useState(image);
-  const handleCategoryClick = (category) => {
+  const handleCategoryClick = (categories) => {
     // Filter the data based on the clicked category
     const filteredResults = image.filter((item) => {
-      console.log("Product category:", item.category);
-      if (category === "All") {
+      console.log("Product category:", item.categories);
+      if (categories === "All") {
         // If "all" is selected, show all items
         return true;
       } else {
-        return item.category === category;
+        return item.categories === categories;
       }
     });
     setFilteredData(filteredResults);
@@ -160,12 +174,6 @@ export default function product() {
     setCurrentPage(src);
   }
 
-  // Pagination
-  const [sortOption, setSortOption] = useState("default");
-  const [sortedImg, setSortedImg] = useState(image);
-  const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 4;
-
   // sort by price
 
   const sortedFilteredData = useMemo(() => {
@@ -184,21 +192,9 @@ export default function product() {
     setSortOption(event.target.value);
   };
 
-  const lastIndex = currentPage * recordsPerPage;
-  const firstIndex = lastIndex - recordsPerPage;
-  const nPage = Math.ceil(filteredData.length / recordsPerPage);
-  const numbers = [...Array(nPage + 1).keys()].slice(1);
-  const displayedImg =
-    filteredData && filteredData.slice(firstIndex, lastIndex);
-
   const handlePageChange = (page) => {
     setCurrentPage(page);
   };
-
-  const [headItems, setHeadItems] = useState(images);
-  const [featuredItems, setFeaturedItems] = useState(images);
-  const [Items, setItems] = useState(image);
-  const [trendindItems, setTrendingItems] = useState(0);
   return (
     <div className="flex mr-[5rem] my-[2rem]">
       <div>
@@ -206,27 +202,48 @@ export default function product() {
           Categories
         </p>
         <div className="ml-[5rem] my-1">
-          {categories.map((category) => (
-            <div className="border rounded-lg border-gray-300 p-4">
+          {categories.map((categories) => (
+            <div
+              className="border rounded-lg border-gray-300 p-4"
+              key={categories}
+            >
               <table
-                key={category}
-                className={`flex items-center cursor-pointer${
-                  category === category ? "bg-[#f9e1e1] text-black" : ""
+                key={categories}
+                className={`flex items-center cursor-default${
+                  categories === categories ? "bg-[#f9e1e1] text-black" : ""
                 }`}
-                onClick={() => handleCategoryClick(category)}
+                onClick={() => handleCategoryClick(categories)}
               >
-                <tr className="flex items-center w-full justify-between">
-                  <div className="flex">
-                    {category == "All" && <BsWallet size={30} />}
-                    {category == "Traditional and Handwoven textile" && (
-                      <GiClothes size={20} />
+                <tbody className="flex  items-center w-full">
+                  <td className="">
+                    {categories == "All" && <BsWallet size={30} />}
+                    {categories == "Traditional Clothes" && (
+                      <GiClothes size={30} />
                     )}
-                    {category == "Pottery" && <GiClothes size={30} />}
-                    <p className="text-[15px] px-1">{category}</p>
-                  </div>
-                  <BsChevronCompactRight className="float-right font-semibold" />
+                    {categories == "Pottery" && <GiColumnVase size={30} />}
+                    {categories == "Wood work and Furniture" && (
+                      <GiWoodBeam size={30} />
+                    )}
+                    {categories == "Jewelry" && <GiJewelCrown size={30} />}
+                    {categories == "Metal work" && <GiMetalBar size={30} />}
+                    {categories == "Leather Goods" && (
+                      <GiLeatherVest size={30} />
+                    )}
+                    {categories == "Traditional Crafts" && (
+                      <GiStoneCrafting size={30} />
+                    )}
+                    {categories == "Traditional Arts" && (
+                      <GiPalette size={30} />
+                    )}
+                  </td>
+                  <td>
+                    <p className="text-[15px] px-1">{categories}</p>
+                  </td>
+                  <td className="float-right">
+                    <BsChevronCompactRight className="float-right font-semibold" />
+                  </td>
                   <br />
-                </tr>
+                </tbody>
               </table>
             </div>
           ))}
@@ -277,6 +294,11 @@ export default function product() {
         {/* number of items */}
         <p className="text-[#912c2c] text-2xl font-bold ml-[1rem]">
           {/* # {productList.length} {" "} */}
+          {products.length === 0
+            ? "No Items"
+            : productList.length === 1
+            ? "#1 Item"
+            : `# ${products.length} Items`}
         </p>
         <div className="ml-[3rem] mt-[1rem] flex">
           <button className="bg-[#f9ebeb] mr-[2rem] text-[#912c2c]/80 w-[8rem] h-[3rem] rounded-md font-bold">
@@ -299,7 +321,7 @@ export default function product() {
           </div>
         </div>
         <div className="grid grid-cols-4 items-start w-[20rem] sm:w-[60rem] border-solid">
-          {productList.map(({ product_name, price, product_image, id }) => (
+          {displayedImg.map(({ product_name, price, product_image, id }) => (
             <Link href={`/product/${id}`} key={id}>
               <div className="transition-transform duration-500 transform">
                 <PCard

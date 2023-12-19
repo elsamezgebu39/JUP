@@ -294,9 +294,9 @@ export default function product() {
         {/* number of items */}
         <p className="text-[#912c2c] text-2xl font-bold ml-[1rem]">
           {/* # {productList.length} {" "} */}
-          {products.length === 0
+          {products?.length === 0
             ? "No Items"
-            : productList.length === 1
+            : productList?.length === 1
             ? "#1 Item"
             : `# ${products.length} Items`}
         </p>

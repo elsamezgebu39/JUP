@@ -10,17 +10,17 @@ import {
 } from "react";
 import { LoadingDots, Google } from "@/components/shared/icons";
 import Link from "next/link";
-import Facebook from "next-auth/providers/facebook";
 import { useSignUpModal } from "./sign-up-modal";
 
 const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
   const [signInClicked, setSignInClicked] = useState(false);
-  const [providers, setProviders] = useState(null);
+  const [providers, setupProviders] = useState(null);
 
   useEffect(() => {
     (async () => {
       const res = await getProviders();
-      setProviders(res);
+      console.log({ res });
+      setupProviders(res);
     })();
   }, []);
 
@@ -40,6 +40,7 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
           </p>
         </div>
         <div className="flex flex-col space-y-4 bg-gray-50 px-4 py-8 md:px-16">
+          {/* {alert(providers)} */}
           {providers &&
             Object.values(providers).map((provider) => (
               <button
@@ -54,7 +55,6 @@ const SignInModal = ({ showSignInModal, setShowSignInModal }) => {
                 onClick={() => {
                   setSignInClicked(true);
                   signIn(provider.id);
-                  // signIn("google");
                 }}
               >
                 {signInClicked ? (

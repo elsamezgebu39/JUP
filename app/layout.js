@@ -25,7 +25,6 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   return (
     <html lang="en">
-
       <head>
         <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
       </head>
@@ -37,7 +36,6 @@ export default async function RootLayout({ children }) {
         </div>
         <ReactQueryProvider>
           <SessionProvider>
-
             <main className="">
               <div className="bg-red-500">
                 <Nav />

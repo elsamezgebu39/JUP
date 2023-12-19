@@ -4,53 +4,52 @@ import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
 import { useSignInModal } from "./sign-in-modal";
-import UserDropdown from "./user-dropdown";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
-import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
-import { useState, useEffect } from "react";
-
-
-// const icons = ["/alert.svg", "/cart.svg", "/person.png"];
-const icons = ["/alert.svg", "/cart.svg"];
+import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { useSideBarModal } from "./side-bar-modal";
 import Popover from "@components/shared/popover";
 import { useSignUpModal } from "./sign-up-modal";
+
 const navmenu = [
-  { name: "Home", link: "/", isProtectedRoute: "false", icon: "/assets/icons/mobile-home.svg" },
-  { name: "Product", link: "/product", isProtectedRoute: "false", icon: "/assets/icons/mobile-api.svg" },
-  { name: "Language", link: "/product", isProtectedRoute: "false", icon: "language.svg" },
-  { name: 'Cart', link: '/cart', icon: 'mdi:cart-outline' }
-
-  // { name: "Category", link: "/category", isProtectedRoute: "false", icon: "/assets/icons/mobile-docs.svg" },
-
+  {
+    name: "Home",
+    link: "/",
+    isProtectedRoute: "false",
+    icon: "/assets/icons/mobile-home.svg",
+  },
+  {
+    name: "Product",
+    link: "/product",
+    isProtectedRoute: "false",
+    icon: "/assets/icons/mobile-api.svg",
+  },
+  {
+    name: "Language",
+    link: "/product",
+    isProtectedRoute: "false",
+    icon: "language.svg",
+  },
+  { name: "Cart", link: "/cart", icon: "mdi:cart-outline" },
 ];
-
 // NavBar({ session })
-export default function NavBar() {
-
-  useEffect(() => {
-
-  }, [])
-
+export default function NavBar(): React.ReactNode {
   const { SignInModal, setShowSignInModal } = useSignInModal();
-  // const { SideModal, setShowSideModal } = useSideBarModal()
   const { SideModal, setShowSideModal } = useSideBarModal();
   const [openPopover, setOpenPopover] = useState(false);
   const { SignUpModal, setShowSignUpModal } = useSignUpModal();
-  const scrolled = useScroll(50);
 
   const { data: session } = useSession();
-  let pathName = usePathname();
+  const scrolled = useScroll(50);
 
   return (
     <>
       <nav
-        className={`fixed top-0 w-full ${scrolled
-          ? "border-b text-[#912c2c]  border-gray-200  bg-white/50 backdrop-blur-xl"
-          : "border-b text-white border-gray-200 bg-[#912c2c]/50"
-          } z-30 transition-all`}
+        className={`fixed top-0 w-full ${
+          scrolled
+            ? "border-b text-[#912c2c]  border-gray-200  bg-white/50 backdrop-blur-xl"
+            : "border-b text-white border-gray-200 bg-[#912c2c]/50"
+        } z-30 transition-all`}
       >
         <div className="mx-3 md:mx-auto flex h-16 max-w-screen-xl items-center justify-between">
           {/* Logo */}
@@ -68,15 +67,12 @@ export default function NavBar() {
               </p>
             </Link>
           </div>
-
+          {/* Links */}
           <div className="sm:flex hidden">
             <ul className="flex justify-between  rounded-2xl  py-1 px-2 space-x-4">
               {navmenu.map((curr) => {
                 return (
                   <div className="flex items-center ">
-                    {/* {curr.name == "Language" && <img src={curr.icon} size={20} />} */}
-                    {curr.link == "Cart" && <iconify-icon icon="mdi:cart-outline"></iconify-icon>}
-
                     <Link
                       className="hover:bg-[#621e1e] py-1 px-3 hover:text-white  rounded-2xl align-center transition-all"
                       href={curr.link}
@@ -88,8 +84,7 @@ export default function NavBar() {
               })}
             </ul>
           </div>
-
-          {/* Nav Section */}
+          {/* Decktop Nav Section */}
           <div>
             {session?.user ? (
               <div className="flex flex-none justify-center items-center gap-2">
@@ -158,7 +153,10 @@ export default function NavBar() {
                       className="btn btn-ghost btn-circle avatar"
                     >
                       <div className="w-10 rounded-full">
-                        <img src={session?.user.image} />
+                        <img
+                          src={session?.user.image as string}
+                          alt="user image"
+                        />
                       </div>
                     </label>
                     <ul
@@ -191,23 +189,7 @@ export default function NavBar() {
               <div className="flex flex-none justify-center items-center gap-2">
                 <div className="dropdown dropdown-end">
                   <label tabIndex={0} className="btn btn-ghost btn-circle">
-                    <div className="indicator">
-                      {/* <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                      </svg> */}
-
-                    </div>
+                    <div className="indicator"></div>
                   </label>
                   <div
                     tabIndex={0}
@@ -228,49 +210,24 @@ export default function NavBar() {
                 >
                   Sign In
                 </button>
-                <button
+                {/* <button
                   className="ml-2 flex-none rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white transition-all hover:bg-white hover:text-black"
                   onClick={() => setShowSignUpModal(true)}
                 >
                   Sign Up
-                </button>
+                </button> */}
               </div>
             )}
           </div>
         </div>
-
-
-
-
-
-
-
-        {/* Desktop Navigation */}
-        {/* <div className="sm:flex hidden">
-          <ul className="flex justify-center h-[40px] bg-[#912c2c] w-full gap-x-2">
-            {navmenu.map((curr) => {
-              return (
-                <div className="flex text-[white] items-center px-[3rem]">
-                  {curr.name == "Category" && <AiOutlineMenu size={20} />}
-                  <Link
-                    className="hover:bg-[#621e1e] h-[2rem] align-center transition-all"
-                    href={curr.link}
-                  >
-                    {curr.name}
-                  </Link>
-                </div>
-              );
-            })}
-          </ul>
-        </div> */}
-
         {/* Mobile Navigation */}
         <div className="sm:hidden flex">
           <div
-            className={`fixed top-0 w-full ${scrolled
-              ? "flex justify-center items-center bg-transparent"
-              : "border-b border-gray-200 bg-transparent w-full flex justify-center items-center"
-              } z-30 transition-all`}
+            className={`fixed top-0 w-full ${
+              scrolled
+                ? "flex justify-center items-center bg-transparent"
+                : "border-b border-gray-200 bg-transparent w-full flex justify-center items-center"
+            } z-30 transition-all`}
           >
             {/* Drawer Section */}
             <div className="drawer drawer-end z-50">
@@ -302,13 +259,15 @@ export default function NavBar() {
             >
               <p className="text-white">Category</p>
               <ChevronDown
-                className={`h-4 w-4 text-white transition-all ${openPopover ? "rotate-180" : ""
-                  }`}
+                className={`h-4 w-4 text-white transition-all ${
+                  openPopover ? "rotate-180" : ""
+                }`}
               />
             </button>
           </div>
         </div>
       </nav>
+
       <SignInModal />
 
       <SideModal />
@@ -346,6 +305,7 @@ export default function NavBar() {
         }
         openPopover={openPopover}
         setOpenPopover={setOpenPopover}
+        children={undefined}
       />
     </>
   );

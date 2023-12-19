@@ -4,11 +4,11 @@ import FacebookProvider from "next-auth/providers/facebook";
 
 import User from "@models/user";
 import { connectToDB } from "@utils/database";
-// import Hero from "@components/Hero";
+
 console.log({
-  clientId: process.env.GOOGLE_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-})
+  clientId: "dd",
+  // clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+});
 const handler = NextAuth({
   providers: [
     GoogleProvider({
@@ -16,6 +16,7 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+
   callbacks: {
     async session({ session }) {
       // store the user id from MongoDB to session
@@ -49,10 +50,3 @@ const handler = NextAuth({
 });
 
 export { handler as GET, handler as POST };
-// export default function cart() {
-//   return (
-//     <div>
-//       <Hero />
-//     </div>
-//   );
-// }

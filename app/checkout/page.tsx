@@ -1,7 +1,9 @@
-import CheckoutForm from "@components/Checkout/CheckoutForm";
-import StatusCard from "@components/Checkout/StatusCard";
+import React from "react";
 
-const Checkout = () => {
+import CheckoutForm from "./../../components/checkout/CheckoutForm";
+import StatusCard from "./../../components/checkout/StatusCard";
+
+const Checkout: React.FC = () => {
   return (
     <div className="w-full my-7">
       <div className="grid md:grid-cols-2 max-w-[1100px] mx-auto gap-3">

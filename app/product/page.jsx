@@ -202,7 +202,7 @@ export default function product() {
           Categories
         </p>
         <div className="ml-[5rem] my-1">
-          {categories.map((categories) => (
+          {categories?.map((categories) => (
             <div
               className="border rounded-lg border-gray-300 p-4"
               key={categories}

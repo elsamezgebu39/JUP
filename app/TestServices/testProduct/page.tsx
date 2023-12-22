@@ -18,23 +18,24 @@ function ProductList() {
   }
 
   if (isError) {
-    return <div>Error: {error as any}</div>;
+    return <div>Error: {alert(JSON.stringify(error)) as any}</div>;
   }
 
   return (
     <div className=" border shadow p-4 m-4 ">
       <h2 className="font-bold text-center">Product List Table</h2>
       <div className="flex flex-wrap gap-4  border ">
-        {products.map((product) => (
-          <div key={product.id} className="">
-            <p>Product ID: {product.id}</p>
-            <p>user ID: {product.user_id}</p>
-            <p>Sub_category: {product.sub_category_id}</p>
-            <p>product Name: {product.product_name}</p>
-            <p>product description: {product.product_description}</p>
-            <p>price: {product.price}</p>
-          </div>
-        ))}
+        {products &&
+          products.map((product) => (
+            <div key={product.id} className="">
+              <p>Product ID: {product.id}</p>
+              <p>user ID: {product.user_id}</p>
+              <p>Sub_category: {product.sub_category_id}</p>
+              <p>product Name: {product.product_name}</p>
+              <p>product description: {product.product_description}</p>
+              <p>price: {product.price}</p>
+            </div>
+          ))}
       </div>
     </div>
   );
@@ -176,6 +177,6 @@ function App() {
 }
 
 // export default CreateUserForm;
-export default App;
-// export default ProductList;
+// export default App;
+export default ProductList;
 // export default CreateProductForm;

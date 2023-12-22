@@ -14,7 +14,10 @@ export default class ProductService {
   // Get All Products
   async getAllProducts(): Promise<Product> {
     try {
-      const { data }: any = await http.get(`/product`, { withCredentials: true });
+      const { data }: any = await http.get(`/product`, {
+        withCredentials: true,
+      });
+      console.log({ data });
       return data;
     } catch (error) {
       throw new Error("Failed to get products");
@@ -24,7 +27,9 @@ export default class ProductService {
   // Get Product by ID
   async getByProductId(productId: string): Promise<Product> {
     try {
-      const { data }: AxiosResponse<Product> = await http.get(`/product/${productId}`);
+      const { data }: AxiosResponse<Product> = await http.get(
+        `/product/${productId}`
+      );
       return data;
     } catch (error) {
       return error as any;
@@ -34,7 +39,9 @@ export default class ProductService {
   // get user products
   async getProductsByUserId(userId: string): Promise<Product> {
     try {
-      const { data }: AxiosResponse<Product> = await http.get(`/user_product/${userId}`);
+      const { data }: AxiosResponse<Product> = await http.get(
+        `/user_product/${userId}`
+      );
       return data;
     } catch (error) {
       return error as any;
@@ -48,7 +55,7 @@ export default class ProductService {
       const response: AxiosResponse<Product | any> = await http.post(
         `/product?${queryParams}`
       );
-      console.log(queryParams)
+      console.log(queryParams);
       return response.data;
     } catch (error) {
       return error as any;
@@ -57,11 +64,14 @@ export default class ProductService {
   }
 
   // Update Product by ID
-  async updateProduct(productId: string, updatedProduct: Product): Promise<Product> {
+  async updateProduct(
+    productId: string,
+    updatedProduct: Product
+  ): Promise<Product> {
     try {
       const queryParams = new URLSearchParams(updatedProduct as any).toString();
       const response: AxiosResponse<Product | any | null> = await http.patch(
-        `/product/${productId}?${queryParams}`,
+        `/product/${productId}?${queryParams}`
       );
       return response.data;
     } catch (error) {

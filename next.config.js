@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const API_URL = process.env.BACKEND_PROD_URL || "http://aadaa.omishtujoy.com";
+const API_URL = process.env.BACKEND_PROD_URL || "http://aadaa.omishtujoy.com/";
 
 var nextConfig = {
   images: {
@@ -15,7 +15,7 @@ var nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: `${API_URL}/api/:path*`,
+        destination: `http://aadaa.omishtujoy.com/api/:path*`,
       },
     ];
   },

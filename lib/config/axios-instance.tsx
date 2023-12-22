@@ -7,7 +7,7 @@ import axios, {
 
 // Create an instance of Axios
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: "http://aadaa.omishtujoy.com/api",
+  baseURL: "/api/",
   timeout: 5000,
   withCredentials: true,
   headers: {},

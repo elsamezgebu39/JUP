@@ -40,7 +40,7 @@ const Login = () => {
             className="bg-cover bg-center bg-no-repeat w-full h-full relative"
             style={{
               backgroundImage: `url('/assets/images/JUSTUDENT.JPG')`,
-              opacity: 0.4, // Adjust opacity value as needed
+              opacity: 0.6, // Adjust opacity value as needed
             }}
           >
             .

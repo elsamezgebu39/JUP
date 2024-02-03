@@ -1,25 +1,14 @@
 import "@app/styles/globals.scss";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
-import Nav from "@/components/layout/nav";
-import Footer from "@/components/layout/footer";
-// import Provider from "@components/Provider";
-import ReactQueryProvider from "@components/Provider/ReactQueryProvider";
-import SessionProvider from "@components/Provider/SessionProvider";
-import { Suspense } from "react";
+import { Layout, Menu, Dropdown, Avatar } from "antd";
+import { UserOutlined } from "@ant-design/icons";
+
+const { Header, Content } = Layout;
 
 export const metadata = {
-  title: "Asahm Cultural Product Marketplace",
-  description: "Asahm Cultural Product Marketplace",
-  twitter: {
-    card: "summary_large_image",
-    title: "Asham - Product Marketplace",
-    description:
-      "Asham is the all-in-one solution for Cultural product | Artifact.",
-    creator: "@omishitu",
-  },
-  metadataBase: new URL("https://asham.com"),
-  themeColor: "#FFF",
+  title: "JU Student",
+  description: "JU Student",
 };
 
 export default async function RootLayout({ children }) {
@@ -34,17 +23,22 @@ export default async function RootLayout({ children }) {
         <div className="main">
           <div className="gradient" />
         </div>
-        <ReactQueryProvider>
+        <div className="flex-grow">{children}</div>
+        <div className="fixed bottom-0 left-0 w-full h-5 bg-gray-700 text-white z-50">
+          <p className="text-center">
+            &copy; Powered by JU Apostolic Generation
+          </p>
+        </div>
+        {/* <ReactQueryProvider>
           <SessionProvider>
             <main className="">
               <div className="bg-red-500">
                 <Nav />
               </div>
               <div className="flex-grow">{children}</div>
-              <Footer />
             </main>
           </SessionProvider>
-        </ReactQueryProvider>
+        </ReactQueryProvider> */}
       </body>
     </html>
   );
